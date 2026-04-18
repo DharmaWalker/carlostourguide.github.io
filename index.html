@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Figueiredo | Premium Tour Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --azulejo-blue: #1A3C61;
+            --azulejo-light: #4A709C;
+            --terracotta: #C85A32;
+            --gold: #D4AF37;
+            --bg-light: #F9F7F3;
+            --bg-white: #FFFFFF;
+            --text-dark: #2C3539;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+
+        /* ── Language Switcher ── */
+        .lang-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 900;
+            display: flex;
+            gap: 0.3rem;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            padding: 0.35rem 0.5rem;
+            box-shadow: 0 4px 20px rgba(26,60,97,0.13);
+            border: 1px solid rgba(26,60,97,0.08);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            line-height: 1;
+            padding: 0.2rem 0.3rem;
+            border-radius: 20px;
+            transition: var(--transition);
+            opacity: 0.45;
+            position: relative;
+        }
+        .lang-btn:hover { opacity: 0.8; transform: scale(1.1); }
+        .lang-btn.active {
+            opacity: 1;
+            background: rgba(26,60,97,0.08);
+            transform: scale(1.12);
+        }
+        .lang-btn::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -1.3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--azulejo-blue);
+            opacity: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        .lang-btn:hover::after { opacity: 0.7; }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(26,60,97,0.05), rgba(26,60,97,0.1)),
+                        url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16l2.5-2.5V16h8v2h-8v2.5L29.5 23 27 25.5V40h-2V25.5L22.5 23l-2.5 2.5V23H0v-2h18v-2.5z" fill="%231A3C61" fill-opacity="0.03" fill-rule="evenodd"/></svg>');
+            border-bottom: 8px solid var(--azulejo-blue);
+        }
+
+        .profile-img {
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--azulejo-blue);
+            box-shadow: 0 10px 30px rgba(26,60,97,0.2);
+            margin-bottom: 1.5rem;
+            animation: fadeUp 1s ease-out;
+        }
+
+        .brand-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--azulejo-blue);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            opacity: 0.85;
+            animation: fadeUp 1s ease-out 0.15s backwards;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--azulejo-blue);
+            margin-bottom: 0.5rem;
+            animation: fadeUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero p.tagline {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            animation: fadeUp 1s ease-out 0.4s backwards;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeUp 1s ease-out 0.6s backwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-whatsapp { background-color: #25D366; color: white; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+        .btn-whatsapp:hover { background-color: #1ebc5a; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            color: white; box-shadow: 0 4px 15px rgba(220,39,67,0.3);
+        }
+        .btn-instagram:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(220,39,67,0.4); }
+
+        /* ── Sections ── */
+        section {
+            padding: 5rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--azulejo-blue);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px; left: 50%;
+            transform: translateX(-50%);
+            width: 60px; height: 3px;
+            background-color: var(--terracotta);
+        }
+
+        /* ── About ── */
+        .about-text {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #444;
+        }
+
+        .languages {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .lang-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--azulejo-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(26,60,97,0.1);
+        }
+
+        /* ── Tour Cards ── */
+        .tours-grid { display: grid; gap: 2.5rem; }
+
+        .tour-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .tour-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(26,60,97,0.12); }
+
+        .tour-header {
+            background-color: var(--azulejo-blue);
+            color: white;
+            padding: 2rem 2rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .tour-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="%23ffffff" fill-opacity="0.08"/></svg>');
+        }
+        .tour-header h3 { font-size: 1.8rem; margin-bottom: 0.4rem; position: relative; z-index: 1; }
+        .tour-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 300;
+            opacity: 0.85;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Tour Description ── */
+        .tour-description {
+            font-size: 0.97rem;
+            color: #555;
+            line-height: 1.7;
+            font-style: italic;
+            border-left: 3px solid var(--terracotta);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── Photo Gallery ── */
+        .tour-gallery {
+            display: flex;
+            gap: 0.8rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--azulejo-light) transparent;
+        }
+        .tour-gallery::-webkit-scrollbar { height: 4px; }
+        .tour-gallery::-webkit-scrollbar-track { background: transparent; }
+        .tour-gallery::-webkit-scrollbar-thumb { background: var(--azulejo-light); border-radius: 2px; }
+
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 200px; height: 130px;
+            border-radius: 10px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            position: relative;
+            cursor: pointer;
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+        .gallery-item:hover img { transform: scale(1.06); }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(26,60,97,0.85), transparent);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 0.5rem 0.6rem 0.35rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── Tour Body ── */
+        .tour-body { padding: 1.8rem 2rem 2rem; }
+        .tour-info-group { margin-bottom: 1.5rem; }
+
+        .tour-info-title {
+            font-weight: 600;
+            color: var(--azulejo-blue);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tour-locations { color: #555; font-size: 0.95rem; }
+
+        .tour-pricing {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .price-box { display: flex; flex-direction: column; }
+        .price-pax { font-size: 0.78rem; color: #777; margin-bottom: 0.2rem; }
+        .price-val { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--terracotta); font-weight: 700; }
+
+        .btn-book {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--azulejo-light);
+            color: white;
+            padding: 1.2rem;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition);
+        }
+        .btn-book:hover { background: var(--azulejo-blue); }
+
+        /* ── Common Info ── */
+        .common-info {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            margin-top: 2rem;
+        }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+        .info-item { text-align: center; }
+        .info-icon { font-size: 2rem; color: var(--terracotta); margin-bottom: 1rem; }
+        .info-item h4 { color: var(--azulejo-blue); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .info-item p { font-size: 0.88rem; color: #666; }
+
+        /* ── Lightbox ── */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .lightbox-caption { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; font-size: 0.9rem; opacity: 0.85; white-space: nowrap; }
+        .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; opacity: 0.8; transition: opacity 0.2s; }
+        .lightbox-close:hover { opacity: 1; }
+
+        /* ── Footer ── */
+        footer { background: var(--azulejo-blue); color: white; text-align: center; padding: 3rem 1.5rem; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1rem; }
+        .footer-text { font-size: 0.85rem; opacity: 0.7; }
+
+        /* ── Booking Modal ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 30, 50, 0.75);
+            z-index: 1100;
+            align-items: flex-end;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            padding: 0;
+        }
+        .modal-overlay.active { display: flex; }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        .modal {
+            background: var(--bg-white);
+            width: 100%;
+            max-width: 520px;
+            border-radius: 24px 24px 0 0;
+            padding: 0;
+            overflow: hidden;
+            animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 95vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        @media (min-width: 601px) {
+            .modal-overlay { align-items: center; padding: 1.5rem; }
+            .modal { border-radius: 24px; animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1); max-height: 90vh; }
+        }
+
+        .modal-header {
+            background: var(--azulejo-blue);
+            color: white;
+            padding: 1.8rem 2rem 1.5rem;
+            position: relative;
+        }
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="%23ffffff" fill-opacity="0.07"/></svg>');
+        }
+        .modal-header h2 {
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.25rem;
+        }
+        .modal-tour-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.2rem; right: 1.2rem;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+            z-index: 2;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.3); }
+
+        .modal-body { padding: 2rem; }
+
+        /* Steps indicator */
+        .modal-steps {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.8rem;
+        }
+        .step-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(26,60,97,0.15);
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        .step-dot.active { background: var(--azulejo-blue); width: 24px; border-radius: 4px; }
+        .step-dot.done { background: #25D366; }
+
+        /* Form fields */
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--azulejo-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 0.45rem;
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1.5px solid rgba(26,60,97,0.15);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .form-input:focus {
+            border-color: var(--azulejo-light);
+            box-shadow: 0 0 0 3px rgba(74,112,156,0.12);
+            background: white;
+        }
+        .form-input.error { border-color: var(--terracotta); }
+
+        /* Pax selector */
+        .pax-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+        }
+        .pax-btn {
+            padding: 0.7rem 0.5rem;
+            border: 1.5px solid rgba(26,60,97,0.15);
+            border-radius: 10px;
+            background: var(--bg-light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .pax-btn:hover { border-color: var(--azulejo-light); background: white; }
+        .pax-btn.selected {
+            border-color: var(--azulejo-blue);
+            background: var(--azulejo-blue);
+            color: white;
+        }
+
+        /* Deposit summary */
+        .deposit-box {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+            border: 1.5px solid rgba(26,60,97,0.08);
+        }
+        .deposit-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.4rem;
+        }
+        .deposit-row:last-child { margin-bottom: 0; }
+        .deposit-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-top: 1px solid rgba(26,60,97,0.1);
+            margin-top: 0.7rem;
+            padding-top: 0.7rem;
+        }
+        .deposit-total-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--azulejo-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .deposit-total-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--terracotta);
+            font-weight: 700;
+        }
+
+        /* Buttons */
+        .btn-paypal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 1.1rem;
+            background: #003087;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .btn-paypal:hover { background: #001f5b; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,48,135,0.25); }
+        .btn-paypal svg { width: 20px; height: 20px; }
+
+        .btn-secondary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.9rem;
+            background: transparent;
+            border: 1.5px solid rgba(26,60,97,0.2);
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--azulejo-blue);
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: var(--transition);
+        }
+        .btn-secondary:hover { background: var(--bg-light); border-color: var(--azulejo-blue); }
+
+        /* Confirmation step */
+        .confirmation-step { display: none; }
+        .confirmation-step.active { display: block; animation: fadeIn 0.4s ease; }
+        .booking-step { display: block; }
+        .booking-step.hidden { display: none; }
+
+        .confirm-icon {
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, #25D366, #1ebc5a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+        .confirm-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--azulejo-blue);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .confirm-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.8rem;
+        }
+        .confirm-summary {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        .confirm-summary strong { color: var(--azulejo-blue); }
+
+        .btn-calendar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 1rem;
+            background: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 0.8rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .btn-calendar:hover { background: #3367d6; transform: translateY(-2px); }
+
+        .btn-wa-confirm {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 1rem;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .btn-wa-confirm:hover { background: #1ebc5a; transform: translateY(-2px); }
+
+        .note-small {
+            font-size: 0.75rem;
+            color: #999;
+            text-align: center;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .tour-pricing { grid-template-columns: 1fr; }
+            .price-box:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.5rem; }
+            .gallery-item { width: 160px; height: 110px; }
+            .lang-switcher { top: 0.6rem; right: 0.6rem; padding: 0.25rem 0.4rem; }
+            .lang-btn { font-size: 1.15rem; }
+            .modal-body { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher" role="navigation" aria-label="Language selector">
+        <button class="lang-btn active" data-lang="en" data-label="EN" onclick="setLang('en')" title="English">🇬🇧</button>
+        <button class="lang-btn" data-lang="pt" data-label="PT" onclick="setLang('pt')" title="Português">🇵🇹</button>
+        <button class="lang-btn" data-lang="es" data-label="ES" onclick="setLang('es')" title="Español">🇪🇸</button>
+        <button class="lang-btn" data-lang="it" data-label="IT" onclick="setLang('it')" title="Italiano">🇮🇹</button>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+        <span class="lightbox-caption" id="lightbox-caption"></span>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal" onclick="handleModalOverlayClick(event)">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-header">
+                <h2 id="modalTitle" data-i18n="modalTitle">Book Your Tour</h2>
+                <div class="modal-tour-name" id="modalTourName"></div>
+                <button class="modal-close" onclick="closeBookingModal()" aria-label="Close">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Step dots -->
+                <div class="modal-steps">
+                    <div class="step-dot active" id="dot1"></div>
+                    <div class="step-dot" id="dot2"></div>
+                </div>
+
+                <!-- STEP 1: Booking Form -->
+                <div class="booking-step" id="bookingFormStep">
+                    <div class="form-group">
+                        <label class="form-label" for="clientName" data-i18n="formName">Your Name</label>
+                        <input type="text" id="clientName" class="form-input" autocomplete="name" placeholder="John Smith">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="clientEmail" data-i18n="formEmail">Email Address</label>
+                        <input type="email" id="clientEmail" class="form-input" autocomplete="email" placeholder="john@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="tourDate" data-i18n="formDate">Preferred Date</label>
+                        <input type="date" id="tourDate" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="formGroup">Group Size</label>
+                        <div class="pax-selector">
+                            <button class="pax-btn" data-pax="2" onclick="selectPax(2)">2 <span data-i18n="paxLabel">pax</span></button>
+                            <button class="pax-btn" data-pax="4" onclick="selectPax(4)">4 <span data-i18n="paxLabel">pax</span></button>
+                            <button class="pax-btn" data-pax="6" onclick="selectPax(6)">6 <span data-i18n="paxLabel">pax</span></button>
+                        </div>
+                    </div>
+
+                    <div class="deposit-box" id="depositBox">
+                        <div class="deposit-row">
+                            <span data-i18n="depositTourTotal">Tour Total</span>
+                            <span id="tourTotalDisplay">—</span>
+                        </div>
+                        <div class="deposit-row">
+                            <span data-i18n="depositRate">Deposit (10%)</span>
+                            <span>10%</span>
+                        </div>
+                        <div class="deposit-total">
+                            <span class="deposit-total-label" data-i18n="depositDue">Amount Due Now</span>
+                            <span class="deposit-total-val" id="depositDisplay">—</span>
+                        </div>
+                    </div>
+
+                    <a href="#" id="paypalBtn" class="btn-paypal" target="_blank" rel="noopener" onclick="handlePayPalClick(event)">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.316 2.42 1.016 4.223-.012.073-.023.147-.038.225-.965 5.144-4.256 6.927-8.47 6.927H9.923a.955.955 0 0 0-.943.806L7.076 21.337zm10.56-14.26a4.04 4.04 0 0 0-.09-.512C17.008 4.73 15.56 3.9 12.9 3.9H7.16l-2.45 14.9h3.096l.91-5.8a1.61 1.61 0 0 1 1.59-1.364h1.737c3.442 0 5.982-1.4 6.747-5.497l.045-.062z"/></svg>
+                        <span data-i18n="paypalBtn">Pay Deposit via PayPal</span>
+                    </a>
+                    <p class="note-small" data-i18n="paypalNote">You will be redirected to PayPal.me to complete the secure deposit payment. The remaining balance is paid on the day of the tour.</p>
+                </div>
+
+                <!-- STEP 2: Confirmation -->
+                <div class="confirmation-step" id="confirmationStep">
+                    <div class="confirm-icon">✓</div>
+                    <h3 class="confirm-title" data-i18n="confirmTitle">Booking Requested!</h3>
+                    <p class="confirm-subtitle" data-i18n="confirmSubtitle">Thank you! Carlos will confirm your tour within 24 hours.</p>
+
+                    <div class="confirm-summary" id="confirmSummary"></div>
+
+                    <a href="#" id="calendarBtn" class="btn-calendar" target="_blank" rel="noopener">
+                        <i class="fab fa-google" aria-hidden="true"></i>
+                        <span data-i18n="calendarBtn">Add to Google Calendar</span>
+                    </a>
+                    <a href="#" id="waConfirmBtn" class="btn-wa-confirm" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        <span data-i18n="waConfirmBtn">Send Details to Carlos</span>
+                    </a>
+                    <p class="note-small" data-i18n="confirmNote">Carlos will receive your booking details and confirm availability via WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero">
+        <img src="profile.jpg" alt="Carlos Figueiredo" class="profile-img">
+        <p class="brand-label">That Tourguide</p>
+        <h1>Carlos Figueiredo</h1>
+        <p class="tagline" data-i18n="tagline">Premium Tour Guide in Portugal &amp; Spain</p>
+        <div class="contact-buttons">
+            <a href="https://wa.me/351933302031" target="_blank" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> +351 933302031
+            </a>
+            <a href="https://instagram.com/that_tourguide" target="_blank" class="btn btn-instagram">
+                <i class="fab fa-instagram"></i> @that_tourguide
+            </a>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" class="animate-on-scroll">
+        <h2 class="section-title" data-i18n="aboutTitle">About Me</h2>
+        <p class="about-text" data-i18n="aboutText">
+            Welcome to Portugal! I'm Carlos, your dedicated private tour guide.
+            Based in Lisbon and Sintra, I specialize in crafting unforgettable, premium day experiences
+            across Portugal and Spain. Let's explore the history, culture, and hidden gems together.
+        </p>
+        <div class="languages">
+            <div class="lang-badge"><i class="fas fa-globe"></i> <span data-i18n="langPT">Portuguese</span></div>
+            <div class="lang-badge"><i class="fas fa-globe"></i> <span data-i18n="langEN">English</span></div>
+            <div class="lang-badge"><i class="fas fa-globe"></i> <span data-i18n="langES">Spanish</span></div>
+            <div class="lang-badge"><i class="fas fa-globe"></i> <span data-i18n="langIT">Italian</span></div>
+        </div>
+    </section>
+
+    <!-- Tours -->
+    <section id="tours">
+        <h2 class="section-title animate-on-scroll" data-i18n="toursTitle">Signature Tours</h2>
+
+        <div class="tours-grid">
+
+            <!-- Tour 1: Sintra -->
+            <div class="tour-card animate-on-scroll">
+                <div class="tour-header">
+                    <h3>'That Sintra Feeling!'</h3>
+                    <div class="tour-subtitle"><i class="far fa-clock"></i> <span data-i18n="sintraSubtitle">6-7h &bull; Premium Day Experience from Lisbon</span></div>
+                </div>
+                <div class="tour-body">
+                    <p class="tour-description" data-i18n="sintraDesc">
+                        Step into a fairy tale just 40 minutes from Lisbon. Sintra's mist-wrapped palaces, mystical gardens and the wild edge of continental Europe's westernmost cape combine into one truly magical day — this is where history feels alive.
+                    </p>
+                    <div class="tour-gallery">
+                        <div class="gallery-item" onclick="openLightbox('sintra-pena.jpg','Palácio da Pena, Sintra')">
+                            <img src="sintra-pena.jpg" alt="Palácio da Pena" loading="lazy">
+                            <div class="gallery-label">Palácio da Pena</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('sintra-regaleira.webp','Quinta da Regaleira')">
+                            <img src="sintra-regaleira.webp" alt="Quinta da Regaleira" loading="lazy">
+                            <div class="gallery-label">Quinta da Regaleira</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('sintra-cabodaroca.webp','Cabo da Roca')">
+                            <img src="sintra-cabodaroca.webp" alt="Cabo da Roca" loading="lazy">
+                            <div class="gallery-label">Cabo da Roca</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('sintra-cascais.webp','Cascais')">
+                            <img src="sintra-cascais.webp" alt="Cascais" loading="lazy">
+                            <div class="gallery-label">Cascais</div>
+                        </div>
+                    </div>
+                    <div class="tour-info-group">
+                        <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
+                        <p class="tour-locations" data-i18n="sintraHighlights">Pena Palace, Quinta da Regaleira, Monserrate Palace, Cascais, Cabo da Roca.</p>
+                    </div>
+                    <div class="tour-info-group">
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-pricing">
+                            <div class="price-box"><span class="price-pax" data-i18n="pax2">2 Pax</span><span class="price-val">230€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax4">4 Pax</span><span class="price-val">270€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax6">6 Pax</span><span class="price-val">290€</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('sintra')" class="btn-book">
+                        <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tour 2: Lisbon -->
+            <div class="tour-card animate-on-scroll">
+                <div class="tour-header">
+                    <h3 data-i18n="lisbonTitle">Lisbon Tour</h3>
+                    <div class="tour-subtitle"><i class="far fa-clock"></i> <span data-i18n="lisbonSubtitle">6-7h &bull; Premium Day Experience</span></div>
+                </div>
+                <div class="tour-body">
+                    <p class="tour-description" data-i18n="lisbonDesc">
+                        Discover Lisbon's soul — from the golden Age of Discovery monuments in Belém to the cobblestoned alleys of Alfama, where fado was born. A city of seven hills, stunning viewpoints and centuries of stories waiting to be told.
+                    </p>
+                    <div class="tour-gallery">
+                        <div class="gallery-item" onclick="openLightbox('lisbon-belem.jpg','Torre de Belém, Lisboa')">
+                            <img src="lisbon-belem.jpg" alt="Torre de Belém" loading="lazy">
+                            <div class="gallery-label">Torre de Belém</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('lisbon-alfama.jpg','Alfama & São Jorge Castle')">
+                            <img src="lisbon-alfama.jpg" alt="Alfama" loading="lazy">
+                            <div class="gallery-label">Alfama</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('lisbon-comercio.jpg','Praça do Comércio')">
+                            <img src="lisbon-comercio.jpg" alt="Praça do Comércio" loading="lazy">
+                            <div class="gallery-label">Praça do Comércio</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('lisbon-jeronimos.webp','Mosteiro dos Jerónimos')">
+                            <img src="lisbon-jeronimos.webp" alt="Mosteiro dos Jerónimos" loading="lazy">
+                            <div class="gallery-label">Jerónimos Monastery</div>
+                        </div>
+                    </div>
+                    <div class="tour-info-group">
+                        <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
+                        <p class="tour-locations" data-i18n="lisbonHighlights">Belém Tower &amp; Jerónimos Monastery, Cristo Rei, Alfama &amp; São Jorge Castle, Praça do Comércio &amp; Baixa.</p>
+                    </div>
+                    <div class="tour-info-group">
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-pricing">
+                            <div class="price-box"><span class="price-pax" data-i18n="pax2">2 Pax</span><span class="price-val">290€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax4">4 Pax</span><span class="price-val">330€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax6">6 Pax</span><span class="price-val">350€</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('lisbon')" class="btn-book">
+                        <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tour 3: Fátima, Batalha, Óbidos & Nazaré -->
+            <div class="tour-card animate-on-scroll">
+                <div class="tour-header">
+                    <h3>Fátima, Batalha, Óbidos &amp; Nazaré</h3>
+                    <div class="tour-subtitle"><i class="far fa-clock"></i> <span data-i18n="fatimaSubtitle">8-10h &bull; Premium Full-Day from Lisbon</span></div>
+                </div>
+                <div class="tour-body">
+                    <p class="tour-description" data-i18n="fatimaDesc">
+                        A full day journey through the spiritual heart of Portugal — from the world-famous Shrine of Fátima to a UNESCO Monastery, a perfectly preserved medieval village and the dramatic Atlantic cliffs of Nazaré. Four unforgettable destinations, one extraordinary day.
+                    </p>
+                    <div class="tour-gallery">
+                        <div class="gallery-item" onclick="openLightbox('fatima-santuario.jpg','Santuário de Fátima')">
+                            <img src="fatima-santuario.jpg" alt="Fátima Sanctuary" loading="lazy">
+                            <div class="gallery-label" data-i18n="fatimaSanc">Fátima Sanctuary</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('fatima-batalha.jpg','Mosteiro da Batalha')">
+                            <img src="fatima-batalha.jpg" alt="Batalha Monastery" loading="lazy">
+                            <div class="gallery-label" data-i18n="batalhaLabel">Batalha Monastery</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('fatima-obidos.jpg','Óbidos')">
+                            <img src="fatima-obidos.jpg" alt="Óbidos" loading="lazy">
+                            <div class="gallery-label" data-i18n="obidosLabel">Óbidos Village</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('fatima-nazare.webp','Nazaré')">
+                            <img src="fatima-nazare.webp" alt="Nazaré" loading="lazy">
+                            <div class="gallery-label" data-i18n="nazareLabel">Nazaré Coast</div>
+                        </div>
+                    </div>
+                    <div class="tour-info-group">
+                        <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
+                        <p class="tour-locations" data-i18n="fatimaHighlights">Fátima Sanctuary, Batalha Monastery (UNESCO), Óbidos Medieval Village, Nazaré Coast.</p>
+                    </div>
+                    <div class="tour-info-group">
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-pricing">
+                            <div class="price-box"><span class="price-pax" data-i18n="pax2">2 Pax</span><span class="price-val">430€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax4">4 Pax</span><span class="price-val">470€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax6">6 Pax</span><span class="price-val">510€</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('fatima')" class="btn-book">
+                        <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Common Info -->
+        <div class="common-info animate-on-scroll">
+            <h3 class="section-title" style="font-size:1.8rem;margin-bottom:2rem;" data-i18n="goodToKnow">Good to Know</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-shuttle-van info-icon"></i>
+                    <h4 data-i18n="transportTitle">Transportation</h4>
+                    <p data-i18n="transportText">Comfortable private van with professional local guide. Pick-up at your hotel or any central point in Lisbon or Sintra.</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-times-circle info-icon" style="color:#888;"></i>
+                    <h4 data-i18n="notIncludedTitle">Not Included</h4>
+                    <p data-i18n="notIncludedText">Meals, personal expenses, and entrance tickets to monuments.</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-suitcase-rolling info-icon"></i>
+                    <h4 data-i18n="bringTitle">What to Bring</h4>
+                    <p data-i18n="bringText">Comfortable walking shoes, a light jacket, and your camera!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Carlos Figueiredo</div>
+        <p class="footer-text" data-i18n="footerSub">Premium Tour Guide in Portugal &amp; Spain</p>
+        <p class="footer-text" style="margin-top:1rem;font-size:0.75rem;">
+            &copy; <script>document.write(new Date().getFullYear())</script> <span data-i18n="footerRights">All Rights Reserved.</span>
+        </p>
+    </footer>
+
+    <script>
+    // ════════════════════════════════════════════
+    //  i18n Translations
+    // ════════════════════════════════════════════
+    const translations = {
+        en: {
+            tagline:         "Premium Tour Guide in Portugal & Spain",
+            aboutTitle:      "About Me",
+            aboutText:       "Welcome to Portugal! I'm Carlos, your dedicated private tour guide. Based in Lisbon and Sintra, I specialize in crafting unforgettable, premium day experiences across Portugal and Spain. Let's explore the history, culture, and hidden gems together.",
+            langPT:          "Portuguese",
+            langEN:          "English",
+            langES:          "Spanish",
+            langIT:          "Italian",
+            toursTitle:      "Signature Tours",
+            // Sintra
+            sintraSubtitle:  "6-7h · Premium Day Experience from Lisbon",
+            sintraDesc:      "Step into a fairy tale just 40 minutes from Lisbon. Sintra's mist-wrapped palaces, mystical gardens and the wild edge of continental Europe's westernmost cape combine into one truly magical day — this is where history feels alive.",
+            sintraHighlights:"Pena Palace, Quinta da Regaleira, Monserrate Palace, Cascais, Cabo da Roca.",
+            // Lisbon
+            lisbonTitle:     "Lisbon Tour",
+            lisbonSubtitle:  "6-7h · Premium Day Experience",
+            lisbonDesc:      "Discover Lisbon's soul — from the golden Age of Discovery monuments in Belém to the cobblestoned alleys of Alfama, where fado was born. A city of seven hills, stunning viewpoints and centuries of stories waiting to be told.",
+            lisbonHighlights:"Belém Tower & Jerónimos Monastery, Cristo Rei, Alfama & São Jorge Castle, Praça do Comércio & Baixa.",
+            // Fátima
+            fatimaSubtitle:  "8-10h · Premium Full-Day from Lisbon",
+            fatimaDesc:      "A full day journey through the spiritual heart of Portugal — from the world-famous Shrine of Fátima to a UNESCO Monastery, a perfectly preserved medieval village and the dramatic Atlantic cliffs of Nazaré. Four unforgettable destinations, one extraordinary day.",
+            fatimaHighlights:"Fátima Sanctuary, Batalha Monastery (UNESCO), Óbidos Medieval Village, Nazaré Coast.",
+            fatimaSanc:      "Fátima Sanctuary",
+            batalhaLabel:    "Batalha Monastery",
+            obidosLabel:     "Óbidos Village",
+            nazareLabel:     "Nazaré Coast",
+            // Common
+            highlights:      "Highlights",
+            pricingLabel:    "Pricing (Per Group)",
+            pax2:            "2 Pax",
+            pax4:            "4 Pax",
+            pax6:            "6 Pax",
+            bookBtn:         "Book This Tour",
+            goodToKnow:      "Good to Know",
+            transportTitle:  "Transportation",
+            transportText:   "Comfortable private van with professional local guide. Pick-up at your hotel or any central point in Lisbon or Sintra.",
+            notIncludedTitle:"Not Included",
+            notIncludedText: "Meals, personal expenses, and entrance tickets to monuments.",
+            bringTitle:      "What to Bring",
+            bringText:       "Comfortable walking shoes, a light jacket, and your camera!",
+            footerSub:       "Premium Tour Guide in Portugal & Spain",
+            footerRights:    "All Rights Reserved.",
+            // Booking modal
+            modalTitle:      "Book Your Tour",
+            formName:        "Your Name",
+            formEmail:       "Email Address",
+            formDate:        "Preferred Date",
+            formGroup:       "Group Size",
+            paxLabel:        "pax",
+            depositTourTotal:"Tour Total",
+            depositRate:     "Deposit (10%)",
+            depositDue:      "Amount Due Now",
+            paypalBtn:       "Pay Deposit via PayPal",
+            paypalNote:      "You will be redirected to PayPal.me to complete the secure deposit payment. The remaining balance is paid on the day of the tour.",
+            confirmTitle:    "Booking Requested!",
+            confirmSubtitle: "Thank you! Carlos will confirm your tour within 24 hours.",
+            calendarBtn:     "Add to Google Calendar",
+            waConfirmBtn:    "Send Details to Carlos",
+            confirmNote:     "Carlos will receive your booking details and confirm availability via WhatsApp.",
+            confirmSumTour:  "Tour",
+            confirmSumName:  "Name",
+            confirmSumDate:  "Date",
+            confirmSumGroup: "Group",
+            confirmSumTotal: "Tour Total",
+            confirmSumDep:   "Deposit paid",
+        },
+        pt: {
+            tagline:         "Guia Turístico Premium em Portugal & Espanha",
+            aboutTitle:      "Sobre Mim",
+            aboutText:       "Bem-vindo a Portugal! Sou o Carlos, o seu guia turístico privado. Com base em Lisboa e Sintra, especializo-me em criar experiências premium e inesquecíveis por todo Portugal e Espanha. Vamos explorar juntos a história, a cultura e os tesouros escondidos.",
+            langPT:          "Português",
+            langEN:          "Inglês",
+            langES:          "Espanhol",
+            langIT:          "Italiano",
+            toursTitle:      "Tours Exclusivos",
+            sintraSubtitle:  "6-7h · Experiência Premium a partir de Lisboa",
+            sintraDesc:      "Entre num conto de fadas a apenas 40 minutos de Lisboa. Os palácios envoltos em neblina, os jardins místicos e o cabo mais a ocidente da Europa continental unem-se num dia verdadeiramente mágico — aqui a história ganha vida.",
+            sintraHighlights:"Palácio da Pena, Quinta da Regaleira, Palácio de Monserrate, Cascais, Cabo da Roca.",
+            lisbonTitle:     "Tour Lisboa",
+            lisbonSubtitle:  "6-7h · Experiência Premium",
+            lisbonDesc:      "Descubra a alma de Lisboa — dos monumentos dourados dos Descobrimentos em Belém às ruelas de pedra da Alfama, onde nasceu o fado. Uma cidade de sete colinas, miradouros deslumbrantes e séculos de histórias para contar.",
+            lisbonHighlights:"Torre de Belém & Mosteiro dos Jerónimos, Cristo Rei, Alfama & Castelo de São Jorge, Praça do Comércio & Baixa.",
+            fatimaSubtitle:  "8-10h · Dia Completo Premium a partir de Lisboa",
+            fatimaDesc:      "Uma viagem de um dia pelo coração espiritual de Portugal — do mundialmente famoso Santuário de Fátima a um Mosteiro Património UNESCO, uma vila medieval perfeitamente preservada e as dramáticas falésias atlânticas da Nazaré. Quatro destinos inesquecíveis, um dia extraordinário.",
+            fatimaHighlights:"Santuário de Fátima, Mosteiro da Batalha (UNESCO), Vila Medieval de Óbidos, Costa da Nazaré.",
+            fatimaSanc:      "Santuário de Fátima",
+            batalhaLabel:    "Mosteiro da Batalha",
+            obidosLabel:     "Vila de Óbidos",
+            nazareLabel:     "Costa da Nazaré",
+            highlights:      "Destaques",
+            pricingLabel:    "Preços (Por Grupo)",
+            pax2:            "2 Pessoas",
+            pax4:            "4 Pessoas",
+            pax6:            "6 Pessoas",
+            bookBtn:         "Reservar Este Tour",
+            goodToKnow:      "Informações Úteis",
+            transportTitle:  "Transporte",
+            transportText:   "Van privada confortável com guia local profissional. Recolha no hotel ou num ponto central em Lisboa ou Sintra.",
+            notIncludedTitle:"Não Incluído",
+            notIncludedText: "Refeições, despesas pessoais e bilhetes de entrada nos monumentos.",
+            bringTitle:      "O Que Trazer",
+            bringText:       "Sapatos confortáveis, um casaco leve e a sua câmara!",
+            footerSub:       "Guia Turístico Premium em Portugal & Espanha",
+            footerRights:    "Todos os Direitos Reservados.",
+            // Booking modal
+            modalTitle:      "Reservar Tour",
+            formName:        "O Seu Nome",
+            formEmail:       "Email",
+            formDate:        "Data Pretendida",
+            formGroup:       "Tamanho do Grupo",
+            paxLabel:        "pessoas",
+            depositTourTotal:"Total do Tour",
+            depositRate:     "Sinal (10%)",
+            depositDue:      "Valor a Pagar Agora",
+            paypalBtn:       "Pagar Sinal via PayPal",
+            paypalNote:      "Será redirecionado para o PayPal.me para concluir o pagamento do sinal. O valor restante é pago no dia do tour.",
+            confirmTitle:    "Reserva Efectuada!",
+            confirmSubtitle: "Obrigado! O Carlos confirmará o seu tour em 24 horas.",
+            calendarBtn:     "Adicionar ao Google Calendar",
+            waConfirmBtn:    "Enviar Detalhes ao Carlos",
+            confirmNote:     "O Carlos receberá os detalhes da sua reserva e confirmará disponibilidade via WhatsApp.",
+            confirmSumTour:  "Tour",
+            confirmSumName:  "Nome",
+            confirmSumDate:  "Data",
+            confirmSumGroup: "Grupo",
+            confirmSumTotal: "Total do Tour",
+            confirmSumDep:   "Sinal pago",
+        },
+        es: {
+            tagline:         "Guía Turístico Premium en Portugal & España",
+            aboutTitle:      "Sobre Mí",
+            aboutText:       "¡Bienvenido a Portugal! Soy Carlos, tu guía turístico privado. Con base en Lisboa y Sintra, me especializo en crear experiencias premium e inolvidables por todo Portugal y España. Exploremos juntos la historia, la cultura y los tesoros escondidos.",
+            langPT:          "Portugués",
+            langEN:          "Inglés",
+            langES:          "Español",
+            langIT:          "Italiano",
+            toursTitle:      "Tours Exclusivos",
+            sintraSubtitle:  "6-7h · Experiencia Premium desde Lisboa",
+            sintraDesc:      "Adéntrate en un cuento de hadas a solo 40 minutos de Lisboa. Los palacios envueltos en niebla de Sintra, los jardines místicos y el extremo más occidental del continente europeo se combinan en un día verdaderamente mágico — aquí la historia cobra vida.",
+            sintraHighlights:"Palacio da Pena, Quinta da Regaleira, Palacio de Monserrate, Cascais, Cabo da Roca.",
+            lisbonTitle:     "Tour Lisboa",
+            lisbonSubtitle:  "6-7h · Experiencia Premium",
+            lisbonDesc:      "Descubre el alma de Lisboa — desde los dorados monumentos de los Descubrimientos en Belém hasta los callejones empedrados de Alfama, donde nació el fado. Una ciudad de siete colinas, miradores impresionantes y siglos de historias por contar.",
+            lisbonHighlights:"Torre de Belém & Monasterio de los Jerónimos, Cristo Rei, Alfama & Castillo de San Jorge, Praça do Comércio & Baixa.",
+            fatimaSubtitle:  "8-10h · Día Completo Premium desde Lisboa",
+            fatimaDesc:      "Un viaje de un día por el corazón espiritual de Portugal — desde el mundialmente famoso Santuario de Fátima hasta un Monasterio Patrimonio UNESCO, un pueblo medieval perfectamente conservado y los dramáticos acantilados atlánticos de Nazaré. Cuatro destinos inolvidables, un día extraordinario.",
+            fatimaHighlights:"Santuario de Fátima, Monasterio de Batalha (UNESCO), Villa Medieval de Óbidos, Costa de Nazaré.",
+            fatimaSanc:      "Santuario de Fátima",
+            batalhaLabel:    "Monasterio de Batalha",
+            obidosLabel:     "Villa de Óbidos",
+            nazareLabel:     "Costa de Nazaré",
+            highlights:      "Puntos Destacados",
+            pricingLabel:    "Precios (Por Grupo)",
+            pax2:            "2 Personas",
+            pax4:            "4 Personas",
+            pax6:            "6 Personas",
+            bookBtn:         "Reservar Este Tour",
+            goodToKnow:      "Información Útil",
+            transportTitle:  "Transporte",
+            transportText:   "Furgoneta privada confortable con guía local profesional. Recogida en tu hotel o en un punto central de Lisboa o Sintra.",
+            notIncludedTitle:"No Incluido",
+            notIncludedText: "Comidas, gastos personales y entradas a monumentos.",
+            bringTitle:      "Qué Traer",
+            bringText:       "Zapatos cómodos, una chaqueta ligera y tu cámara.",
+            footerSub:       "Guía Turístico Premium en Portugal & España",
+            footerRights:    "Todos los Derechos Reservados.",
+            // Booking modal
+            modalTitle:      "Reservar Tour",
+            formName:        "Tu Nombre",
+            formEmail:       "Correo Electrónico",
+            formDate:        "Fecha Preferida",
+            formGroup:       "Tamaño del Grupo",
+            paxLabel:        "personas",
+            depositTourTotal:"Total del Tour",
+            depositRate:     "Señal (10%)",
+            depositDue:      "Importe a Pagar Ahora",
+            paypalBtn:       "Pagar Señal vía PayPal",
+            paypalNote:      "Serás redirigido a PayPal.me para completar el pago de la señal. El saldo restante se paga el día del tour.",
+            confirmTitle:    "¡Reserva Realizada!",
+            confirmSubtitle: "¡Gracias! Carlos confirmará tu tour en 24 horas.",
+            calendarBtn:     "Añadir a Google Calendar",
+            waConfirmBtn:    "Enviar Detalles a Carlos",
+            confirmNote:     "Carlos recibirá los detalles de tu reserva y confirmará disponibilidad por WhatsApp.",
+            confirmSumTour:  "Tour",
+            confirmSumName:  "Nombre",
+            confirmSumDate:  "Fecha",
+            confirmSumGroup: "Grupo",
+            confirmSumTotal: "Total del Tour",
+            confirmSumDep:   "Señal pagada",
+        },
+        it: {
+            tagline:         "Guida Turistica Premium in Portogallo & Spagna",
+            aboutTitle:      "Chi Sono",
+            aboutText:       "Benvenuto in Portogallo! Sono Carlos, la tua guida turistica privata. Con base a Lisbona e Sintra, mi specializzo nella creazione di esperienze premium e indimenticabili in tutto il Portogallo e la Spagna. Esploriamo insieme storia, cultura e luoghi nascosti.",
+            langPT:          "Portoghese",
+            langEN:          "Inglese",
+            langES:          "Spagnolo",
+            langIT:          "Italiano",
+            toursTitle:      "Tour Esclusivi",
+            sintraSubtitle:  "6-7h · Esperienza Premium da Lisbona",
+            sintraDesc:      "Entra in una fiaba a soli 40 minuti da Lisbona. I palazzi avvolti nella nebbia di Sintra, i giardini mistici e il punto più occidentale del continente europeo si uniscono in una giornata davvero magica — qui la storia prende vita.",
+            sintraHighlights:"Palazzo della Pena, Quinta da Regaleira, Palazzo di Monserrate, Cascais, Cabo da Roca.",
+            lisbonTitle:     "Tour di Lisbona",
+            lisbonSubtitle:  "6-7h · Esperienza Premium",
+            lisbonDesc:      "Scopri l'anima di Lisbona — dai dorati monumenti dell'Era delle Scoperte a Belém ai vicoli acciottolati di Alfama, dove è nato il fado. Una città di sette colline, belvedere mozzafiato e secoli di storie da raccontare.",
+            lisbonHighlights:"Torre di Belém & Monastero dei Jerónimos, Cristo Rei, Alfama & Castello di San Giorgio, Praça do Comércio & Baixa.",
+            fatimaSubtitle:  "8-10h · Giornata Intera Premium da Lisbona",
+            fatimaDesc:      "Un viaggio di un giorno nel cuore spirituale del Portogallo — dal celebre Santuario di Fátima a un Monastero Patrimonio UNESCO, un borgo medievale perfettamente conservato e le spettacolari scogliere atlantiche di Nazaré. Quattro destinazioni indimenticabili, un giorno straordinario.",
+            fatimaHighlights:"Santuario di Fátima, Monastero di Batalha (UNESCO), Borgo Medievale di Óbidos, Costa di Nazaré.",
+            fatimaSanc:      "Santuario di Fátima",
+            batalhaLabel:    "Monastero di Batalha",
+            obidosLabel:     "Borgo di Óbidos",
+            nazareLabel:     "Costa di Nazaré",
+            highlights:      "Luoghi Principali",
+            pricingLabel:    "Prezzi (Per Gruppo)",
+            pax2:            "2 Persone",
+            pax4:            "4 Persone",
+            pax6:            "6 Persone",
+            bookBtn:         "Prenota Questo Tour",
+            goodToKnow:      "Informazioni Utili",
+            transportTitle:  "Trasporto",
+            transportText:   "Comodo van privato con guida locale professionale. Prelievo presso il tuo hotel o in un punto centrale di Lisbona o Sintra.",
+            notIncludedTitle:"Non Incluso",
+            notIncludedText: "Pasti, spese personali e biglietti d'ingresso ai monumenti.",
+            bringTitle:      "Cosa Portare",
+            bringText:       "Scarpe comode, una giacca leggera e la tua fotocamera!",
+            footerSub:       "Guida Turistica Premium in Portogallo & Spagna",
+            footerRights:    "Tutti i Diritti Riservati.",
+            // Booking modal
+            modalTitle:      "Prenota il Tour",
+            formName:        "Il Tuo Nome",
+            formEmail:       "Indirizzo Email",
+            formDate:        "Data Preferita",
+            formGroup:       "Dimensione del Gruppo",
+            paxLabel:        "persone",
+            depositTourTotal:"Totale Tour",
+            depositRate:     "Acconto (10%)",
+            depositDue:      "Importo da Pagare Ora",
+            paypalBtn:       "Paga l'Acconto via PayPal",
+            paypalNote:      "Sarai reindirizzato a PayPal.me per completare il pagamento dell'acconto. Il saldo restante si paga il giorno del tour.",
+            confirmTitle:    "Prenotazione Effettuata!",
+            confirmSubtitle: "Grazie! Carlos confermerà il tuo tour entro 24 ore.",
+            calendarBtn:     "Aggiungi a Google Calendar",
+            waConfirmBtn:    "Invia Dettagli a Carlos",
+            confirmNote:     "Carlos riceverà i dettagli della tua prenotazione e confermerà la disponibilità via WhatsApp.",
+            confirmSumTour:  "Tour",
+            confirmSumName:  "Nome",
+            confirmSumDate:  "Data",
+            confirmSumGroup: "Gruppo",
+            confirmSumTotal: "Totale Tour",
+            confirmSumDep:   "Acconto pagato",
+        }
+    };
+
+    // ════════════════════════════════════════════
+    //  Apply language
+    // ════════════════════════════════════════════
+    function setLang(lang) {
+        const t = translations[lang];
+        if (!t) return;
+
+        // Update all data-i18n elements
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.textContent = t[key];
+        });
+
+        // Update lang switcher buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+
+        // Update html lang attribute
+        document.documentElement.lang = lang;
+
+        // Persist choice
+        try { localStorage.setItem('lang', lang); } catch(e) {}
+    }
+
+    // ════════════════════════════════════════════
+    //  Scroll animations
+    // ════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+        // Restore language
+        let saved = 'en';
+        try { saved = localStorage.getItem('lang') || 'en'; } catch(e) {}
+        setLang(saved);
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { root: null, rootMargin: '0px', threshold: 0.08 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    });
+
+    // ════════════════════════════════════════════
+    //  Lightbox
+    // ════════════════════════════════════════════
+    function openLightbox(src, caption) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox-caption').textContent = caption;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeBookingModal(); } });
+
+    // ════════════════════════════════════════════
+    //  Booking System
+    // ════════════════════════════════════════════
+
+    const TOUR_DATA = {
+        sintra: {
+            name: "'That Sintra Feeling!'",
+            prices: { 2: 230, 4: 270, 6: 290 },
+            deposits: { 2: 23, 4: 27, 6: 29 },
+            waText: (name, date, pax, total, dep) =>
+                `Hello Carlos! I'd like to book the *Sintra Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
+        },
+        lisbon: {
+            name: "Lisbon Tour",
+            prices: { 2: 290, 4: 330, 6: 350 },
+            deposits: { 2: 29, 4: 33, 6: 35 },
+            waText: (name, date, pax, total, dep) =>
+                `Hello Carlos! I'd like to book the *Lisbon Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
+        },
+        fatima: {
+            name: "Fátima, Batalha, Óbidos & Nazaré",
+            prices: { 2: 430, 4: 470, 6: 510 },
+            deposits: { 2: 43, 4: 47, 6: 51 },
+            waText: (name, date, pax, total, dep) =>
+                `Hello Carlos! I'd like to book the *Fátima, Batalha, Óbidos & Nazaré Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
+        }
+    };
+
+    const CARLOS_PAYPAL = 'carlosmofigueiredo@gmail.com';
+    const CARLOS_WA     = '351933302031';
+    const CARLOS_EMAIL  = 'carlosmofigueiredo@gmail.com';
+
+    let currentTour = null;
+    let currentPax  = null;
+
+    function openBookingModal(tourId) {
+        currentTour = tourId;
+        currentPax  = null;
+
+        const tour = TOUR_DATA[tourId];
+        document.getElementById('modalTourName').textContent = tour.name;
+
+        // Reset form
+        document.getElementById('clientName').value  = '';
+        document.getElementById('clientEmail').value = '';
+        document.getElementById('tourDate').value    = '';
+        document.getElementById('tourTotalDisplay').textContent = '—';
+        document.getElementById('depositDisplay').textContent   = '—';
+        document.getElementById('paypalBtn').href = '#';
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('tourDate').min = today;
+
+        // Clear pax selection
+        document.querySelectorAll('.pax-btn').forEach(b => b.classList.remove('selected'));
+
+        // Reset steps
+        showBookingStep(1);
+
+        // Remove error states
+        document.querySelectorAll('.form-input').forEach(i => i.classList.remove('error'));
+
+        // Open modal
+        document.getElementById('bookingModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Re-apply i18n to modal
+        const lang = document.documentElement.lang || 'en';
+        setLang(lang);
+    }
+
+    function closeBookingModal() {
+        document.getElementById('bookingModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function handleModalOverlayClick(e) {
+        if (e.target === document.getElementById('bookingModal')) closeBookingModal();
+    }
+
+    function selectPax(pax) {
+        currentPax = pax;
+        document.querySelectorAll('.pax-btn').forEach(b => {
+            b.classList.toggle('selected', parseInt(b.getAttribute('data-pax')) === pax);
+        });
+        updateDepositBox();
+    }
+
+    function updateDepositBox() {
+        if (!currentTour || !currentPax) return;
+        const tour    = TOUR_DATA[currentTour];
+        const total   = tour.prices[currentPax];
+        const deposit = tour.deposits[currentPax];
+
+        document.getElementById('tourTotalDisplay').textContent = `€${total}`;
+        document.getElementById('depositDisplay').textContent   = `€${deposit}`;
+
+        // Build PayPal.me link
+        const desc = encodeURIComponent(`Deposit - ${tour.name} ${currentPax} Pax`);
+        const paypalUrl = `https://www.paypal.com/paypalme/${CARLOS_PAYPAL.split('@')[0]}/${deposit}EUR`;
+        document.getElementById('paypalBtn').href = paypalUrl;
+    }
+
+    function handlePayPalClick(e) {
+        e.preventDefault();
+
+        // Validate form
+        const name  = document.getElementById('clientName').value.trim();
+        const email = document.getElementById('clientEmail').value.trim();
+        const date  = document.getElementById('tourDate').value;
+        let valid = true;
+
+        ['clientName', 'clientEmail', 'tourDate'].forEach(id => {
+            document.getElementById(id).classList.remove('error');
+        });
+        if (!name)  { document.getElementById('clientName').classList.add('error'); valid = false; }
+        if (!email || !email.includes('@')) { document.getElementById('clientEmail').classList.add('error'); valid = false; }
+        if (!date)  { document.getElementById('tourDate').classList.add('error'); valid = false; }
+        if (!currentPax) { valid = false; /* pax selector visual already guides user */ }
+
+        if (!valid) return;
+
+        const tour    = TOUR_DATA[currentTour];
+        const total   = tour.prices[currentPax];
+        const deposit = tour.deposits[currentPax];
+
+        // Build PayPal.me link (username/amount)
+        const paypalUsername = CARLOS_PAYPAL.split('@')[0];
+        const paypalUrl = `https://www.paypal.com/paypalme/${paypalUsername}/${deposit}`;
+        window.open(paypalUrl, '_blank', 'noopener');
+
+        // Build Google Calendar link
+        const dateObj  = new Date(date + 'T09:00:00');
+        const dateEnd  = new Date(date + 'T17:00:00');
+        const fmtDate  = d => d.toISOString().replace(/[-:]/g,'').slice(0,15) + 'Z';
+        const calTitle = encodeURIComponent(`${tour.name} — ${name}`);
+        const calDesc  = encodeURIComponent(
+            `Tour: ${tour.name}\nGuest: ${name} (${email})\nGroup: ${currentPax} people\nTotal: €${total}\nDeposit paid: €${deposit}\n\nGuide: Carlos Figueiredo\nContact: +351 933302031`
+        );
+        const calUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${calTitle}&dates=${fmtDate(dateObj)}/${fmtDate(dateEnd)}&details=${calDesc}&add=${encodeURIComponent(CARLOS_EMAIL)}&add=${encodeURIComponent(email)}`;
+        document.getElementById('calendarBtn').href = calUrl;
+
+        // Build WhatsApp message
+        const dateFormatted = new Date(date).toLocaleDateString('en-GB', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+        const waMsg = tour.waText(name, dateFormatted, currentPax, total, deposit);
+        document.getElementById('waConfirmBtn').href = `https://wa.me/${CARLOS_WA}?text=${encodeURIComponent(waMsg)}`;
+
+        // Populate confirmation summary
+        const lang = document.documentElement.lang || 'en';
+        const t    = translations[lang] || translations.en;
+        document.getElementById('confirmSummary').innerHTML =
+            `<strong>${t.confirmSumTour  || 'Tour'}:</strong> ${tour.name}<br>` +
+            `<strong>${t.confirmSumName  || 'Name'}:</strong> ${name}<br>` +
+            `<strong>${t.confirmSumDate  || 'Date'}:</strong> ${dateFormatted}<br>` +
+            `<strong>${t.confirmSumGroup || 'Group'}:</strong> ${currentPax} ${t.paxLabel || 'pax'}<br>` +
+            `<strong>${t.confirmSumTotal || 'Total'}:</strong> €${total}<br>` +
+            `<strong>${t.confirmSumDep   || 'Deposit paid'}:</strong> €${deposit}`;
+
+        // Show confirmation step
+        showBookingStep(2);
+    }
+
+    function showBookingStep(step) {
+        const formStep   = document.getElementById('bookingFormStep');
+        const confirmStep = document.getElementById('confirmationStep');
+        const dot1 = document.getElementById('dot1');
+        const dot2 = document.getElementById('dot2');
+
+        if (step === 1) {
+            formStep.classList.remove('hidden');
+            confirmStep.classList.remove('active');
+            dot1.className = 'step-dot active';
+            dot2.className = 'step-dot';
+        } else {
+            formStep.classList.add('hidden');
+            confirmStep.classList.add('active');
+            dot1.className = 'step-dot done';
+            dot2.className = 'step-dot active';
+            // Scroll modal to top
+            document.querySelector('.modal').scrollTop = 0;
+        }
+    }
+    </script>
+</body>
+</html>
