@@ -965,6 +965,27 @@
         /* ══════════════════════════════
            CHATBOT
         ══════════════════════════════ */
+        @keyframes chatPulseRing {
+            0%   { transform: scale(1);    opacity: .6; }
+            70%  { transform: scale(1.55); opacity: 0; }
+            100% { transform: scale(1.55); opacity: 0; }
+        }
+        @keyframes chatBounceIn {
+            0%,100% { transform: translateY(0); }
+            20%      { transform: translateY(-6px); }
+            40%      { transform: translateY(-3px); }
+            60%      { transform: translateY(-5px); }
+            80%      { transform: translateY(-2px); }
+        }
+        @keyframes chatIconWiggle {
+            0%,100% { transform: rotate(0deg); }
+            15%     { transform: rotate(-15deg); }
+            30%     { transform: rotate(12deg); }
+            45%     { transform: rotate(-8deg); }
+            60%     { transform: rotate(5deg); }
+            75%     { transform: rotate(-3deg); }
+        }
+
         #chat-toggle {
             position: fixed;
             bottom: 1.5rem;
@@ -982,9 +1003,28 @@
             font-size: 1.5rem;
             box-shadow: 0 4px 20px rgba(30,86,118,.4);
             z-index: 9999;
-            transition: transform .2s, background .2s;
+            transition: transform .2s cubic-bezier(.34,1.56,.64,1), background .2s, box-shadow .2s;
+            animation: chatBounceIn 3s ease-in-out 2s 3;
         }
-        #chat-toggle:hover { transform: scale(1.1); background: var(--azulejo-dark); }
+        /* Pulse ring behind the button */
+        #chat-toggle::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: var(--azulejo);
+            z-index: -1;
+            animation: chatPulseRing 2.4s ease-out infinite;
+        }
+        /* Stop pulse when chat is open */
+        #chat-toggle.open::before { animation: none; }
+        #chat-toggle:hover {
+            transform: scale(1.12);
+            background: var(--azulejo-dark);
+            box-shadow: 0 6px 28px rgba(30,86,118,.55);
+        }
+        #chat-toggle:hover i { animation: chatIconWiggle .5s ease; }
+        #chat-toggle:active { transform: scale(0.95); }
         #chat-toggle .chat-badge {
             position: absolute;
             top: -4px; right: -4px;
@@ -2630,7 +2670,9 @@
         chatOpen = !chatOpen;
         const win = document.getElementById('chat-window');
         const badge = document.getElementById('chat-badge');
+        const btn = document.getElementById('chat-toggle');
         win.classList.toggle('open', chatOpen);
+        btn.classList.toggle('open', chatOpen);
         badge.classList.remove('show');
 
         if (chatOpen && !chatInitialized) {
