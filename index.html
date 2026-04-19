@@ -369,6 +369,16 @@
             transition: var(--transition);
         }
         .btn-book:hover { background: var(--azulejo-blue); }
+        .cancel-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #3a9e6a;
+            margin-top: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
 
         /* ── Common Info ── */
         .common-info {
@@ -1482,14 +1492,15 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
                         <div class="tour-pricing">
-                            <div class="price-box"><span class="price-pax" data-i18n="pax2">2 Pax</span><span class="price-val">230€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax4">4 Pax</span><span class="price-val">270€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax6">6 Pax</span><span class="price-val">290€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax2">2 Pax</span><span class="price-val">270€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax4">4 Pax</span><span class="price-val">290€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax6">6 Pax</span><span class="price-val">310€</span></div>
                         </div>
                     </div>
                     <button onclick="openBookingModal('sintra')" class="btn-book">
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
+                    <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
                 </div>
             </div>
 
@@ -1536,6 +1547,7 @@
                     <button onclick="openBookingModal('lisbon')" class="btn-book">
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
+                    <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
                 </div>
             </div>
 
@@ -1582,6 +1594,7 @@
                     <button onclick="openBookingModal('fatima')" class="btn-book">
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
+                    <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
                 </div>
             </div>
         </div>
@@ -1845,6 +1858,7 @@
             pax4:            "4 Pax",
             pax6:            "6 Pax",
             bookBtn:         "Book This Tour",
+            cancelNote:      "Free cancellation up to 48h before the tour",
             goodToKnow:      "Good to Know",
             transportTitle:  "Transportation",
             transportText:   "Comfortable private van with professional local guide. Pick-up at your hotel or any central point in Lisbon or Sintra.",
@@ -1935,6 +1949,7 @@
             pax4:            "4 Pessoas",
             pax6:            "6 Pessoas",
             bookBtn:         "Reservar Este Tour",
+            cancelNote:      "Cancelamento gratuito até 48h antes do tour",
             goodToKnow:      "Informações Úteis",
             transportTitle:  "Transporte",
             transportText:   "Van privada confortável com guia local profissional. Recolha no hotel ou num ponto central em Lisboa ou Sintra.",
@@ -2025,6 +2040,7 @@
             pax4:            "4 Personas",
             pax6:            "6 Personas",
             bookBtn:         "Reservar Este Tour",
+            cancelNote:      "Cancelación gratuita hasta 48h antes del tour",
             goodToKnow:      "Información Útil",
             transportTitle:  "Transporte",
             transportText:   "Furgoneta privada confortable con guía local profesional. Recogida en tu hotel o en un punto central de Lisboa o Sintra.",
@@ -2115,6 +2131,7 @@
             pax4:            "4 Persone",
             pax6:            "6 Persone",
             bookBtn:         "Prenota Questo Tour",
+            cancelNote:      "Cancellazione gratuita fino a 48h prima del tour",
             goodToKnow:      "Informazioni Utili",
             transportTitle:  "Trasporto",
             transportText:   "Comodo van privato con guida locale professionale. Prelievo presso il tuo hotel o in un punto centrale di Lisbona o Sintra.",
@@ -2462,8 +2479,8 @@
     const TOUR_DATA = {
         sintra: {
             name: "'That Sintra Feeling!'",
-            prices: { 2: 230, 4: 270, 6: 290 },
-            deposits: { 2: 23, 4: 27, 6: 29 },
+            prices: { 2: 270, 4: 290, 6: 310 },
+            deposits: { 2: 27, 4: 29, 6: 31 },
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Sintra Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
@@ -2675,10 +2692,10 @@
                 it: ['sintra','pena','regaleira','cascais','cabo','roca']
             },
             answer: {
-                en: "🏰 <b>Sintra Tour</b> (6-7h from Lisbon)\nVisits: Pena Palace · Historic Village · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Prices (private group):</b>\n• 2 pax → €230\n• 4 pax → €270\n• 6 pax → €290\n\nIncludes: private van + professional guide + hotel pick-up.",
-                pt: "🏰 <b>Tour de Sintra</b> (6-7h a partir de Lisboa)\nVisitas: Palácio da Pena · Centro Histórico · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Preços (grupo privado):</b>\n• 2 pessoas → €230\n• 4 pessoas → €270\n• 6 pessoas → €290\n\nInclui: van privada + guia profissional + recolha no hotel.",
-                es: "🏰 <b>Tour Sintra</b> (6-7h desde Lisboa)\nVisitas: Palacio da Pena · Centro Histórico · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Precios (grupo privado):</b>\n• 2 personas → €230\n• 4 personas → €270\n• 6 personas → €290\n\nIncluye: furgoneta privada + guía profesional + recogida en hotel.",
-                it: "🏰 <b>Tour Sintra</b> (6-7h da Lisbona)\nVisite: Palazzo della Pena · Centro Storico · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Prezzi (gruppo privato):</b>\n• 2 persone → €230\n• 4 persone → €270\n• 6 persone → €290\n\nInclude: van privato + guida professionale + prelievo in hotel."
+                en: "🏰 <b>Sintra Tour</b> (6-7h from Lisbon)\nVisits: Pena Palace · Historic Village · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Prices (private group):</b>\n• 2 pax → €270\n• 4 pax → €290\n• 6 pax → €310\n\nIncludes: private van + professional guide + hotel pick-up.",
+                pt: "🏰 <b>Tour de Sintra</b> (6-7h a partir de Lisboa)\nVisitas: Palácio da Pena · Centro Histórico · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Preços (grupo privado):</b>\n• 2 pessoas → €270\n• 4 pessoas → €290\n• 6 pessoas → €310\n\nInclui: van privada + guia profissional + recolha no hotel.",
+                es: "🏰 <b>Tour Sintra</b> (6-7h desde Lisboa)\nVisitas: Palacio da Pena · Centro Histórico · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Precios (grupo privado):</b>\n• 2 personas → €270\n• 4 personas → €290\n• 6 personas → €310\n\nIncluye: furgoneta privada + guía profesional + recogida en hotel.",
+                it: "🏰 <b>Tour Sintra</b> (6-7h da Lisbona)\nVisite: Palazzo della Pena · Centro Storico · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Prezzi (gruppo privato):</b>\n• 2 persone → €270\n• 4 persone → €290\n• 6 persone → €310\n\nInclude: van privato + guida professionale + prelievo in hotel."
             }
         },
         {
@@ -2720,10 +2737,10 @@
                 it: ['prezzo','prezzi','costo','quanto','caro','economico','tariffa']
             },
             answer: {
-                en: "Here's a quick price overview for private group tours:\n\n🏰 <b>Sintra</b> (6-7h): €230 / €270 / €290 (2/4/6 pax)\n🏙️ <b>Lisbon</b> (6-7h): €290 / €330 / €350 (2/4/6 pax)\n⛪ <b>Fátima & Beyond</b> (8-10h): €430 / €470 / €510 (2/4/6 pax)\n🗺️ <b>Custom Tours</b>: €260 flat (up to ~300km) or €1.50/km\n\nAll prices include private van + guide + hotel pick-up.",
-                pt: "Resumo dos preços para grupos privados:\n\n🏰 <b>Sintra</b> (6-7h): €230 / €270 / €290 (2/4/6 pessoas)\n🏙️ <b>Lisboa</b> (6-7h): €290 / €330 / €350 (2/4/6 pessoas)\n⛪ <b>Fátima e Mais</b> (8-10h): €430 / €470 / €510 (2/4/6 pessoas)\n🗺️ <b>Tours Personalizados</b>: €260 fixo (até ~300km) ou €1,50/km\n\nTodos incluem van privada + guia + recolha no hotel.",
-                es: "Resumen de precios para grupos privados:\n\n🏰 <b>Sintra</b> (6-7h): €230 / €270 / €290 (2/4/6 personas)\n🏙️ <b>Lisboa</b> (6-7h): €290 / €330 / €350 (2/4/6 personas)\n⛪ <b>Fátima y Más</b> (8-10h): €430 / €470 / €510 (2/4/6 personas)\n🗺️ <b>Tours Personalizados</b>: €260 fijo (hasta ~300km) o €1,50/km\n\nTodos incluyen furgoneta privada + guía + recogida en hotel.",
-                it: "Riepilogo prezzi per gruppi privati:\n\n🏰 <b>Sintra</b> (6-7h): €230 / €270 / €290 (2/4/6 persone)\n🏙️ <b>Lisbona</b> (6-7h): €290 / €330 / €350 (2/4/6 persone)\n⛪ <b>Fátima e Altro</b> (8-10h): €430 / €470 / €510 (2/4/6 persone)\n🗺️ <b>Tour Personalizzati</b>: €260 fisso (fino a ~300km) o €1,50/km\n\nTutti includono van privato + guida + prelievo in hotel."
+                en: "Here's a quick price overview for private group tours:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 pax)\n🏙️ <b>Lisbon</b> (6-7h): €290 / €330 / €350 (2/4/6 pax)\n⛪ <b>Fátima & Beyond</b> (8-10h): €430 / €470 / €510 (2/4/6 pax)\n🗺️ <b>Custom Tours</b>: €260 flat (up to ~300km) or €1.50/km\n\nAll prices include private van + guide + hotel pick-up.",
+                pt: "Resumo dos preços para grupos privados:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 pessoas)\n🏙️ <b>Lisboa</b> (6-7h): €290 / €330 / €350 (2/4/6 pessoas)\n⛪ <b>Fátima e Mais</b> (8-10h): €430 / €470 / €510 (2/4/6 pessoas)\n🗺️ <b>Tours Personalizados</b>: €260 fixo (até ~300km) ou €1,50/km\n\nTodos incluem van privada + guia + recolha no hotel.",
+                es: "Resumen de precios para grupos privados:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 personas)\n🏙️ <b>Lisboa</b> (6-7h): €290 / €330 / €350 (2/4/6 personas)\n⛪ <b>Fátima y Más</b> (8-10h): €430 / €470 / €510 (2/4/6 personas)\n🗺️ <b>Tours Personalizados</b>: €260 fijo (hasta ~300km) o €1,50/km\n\nTodos incluyen furgoneta privada + guía + recogida en hotel.",
+                it: "Riepilogo prezzi per gruppi privati:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 persone)\n🏙️ <b>Lisbona</b> (6-7h): €290 / €330 / €350 (2/4/6 persone)\n⛪ <b>Fátima e Altro</b> (8-10h): €430 / €470 / €510 (2/4/6 persone)\n🗺️ <b>Tour Personalizzati</b>: €260 fisso (fino a ~300km) o €1,50/km\n\nTutti includono van privato + guida + prelievo in hotel."
             }
         },
         {
