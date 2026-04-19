@@ -1597,6 +1597,53 @@
                     <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
                 </div>
             </div>
+
+            <!-- Tour 4: Arrábida & Setúbal -->
+            <div class="tour-card animate-on-scroll">
+                <div class="tour-header">
+                    <h3>Arrábida &amp; Setúbal</h3>
+                    <div class="tour-subtitle"><i class="far fa-clock"></i> <span data-i18n="arrabidaSubtitle">6-7h &bull; Premium Day Experience from Lisbon</span></div>
+                </div>
+                <div class="tour-body">
+                    <p class="tour-description" data-i18n="arrabidaDesc">
+                        Escape the city and discover one of Portugal's best-kept secrets. This tour blends world-class wines, hidden beaches, mystical caves and authentic coastal flavours into a perfect day south of Lisbon. We start with a wine tasting at a renowned local estate, then descend to the breathtaking Portinho da Arrábida for a leisurely lunch by the turquoise sea. We explore the Lapa de Santa Margarida — a striking natural cave steeped in legend — before hiking through the wild beauty of Serra da Arrábida Natural Park. The day ends in Setúbal, where a tasting of the region's famous fried cuttlefish is the perfect finale. An unforgettable blend of nature, culture and gastronomy.
+                    </p>
+                    <div class="tour-gallery">
+                        <div class="gallery-item" onclick="openLightbox('arrabida-vinhos.jpg','Wine Tasting')">
+                            <img src="arrabida-vinhos.jpg" alt="Wine Tasting" loading="lazy">
+                            <div class="gallery-label" data-i18n="arrabidaVinhos">Wine Tasting</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('arrabida-serra.webp','Arrábida Natural Park')">
+                            <img src="arrabida-serra.webp" alt="Arrábida Natural Park" loading="lazy">
+                            <div class="gallery-label" data-i18n="arrabidaSerra">Arrábida Natural Park</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('arrabida-lapa.jpg','Lapa de Santa Margarida')">
+                            <img src="arrabida-lapa.jpg" alt="Lapa de Santa Margarida" loading="lazy">
+                            <div class="gallery-label" data-i18n="arrabidaLapa">Lapa de Santa Margarida</div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('arrabida-chocos.jpg','Fried Cuttlefish - Setúbal')">
+                            <img src="arrabida-chocos.jpg" alt="Fried Cuttlefish - Setúbal" loading="lazy">
+                            <div class="gallery-label" data-i18n="arrabidaChocos">Fried Cuttlefish · Setúbal</div>
+                        </div>
+                    </div>
+                    <div class="tour-info-group">
+                        <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
+                        <p class="tour-locations" data-i18n="arrabidaHighlights">Wine Tasting, Portinho da Arrábida, Lapa de Santa Margarida, Serra da Arrábida, Setúbal.</p>
+                    </div>
+                    <div class="tour-info-group">
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-pricing">
+                            <div class="price-box"><span class="price-pax" data-i18n="pax2">2 Pax</span><span class="price-val">290€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax4">4 Pax</span><span class="price-val">330€</span></div>
+                            <div class="price-box"><span class="price-pax" data-i18n="pax6">6 Pax</span><span class="price-val">350€</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('arrabida')" class="btn-book">
+                        <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
+                    </button>
+                    <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
+                </div>
+            </div>
         </div>
 
         <!-- Custom Tour Map -->
@@ -1851,6 +1898,15 @@
             batalhaLabel:    "Batalha Monastery",
             obidosLabel:     "Óbidos Village",
             nazareLabel:     "Nazaré Coast",
+            // Arrábida
+            arrabidaTitle:      "Arrábida & Setúbal",
+            arrabidaSubtitle:   "6-7h · Premium Day Experience from Lisbon",
+            arrabidaDesc:       "Escape the city and discover one of Portugal's best-kept secrets. This tour blends world-class wines, hidden beaches, mystical caves and authentic coastal flavours into a perfect day south of Lisbon. We start with a wine tasting at a renowned local estate, then descend to the breathtaking Portinho da Arrábida for a leisurely lunch by the turquoise sea. We explore the Lapa de Santa Margarida — a striking natural cave steeped in legend — before hiking through the wild beauty of Serra da Arrábida Natural Park. The day ends in Setúbal, where a tasting of the region's famous fried cuttlefish is the perfect finale. An unforgettable blend of nature, culture and gastronomy.",
+            arrabidaHighlights: "Wine Tasting, Portinho da Arrábida, Lapa de Santa Margarida, Serra da Arrábida, Setúbal.",
+            arrabidaVinhos:     "Wine Tasting",
+            arrabidaSerra:      "Arrábida Natural Park",
+            arrabidaLapa:       "Lapa de Santa Margarida",
+            arrabidaChocos:     "Fried Cuttlefish · Setúbal",
             // Common
             highlights:      "Highlights",
             pricingLabel:    "Pricing (Per Group)",
@@ -1943,7 +1999,15 @@
             batalhaLabel:    "Mosteiro da Batalha",
             obidosLabel:     "Vila de Óbidos",
             nazareLabel:     "Costa da Nazaré",
-            highlights:      "Destaques",
+            // Arrábida
+            arrabidaTitle:      "Arrábida & Setúbal",
+            arrabidaSubtitle:   "6-7h · Experiência Premium a partir de Lisboa",
+            arrabidaDesc:       "Fuja da cidade e descubra um dos segredos mais bem guardados de Portugal. Este tour combina vinhos de excelência, praias escondidas, grutas místicas e sabores autênticos da costa numa jornada perfeita a sul de Lisboa. Começamos com uma degustação de vinhos numa reconhecida quinta local, depois descemos até ao deslumbrante Portinho da Arrábida para um almoço descontraído junto ao mar turquesa. Exploramos a Lapa de Santa Margarida — uma gruta natural impressionante carregada de lenda — antes de percorrer a beleza selvagem da Serra da Arrábida. O dia termina em Setúbal com uma prova dos famosos chocos fritos da região. Uma mistura inesquecível de natureza, cultura e gastronomia.",
+            arrabidaHighlights: "Degustação de Vinhos, Portinho da Arrábida, Lapa de Santa Margarida, Serra da Arrábida, Setúbal.",
+            arrabidaVinhos:     "Degustação de Vinhos",
+            arrabidaSerra:      "Parque Natural da Arrábida",
+            arrabidaLapa:       "Lapa de Santa Margarida",
+            arrabidaChocos:     "Chocos Fritos · Setúbal",
             pricingLabel:    "Preços (Por Grupo)",
             pax2:            "2 Pessoas",
             pax4:            "4 Pessoas",
@@ -2034,7 +2098,15 @@
             batalhaLabel:    "Monasterio de Batalha",
             obidosLabel:     "Villa de Óbidos",
             nazareLabel:     "Costa de Nazaré",
-            highlights:      "Puntos Destacados",
+            // Arrábida
+            arrabidaTitle:      "Arrábida & Setúbal",
+            arrabidaSubtitle:   "6-7h · Experiencia Premium desde Lisboa",
+            arrabidaDesc:       "Escápese de la ciudad y descubra uno de los secretos mejor guardados de Portugal. Este tour combina vinos de excelencia, playas escondidas, cuevas místicas y sabores auténticos de la costa en una jornada perfecta al sur de Lisboa. Comenzamos con una cata de vinos en una reconocida bodega local, luego descendemos al impresionante Portinho da Arrábida para un almuerzo relajado junto al mar turquesa. Exploramos la Lapa de Santa Margarida — una impresionante cueva natural cargada de leyenda — antes de recorrer la belleza salvaje del Parque Natural de la Serra da Arrábida. El día concluye en Setúbal con una degustación de los famosos chocos fritos de la región. Una mezcla inolvidable de naturaleza, cultura y gastronomía.",
+            arrabidaHighlights: "Cata de Vinos, Portinho da Arrábida, Lapa de Santa Margarida, Serra da Arrábida, Setúbal.",
+            arrabidaVinhos:     "Cata de Vinos",
+            arrabidaSerra:      "Parque Natural de Arrábida",
+            arrabidaLapa:       "Lapa de Santa Margarida",
+            arrabidaChocos:     "Chocos Fritos · Setúbal",
             pricingLabel:    "Precios (Por Grupo)",
             pax2:            "2 Personas",
             pax4:            "4 Personas",
@@ -2125,7 +2197,15 @@
             batalhaLabel:    "Monastero di Batalha",
             obidosLabel:     "Borgo di Óbidos",
             nazareLabel:     "Costa di Nazaré",
-            highlights:      "Luoghi Principali",
+            // Arrábida
+            arrabidaTitle:      "Arrábida & Setúbal",
+            arrabidaSubtitle:   "6-7h · Esperienza Premium da Lisbona",
+            arrabidaDesc:       "Fuggite dalla città e scoprite uno dei segreti meglio custoditi del Portogallo. Questo tour unisce vini d'eccellenza, spiagge nascoste, grotte mistiche e sapori autentici della costa in una giornata perfetta a sud di Lisbona. Iniziamo con una degustazione di vini in una rinomata cantina locale, poi scendiamo allo spettacolare Portinho da Arrábida per un pranzo rilassato vicino al mare turchese. Esploriamo la Lapa de Santa Margarida — una straordinaria grotta naturale ricca di leggenda — prima di percorrere la bellezza selvaggia del Parco Naturale della Serra da Arrábida. La giornata si conclude a Setúbal con una degustazione dei famosi seppie fritte della regione. Un mix indimenticabile di natura, cultura e gastronomia.",
+            arrabidaHighlights: "Degustazione Vini, Portinho da Arrábida, Lapa de Santa Margarida, Serra da Arrábida, Setúbal.",
+            arrabidaVinhos:     "Degustazione Vini",
+            arrabidaSerra:      "Parco Naturale dell'Arrábida",
+            arrabidaLapa:       "Lapa de Santa Margarida",
+            arrabidaChocos:     "Seppie Fritte · Setúbal",
             pricingLabel:    "Prezzi (Per Gruppo)",
             pax2:            "2 Persone",
             pax4:            "4 Persone",
@@ -2497,6 +2577,13 @@
             deposits: { 2: 43, 4: 47, 6: 51 },
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Fátima, Batalha, Óbidos & Nazaré Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
+        },
+        arrabida: {
+            name: "Arrábida & Setúbal",
+            prices: { 2: 290, 4: 330, 6: 350 },
+            deposits: { 2: 29, 4: 33, 6: 35 },
+            waText: (name, date, pax, total, dep) =>
+                `Hello Carlos! I'd like to book the *Arrábida & Setúbal Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         }
     };
 
@@ -2677,10 +2764,10 @@
                 it: ['tour','tours','disponibile','disponibili','offrire','opzioni','pacchetti','scelta']
             },
             answer: {
-                en: "I offer 3 signature tours from Lisbon:\n\n🏰 <b>Sintra Tour</b> (6-7h) — Pena Palace, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Lisbon Tour</b> (6-7h) — Belém, Alfama, São Jorge Castle, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Spiritual & historic full-day\n\nI also build <b>Custom Tours</b> across Portugal & Spain! Use the map on the page to plan yours.",
-                pt: "Ofereço 3 tours exclusivos a partir de Lisboa:\n\n🏰 <b>Tour de Sintra</b> (6-7h) — Palácio da Pena, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Tour de Lisboa</b> (6-7h) — Belém, Alfama, Castelo de São Jorge, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Dia completo espiritual e histórico\n\nTambém organizo <b>Tours Personalizados</b> em Portugal e Espanha! Use o mapa na página.",
-                es: "Ofrezco 3 tours exclusivos desde Lisboa:\n\n🏰 <b>Tour Sintra</b> (6-7h) — Palacio da Pena, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Tour Lisboa</b> (6-7h) — Belém, Alfama, Castillo de San Jorge, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Jornada completa espiritual e histórica\n\n¡También organizo <b>Tours Personalizados</b> por Portugal y España! Usa el mapa en la página.",
-                it: "Offro 3 tour esclusivi da Lisbona:\n\n🏰 <b>Tour Sintra</b> (6-7h) — Palazzo della Pena, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Tour Lisbona</b> (6-7h) — Belém, Alfama, Castello di San Giorgio, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Giornata intera spirituale e storica\n\nOrganizzi anche <b>Tour Personalizzati</b> in Portogallo e Spagna! Usa la mappa nella pagina."
+                en: "I offer 4 signature tours from Lisbon:\n\n🏰 <b>Sintra Tour</b> (6-7h) — Pena Palace, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Lisbon Tour</b> (6-7h) — Belém, Alfama, São Jorge Castle, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Spiritual & historic full-day\n🍷 <b>Arrábida & Setúbal</b> (6-7h) — Wine tasting, hidden beach, cave & fried cuttlefish\n\nI also build <b>Custom Tours</b> across Portugal & Spain! Use the map on the page to plan yours.",
+                pt: "Ofereço 4 tours exclusivos a partir de Lisboa:\n\n🏰 <b>Tour de Sintra</b> (6-7h) — Palácio da Pena, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Tour de Lisboa</b> (6-7h) — Belém, Alfama, Castelo de São Jorge, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Dia completo espiritual e histórico\n🍷 <b>Arrábida & Setúbal</b> (6-7h) — Vinhos, praia escondida, gruta e chocos fritos\n\nTambém organizo <b>Tours Personalizados</b> em Portugal e Espanha! Use o mapa na página.",
+                es: "Ofrezco 4 tours exclusivos desde Lisboa:\n\n🏰 <b>Tour Sintra</b> (6-7h) — Palacio da Pena, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Tour Lisboa</b> (6-7h) — Belém, Alfama, Castillo de San Jorge, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Jornada completa espiritual e histórica\n🍷 <b>Arrábida & Setúbal</b> (6-7h) — Vinos, playa escondida, cueva y chocos fritos\n\n¡También organizo <b>Tours Personalizados</b> por Portugal y España! Usa el mapa en la página.",
+                it: "Offro 4 tour esclusivi da Lisbona:\n\n🏰 <b>Tour Sintra</b> (6-7h) — Palazzo della Pena, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Tour Lisbona</b> (6-7h) — Belém, Alfama, Castello di San Giorgio, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Giornata intera spirituale e storica\n🍷 <b>Arrábida & Setúbal</b> (6-7h) — Vini, spiaggia nascosta, grotta e seppie fritte\n\nOrganizzi anche <b>Tour Personalizzati</b> in Portogallo e Spagna! Usa la mappa nella pagina."
             }
         },
         {
@@ -2737,10 +2824,25 @@
                 it: ['prezzo','prezzi','costo','quanto','caro','economico','tariffa']
             },
             answer: {
-                en: "Here's a quick price overview for private group tours:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 pax)\n🏙️ <b>Lisbon</b> (6-7h): €290 / €330 / €350 (2/4/6 pax)\n⛪ <b>Fátima & Beyond</b> (8-10h): €430 / €470 / €510 (2/4/6 pax)\n🗺️ <b>Custom Tours</b>: €260 flat (up to ~300km) or €1.50/km\n\nAll prices include private van + guide + hotel pick-up.",
-                pt: "Resumo dos preços para grupos privados:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 pessoas)\n🏙️ <b>Lisboa</b> (6-7h): €290 / €330 / €350 (2/4/6 pessoas)\n⛪ <b>Fátima e Mais</b> (8-10h): €430 / €470 / €510 (2/4/6 pessoas)\n🗺️ <b>Tours Personalizados</b>: €260 fixo (até ~300km) ou €1,50/km\n\nTodos incluem van privada + guia + recolha no hotel.",
-                es: "Resumen de precios para grupos privados:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 personas)\n🏙️ <b>Lisboa</b> (6-7h): €290 / €330 / €350 (2/4/6 personas)\n⛪ <b>Fátima y Más</b> (8-10h): €430 / €470 / €510 (2/4/6 personas)\n🗺️ <b>Tours Personalizados</b>: €260 fijo (hasta ~300km) o €1,50/km\n\nTodos incluyen furgoneta privada + guía + recogida en hotel.",
-                it: "Riepilogo prezzi per gruppi privati:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 persone)\n🏙️ <b>Lisbona</b> (6-7h): €290 / €330 / €350 (2/4/6 persone)\n⛪ <b>Fátima e Altro</b> (8-10h): €430 / €470 / €510 (2/4/6 persone)\n🗺️ <b>Tour Personalizzati</b>: €260 fisso (fino a ~300km) o €1,50/km\n\nTutti includono van privato + guida + prelievo in hotel."
+                en: "Here's a quick price overview for private group tours:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 pax)\n🏙️ <b>Lisbon</b> (6-7h): €290 / €330 / €350 (2/4/6 pax)\n⛪ <b>Fátima & Beyond</b> (8-10h): €430 / €470 / €510 (2/4/6 pax)\n🍷 <b>Arrábida & Setúbal</b> (6-7h): €290 / €330 / €350 (2/4/6 pax)\n🗺️ <b>Custom Tours</b>: €260 flat (up to ~300km) or €1.50/km\n\nAll prices include private van + guide + hotel pick-up.",
+                pt: "Resumo dos preços para grupos privados:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 pessoas)\n🏙️ <b>Lisboa</b> (6-7h): €290 / €330 / €350 (2/4/6 pessoas)\n⛪ <b>Fátima e Mais</b> (8-10h): €430 / €470 / €510 (2/4/6 pessoas)\n🍷 <b>Arrábida & Setúbal</b> (6-7h): €290 / €330 / €350 (2/4/6 pessoas)\n🗺️ <b>Tours Personalizados</b>: €260 fixo (até ~300km) ou €1,50/km\n\nTodos incluem van privada + guia + recolha no hotel.",
+                es: "Resumen de precios para grupos privados:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 personas)\n🏙️ <b>Lisboa</b> (6-7h): €290 / €330 / €350 (2/4/6 personas)\n⛪ <b>Fátima y Más</b> (8-10h): €430 / €470 / €510 (2/4/6 personas)\n🍷 <b>Arrábida & Setúbal</b> (6-7h): €290 / €330 / €350 (2/4/6 personas)\n🗺️ <b>Tours Personalizados</b>: €260 fijo (hasta ~300km) o €1,50/km\n\nTodos incluyen furgoneta privada + guía + recogida en hotel.",
+                it: "Riepilogo prezzi per gruppi privati:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (2/4/6 persone)\n🏙️ <b>Lisbona</b> (6-7h): €290 / €330 / €350 (2/4/6 persone)\n⛪ <b>Fátima e Altro</b> (8-10h): €430 / €470 / €510 (2/4/6 persone)\n🍷 <b>Arrábida & Setúbal</b> (6-7h): €290 / €330 / €350 (2/4/6 persone)\n🗺️ <b>Tour Personalizzati</b>: €260 fisso (fino a ~300km) o €1,50/km\n\nTutti includono van privato + guida + prelievo in hotel."
+            }
+        },
+        {
+            id: 'arrabida_price',
+            keywords: {
+                en: ['arrabida','arrábida','setubal','setúbal','wine','cuttlefish','chocos','beach','cave','lapa','portinho','fonseca','natural park'],
+                pt: ['arrabida','arrábida','setúbal','vinho','vinhos','chocos','praia','gruta','lapa','portinho','fonseca','parque natural'],
+                es: ['arrabida','arrábida','setúbal','vino','vinos','chocos','playa','cueva','lapa','portinho','fonseca','parque natural'],
+                it: ['arrabida','arrábida','setúbal','vino','vini','seppie','spiaggia','grotta','lapa','portinho','fonseca','parco naturale']
+            },
+            answer: {
+                en: "🍷 <b>Arrábida & Setúbal Tour</b> (6-7h from Lisbon)\nVisits: Wine Tasting · Portinho da Arrábida · Lapa de Santa Margarida · Serra da Arrábida · Setúbal\n\n<b>Prices (private group):</b>\n• 2 pax → €290\n• 4 pax → €330\n• 6 pax → €350\n\nIncludes: private van + guide + hotel pick-up. All visits included — no entrance tickets needed!",
+                pt: "🍷 <b>Tour Arrábida & Setúbal</b> (6-7h a partir de Lisboa)\nVisitas: Degustação de Vinhos · Portinho da Arrábida · Lapa de Santa Margarida · Serra da Arrábida · Setúbal\n\n<b>Preços (grupo privado):</b>\n• 2 pessoas → €290\n• 4 pessoas → €330\n• 6 pessoas → €350\n\nInclui: van privada + guia + recolha no hotel. Todas as visitas incluídas — sem bilhetes!",
+                es: "🍷 <b>Tour Arrábida & Setúbal</b> (6-7h desde Lisboa)\nVisitas: Cata de Vinos · Portinho da Arrábida · Lapa de Santa Margarida · Serra da Arrábida · Setúbal\n\n<b>Precios (grupo privado):</b>\n• 2 personas → €290\n• 4 personas → €330\n• 6 personas → €350\n\nIncluye: furgoneta privada + guía + recogida en hotel. ¡Todas las visitas incluidas — sin entradas!",
+                it: "🍷 <b>Tour Arrábida & Setúbal</b> (6-7h da Lisbona)\nVisite: Degustazione Vini · Portinho da Arrábida · Lapa de Santa Margarida · Serra da Arrábida · Setúbal\n\n<b>Prezzi (gruppo privato):</b>\n• 2 persone → €290\n• 4 persone → €330\n• 6 persone → €350\n\nInclude: van privato + guida + prelievo in hotel. Tutte le visite incluse — nessun biglietto!"
             }
         },
         {
