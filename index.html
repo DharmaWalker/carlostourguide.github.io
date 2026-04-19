@@ -963,8 +963,106 @@
         }
 
         /* ══════════════════════════════
-           CHATBOT
+           REVIEWS
         ══════════════════════════════ */
+        .reviews-section {
+            background: linear-gradient(160deg, #f7f4f0 0%, #eee8e0 100%);
+            padding: 5rem 1rem;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .review-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,.07);
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            position: relative;
+            border-top: 3px solid var(--azulejo);
+            transition: transform .25s, box-shadow .25s;
+        }
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 32px rgba(30,86,118,.13);
+        }
+        .review-quote {
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--azulejo);
+            opacity: .18;
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-family: Georgia, serif;
+            pointer-events: none;
+        }
+        .review-stars {
+            display: flex;
+            gap: 2px;
+            color: #f5a623;
+            font-size: 0.95rem;
+        }
+        .review-text {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #444;
+            flex: 1;
+            font-style: italic;
+        }
+        .review-tour-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 0.22rem 0.65rem;
+            border-radius: 20px;
+            background: rgba(30,86,118,.1);
+            color: var(--azulejo);
+            width: fit-content;
+        }
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.3rem;
+        }
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--azulejo);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .review-name {
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: #1a1a2e;
+            line-height: 1.2;
+        }
+        .review-origin {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        @media (max-width: 900px) {
+            .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .reviews-grid { grid-template-columns: 1fr; }
+        }
         @keyframes chatPulseRing {
             0%   { transform: scale(1);    opacity: .6; }
             70%  { transform: scale(1.55); opacity: 0; }
@@ -1016,7 +1114,6 @@
             z-index: -1;
             animation: chatPulseRing 2.4s ease-out infinite;
         }
-        /* Stop pulse when chat is open */
         #chat-toggle.open::before { animation: none; }
         #chat-toggle:hover {
             transform: scale(1.12);
@@ -1559,6 +1656,119 @@
         </div>
     </section>
 
+    <!-- Reviews -->
+    <section class="reviews-section">
+        <div style="text-align:center;margin-bottom:3rem;">
+            <p class="section-label">Tripadvisor &amp; Google</p>
+            <h2 class="section-title" data-i18n="reviewsTitle">What Our Guests Say</h2>
+        </div>
+        <div class="reviews-grid">
+
+            <!-- Review 1 — Sintra -->
+            <div class="review-card animate-on-scroll">
+                <span class="review-quote">&ldquo;</span>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <span class="review-tour-badge">Sintra Tour</span>
+                <p class="review-text">"Carlos made Sintra feel like a fairy tale come to life. He knew every hidden corner of Quinta da Regaleira and brought the history alive in a way no guidebook ever could. Absolutely unforgettable day — we're already recommending him to all our friends!"</p>
+                <div class="review-author">
+                    <div class="review-avatar">SM</div>
+                    <div>
+                        <div class="review-name">Sarah &amp; Mark T.</div>
+                        <div class="review-origin">🇬🇧 United Kingdom</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 — Sintra -->
+            <div class="review-card animate-on-scroll">
+                <span class="review-quote">&ldquo;</span>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <span class="review-tour-badge">Sintra Tour</span>
+                <p class="review-text">"From Pena Palace to Cabo da Roca, every stop was perfectly timed and Carlos's passion for Portugal is truly contagious. The private van was spotless and the pick-up at our hotel was right on time. A 10/10 experience!"</p>
+                <div class="review-author">
+                    <div class="review-avatar">LB</div>
+                    <div>
+                        <div class="review-name">Lucia B.</div>
+                        <div class="review-origin">🇮🇹 Italy</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 — Lisbon -->
+            <div class="review-card animate-on-scroll">
+                <span class="review-quote">&ldquo;</span>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <span class="review-tour-badge">Lisbon Tour</span>
+                <p class="review-text">"We spent a wonderful day exploring Alfama and Belém with Carlos. He speaks flawless English and has incredible stories about every neighbourhood. The tour felt like exploring the city with a knowledgeable local friend, not a generic group tour."</p>
+                <div class="review-author">
+                    <div class="review-avatar">JR</div>
+                    <div>
+                        <div class="review-name">James R.</div>
+                        <div class="review-origin">🇺🇸 United States</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 4 — Lisbon -->
+            <div class="review-card animate-on-scroll">
+                <span class="review-quote">&ldquo;</span>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="review-tour-badge">Lisbon Tour</span>
+                <p class="review-text">"Carlos adapted the whole tour to our interests when he found out we loved architecture — extra time at Jerónimos, hidden viewpoints, local pastry stops. This level of personalisation is rare and made all the difference for our family."</p>
+                <div class="review-author">
+                    <div class="review-avatar">AF</div>
+                    <div>
+                        <div class="review-name">Ana &amp; Família F.</div>
+                        <div class="review-origin">🇧🇷 Brazil</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 5 — Fátima -->
+            <div class="review-card animate-on-scroll">
+                <span class="review-quote">&ldquo;</span>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <span class="review-tour-badge">Fátima, Batalha &amp; Nazaré</span>
+                <p class="review-text">"This tour exceeded every expectation. Fátima was deeply moving, the monastery at Batalha left us speechless, and Óbidos was like stepping into a medieval painting. Carlos gave us the perfect balance of history, spirituality and beauty in a single day."</p>
+                <div class="review-author">
+                    <div class="review-avatar">MG</div>
+                    <div>
+                        <div class="review-name">María G.</div>
+                        <div class="review-origin">🇪🇸 Spain</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 6 — Fátima -->
+            <div class="review-card animate-on-scroll">
+                <span class="review-quote">&ldquo;</span>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <span class="review-tour-badge">Fátima, Batalha &amp; Nazaré</span>
+                <p class="review-text">"The drive to Nazaré alone was worth it — the giant waves are breathtaking. But what made the whole experience special was Carlos himself: professional, warm, funny and genuinely passionate about showing the best of his country. Book him. You won't regret it."</p>
+                <div class="review-author">
+                    <div class="review-avatar">DK</div>
+                    <div>
+                        <div class="review-name">David K.</div>
+                        <div class="review-origin">🇩🇪 Germany</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-logo">Carlos Figueiredo</div>
@@ -1643,6 +1853,7 @@
             bringTitle:      "What to Bring",
             bringText:       "Comfortable walking shoes, a light jacket, and your camera!",
             footerSub:       "Premium Tour Guide in Portugal & Spain",
+            reviewsTitle:    "What Our Guests Say",
             footerRights:    "All Rights Reserved.",
             // Booking modal
             modalTitle:      "Book Your Tour",
@@ -1732,6 +1943,7 @@
             bringTitle:      "O Que Trazer",
             bringText:       "Sapatos confortáveis, um casaco leve e a sua câmara!",
             footerSub:       "Guia Turístico Premium em Portugal & Espanha",
+            reviewsTitle:    "O Que Dizem os Nossos Clientes",
             footerRights:    "Todos os Direitos Reservados.",
             // Booking modal
             modalTitle:      "Reservar Tour",
@@ -1821,6 +2033,7 @@
             bringTitle:      "Qué Traer",
             bringText:       "Zapatos cómodos, una chaqueta ligera y tu cámara.",
             footerSub:       "Guía Turístico Premium en Portugal & España",
+            reviewsTitle:    "Lo Que Dicen Nuestros Clientes",
             footerRights:    "Todos los Derechos Reservados.",
             // Booking modal
             modalTitle:      "Reservar Tour",
@@ -1910,6 +2123,7 @@
             bringTitle:      "Cosa Portare",
             bringText:       "Scarpe comode, una giacca leggera e la tua fotocamera!",
             footerSub:       "Guida Turistica Premium in Portogallo & Spagna",
+            reviewsTitle:    "Cosa Dicono i Nostri Ospiti",
             footerRights:    "Tutti i Diritti Riservati.",
             // Booking modal
             modalTitle:      "Prenota il Tour",
