@@ -1275,8 +1275,8 @@
                 </div>
 
                 <div class="map-date-row">
-                    <input type="date" id="mapStartDate" class="map-date-input" placeholder="Start date">
-                    <input type="date" id="mapEndDate" class="map-date-input" placeholder="End date">
+                    <label class="form-label" for="mapDate" style="font-size:0.8rem;font-weight:600;color:var(--azulejo-blue);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:0.45rem;display:block;" data-i18n="mapDateLabel">Preferred Date</label>
+                    <input type="date" id="mapDate" class="map-date-input" style="width:100%;">
                 </div>
 
                 <button class="btn-quote-wa" id="quoteWaBtn" onclick="sendQuoteWhatsApp()" disabled>
@@ -1403,6 +1403,7 @@
             quoteRulePerKm:     "1€/km route estimate",
             quoteDisclaimer:    "Approximate price — final quote on request",
             quoteWaBtn:         "Request Quote via WhatsApp",
+            mapDateLabel:       "Preferred Date",
         },
         pt: {
             tagline:         "Guia Turístico Premium em Portugal & Espanha",
@@ -1479,6 +1480,7 @@
             quoteRulePerKm:     "Estimativa por km percorrido",
             quoteDisclaimer:    "Preço aproximado — orçamento final sob consulta",
             quoteWaBtn:         "Pedir Orçamento via WhatsApp",
+            mapDateLabel:       "Data Pretendida",
         },
         es: {
             tagline:         "Guía Turístico Premium en Portugal & España",
@@ -1555,6 +1557,7 @@
             quoteRulePerKm:     "Estimación por km de ruta",
             quoteDisclaimer:    "Precio aproximado — presupuesto final bajo consulta",
             quoteWaBtn:         "Solicitar Presupuesto por WhatsApp",
+            mapDateLabel:       "Fecha Preferida",
         },
         it: {
             tagline:         "Guida Turistica Premium in Portogallo & Spagna",
@@ -1631,6 +1634,7 @@
             quoteRulePerKm:     "Stima per km di percorso",
             quoteDisclaimer:    "Prezzo approssimativo — preventivo finale su richiesta",
             quoteWaBtn:         "Richiedi Preventivo via WhatsApp",
+            mapDateLabel:       "Data Preferita",
         }
     };
 
@@ -1855,9 +1859,8 @@
         const destNames  = ids.map(id => DESTINATIONS.find(x => x.id===id).name).join(', ');
         const totalKm    = calcTotalDistance(ids);
         const { price }  = calcQuote(totalKm);
-        const startDate  = document.getElementById('mapStartDate').value;
-        const endDate    = document.getElementById('mapEndDate').value;
-        const dateStr    = startDate ? `\n📅 Dates: ${startDate}${endDate ? ' → '+endDate : ''}` : '';
+        const startDate  = document.getElementById('mapDate').value;
+        const dateStr    = startDate ? `\n📅 Date: ${startDate}` : '';
 
         const msg = `Hello Carlos! I'd like a quote for a custom tour.\n\n📍 Destinations: ${destNames}\n📏 Est. Distance: ~${totalKm} km\n💶 Est. Price: €${price}${dateStr}\n\nPlease send me a final quote. Thank you!`;
         window.open(`https://wa.me/351933302031?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
