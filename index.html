@@ -1382,14 +1382,11 @@
                             <span data-i18n="depositTourTotal">Tour Total</span>
                             <span id="tourTotalDisplay">—</span>
                         </div>
-                        <div class="deposit-row">
-                            <span data-i18n="depositRate">Deposit (10%)</span>
-                            <span>10%</span>
-                        </div>
                         <div class="deposit-total">
                             <span class="deposit-total-label" data-i18n="depositDue">Amount Due Now</span>
                             <span class="deposit-total-val" id="depositDisplay">—</span>
                         </div>
+                        <p style="font-size:0.72rem;color:#888;text-align:center;margin-top:0.5rem;" data-i18n="depositNote">This deposit will be deducted from the total tour price</p>
                     </div>
 
                     <a href="#" id="paypalBtn" class="btn-paypal" target="_blank" rel="noopener" onclick="handlePayPalClick(event)">
@@ -1933,8 +1930,8 @@
             formGroup:       "Group Size",
             paxLabel:        "pax",
             depositTourTotal:"Tour Total",
-            depositRate:     "Deposit (10%)",
-            depositDue:      "Amount Due Now",
+            depositDue:      "Amount Due Now (Deposit)",
+            depositNote:     "This deposit will be deducted from the total tour price",
             paypalBtn:       "Pay Deposit via PayPal",
             paypalNote:      "You will be redirected to PayPal.me to complete the secure deposit payment. The remaining balance is paid on the day of the tour.",
             confirmTitle:    "Booking Requested!",
@@ -2032,8 +2029,8 @@
             formGroup:       "Tamanho do Grupo",
             paxLabel:        "pessoas",
             depositTourTotal:"Total do Tour",
-            depositRate:     "Sinal (10%)",
-            depositDue:      "Valor a Pagar Agora",
+            depositDue:      "Valor a Pagar Agora (Sinal)",
+            depositNote:     "Este valor será abatido no valor do serviço reservado",
             paypalBtn:       "Pagar Sinal via PayPal",
             paypalNote:      "Será redirecionado para o PayPal.me para concluir o pagamento do sinal. O valor restante é pago no dia do tour.",
             confirmTitle:    "Reserva Efectuada!",
@@ -2131,8 +2128,8 @@
             formGroup:       "Tamaño del Grupo",
             paxLabel:        "personas",
             depositTourTotal:"Total del Tour",
-            depositRate:     "Señal (10%)",
-            depositDue:      "Importe a Pagar Ahora",
+            depositDue:      "Importe a Pagar Ahora (Señal)",
+            depositNote:     "Este valor se descontará del precio total del servicio reservado",
             paypalBtn:       "Pagar Señal vía PayPal",
             paypalNote:      "Serás redirigido a PayPal.me para completar el pago de la señal. El saldo restante se paga el día del tour.",
             confirmTitle:    "¡Reserva Realizada!",
@@ -2230,8 +2227,8 @@
             formGroup:       "Dimensione del Gruppo",
             paxLabel:        "persone",
             depositTourTotal:"Totale Tour",
-            depositRate:     "Acconto (10%)",
-            depositDue:      "Importo da Pagare Ora",
+            depositDue:      "Importo da Pagare Ora (Acconto)",
+            depositNote:     "Questo importo verrà detratto dal prezzo totale del servizio prenotato",
             paypalBtn:       "Paga l'Acconto via PayPal",
             paypalNote:      "Sarai reindirizzato a PayPal.me per completare il pagamento dell'acconto. Il saldo restante si paga il giorno del tour.",
             confirmTitle:    "Prenotazione Effettuata!",
@@ -2560,28 +2557,28 @@
         sintra: {
             name: "'That Sintra Feeling!'",
             prices: { 2: 270, 4: 290, 6: 310 },
-            deposits: { 2: 27, 4: 29, 6: 31 },
+            deposits: { 2: 50, 4: 50, 6: 50 },
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Sintra Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
         lisbon: {
             name: "Lisbon Tour",
             prices: { 2: 290, 4: 330, 6: 350 },
-            deposits: { 2: 29, 4: 33, 6: 35 },
+            deposits: { 2: 50, 4: 50, 6: 50 },
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Lisbon Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
         fatima: {
             name: "Fátima, Batalha, Óbidos & Nazaré",
             prices: { 2: 430, 4: 470, 6: 510 },
-            deposits: { 2: 43, 4: 47, 6: 51 },
+            deposits: { 2: 50, 4: 50, 6: 50 },
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Fátima, Batalha, Óbidos & Nazaré Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
         arrabida: {
             name: "Arrábida & Setúbal",
             prices: { 2: 290, 4: 330, 6: 350 },
-            deposits: { 2: 29, 4: 33, 6: 35 },
+            deposits: { 2: 50, 4: 50, 6: 50 },
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Arrábida & Setúbal Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         }
@@ -2854,10 +2851,10 @@
                 it: ['prenotare','prenotazione','come','contattare','whatsapp','riservare']
             },
             answer: {
-                en: "Booking is easy! Two options:\n\n1️⃣ Click <b>'Book This Tour'</b> on any tour card — fill in your details and pay a 10% deposit via PayPal (the rest on the day)\n\n2️⃣ Message Carlos directly on <b>WhatsApp: +351 933 302 031</b> — he'll get back to you quickly!\n\nCarlos will confirm availability within 24 hours.",
-                pt: "Reservar é simples! Duas opções:\n\n1️⃣ Clique em <b>'Reservar Este Tour'</b> em qualquer card — preencha os seus dados e pague um sinal de 10% via PayPal (o resto no dia)\n\n2️⃣ Envie mensagem ao Carlos directamente pelo <b>WhatsApp: +351 933 302 031</b> — ele responde rapidamente!\n\nO Carlos confirma a disponibilidade em 24 horas.",
-                es: "¡Reservar es fácil! Dos opciones:\n\n1️⃣ Haz clic en <b>'Reservar Este Tour'</b> en cualquier tarjeta — rellena tus datos y paga una señal del 10% vía PayPal (el resto el día del tour)\n\n2️⃣ Escribe a Carlos directamente por <b>WhatsApp: +351 933 302 031</b> — ¡te responderá rápidamente!\n\nCarlos confirma la disponibilidad en 24 horas.",
-                it: "Prenotare è semplice! Due opzioni:\n\n1️⃣ Clicca su <b>'Prenota Questo Tour'</b> su qualsiasi card — inserisci i tuoi dati e paga un acconto del 10% via PayPal (il resto il giorno del tour)\n\n2️⃣ Scrivi a Carlos direttamente su <b>WhatsApp: +351 933 302 031</b> — risponde rapidamente!\n\nCarlos conferma la disponibilità entro 24 ore."
+                en: "Booking is easy! Two options:\n\n1️⃣ Click <b>'Book This Tour'</b> on any tour card — fill in your details and pay a <b>€50 deposit</b> via PayPal (the rest on the day)\n\n2️⃣ Message Carlos directly on <b>WhatsApp: +351 933 302 031</b> — he'll get back to you quickly!\n\nCarlos will confirm availability within 24 hours.",
+                pt: "Reservar é simples! Duas opções:\n\n1️⃣ Clique em <b>'Reservar Este Tour'</b> em qualquer card — preencha os seus dados e pague um sinal de <b>50€</b> via PayPal (o resto no dia)\n\n2️⃣ Envie mensagem ao Carlos directamente pelo <b>WhatsApp: +351 933 302 031</b> — ele responde rapidamente!\n\nO Carlos confirma a disponibilidade em 24 horas.",
+                es: "¡Reservar es fácil! Dos opciones:\n\n1️⃣ Haz clic en <b>'Reservar Este Tour'</b> en cualquier tarjeta — rellena tus datos y paga una señal de <b>50€</b> vía PayPal (el resto el día del tour)\n\n2️⃣ Escribe a Carlos directamente por <b>WhatsApp: +351 933 302 031</b> — ¡te responderá rápidamente!\n\nCarlos confirma la disponibilidad en 24 horas.",
+                it: "Prenotare è semplice! Due opzioni:\n\n1️⃣ Clicca su <b>'Prenota Questo Tour'</b> su qualsiasi card — inserisci i tuoi dati e paga un acconto di <b>€50</b> via PayPal (il resto il giorno del tour)\n\n2️⃣ Scrivi a Carlos direttamente su <b>WhatsApp: +351 933 302 031</b> — risponde rapidamente!\n\nCarlos conferma la disponibilità entro 24 ore."
             }
         },
         {
@@ -2869,10 +2866,10 @@
                 it: ['pagamento','pagare','acconto','paypal','rimborso','cancellare','cancellazione']
             },
             answer: {
-                en: "💳 <b>Payment & Cancellation:</b>\n\n• A <b>10% deposit</b> is paid upfront via PayPal to secure your booking\n• The remaining balance is paid in cash on the day of the tour\n• For cancellation or refund queries, please contact Carlos directly on WhatsApp — he'll sort it out personally.",
-                pt: "💳 <b>Pagamento e Cancelamento:</b>\n\n• Um <b>sinal de 10%</b> é pago antecipadamente via PayPal para garantir a reserva\n• O valor restante é pago em dinheiro no dia do tour\n• Para cancelamentos ou questões de reembolso, contacte o Carlos directamente pelo WhatsApp — ele trata pessoalmente.",
-                es: "💳 <b>Pago y Cancelación:</b>\n\n• Se paga una <b>señal del 10%</b> por adelantado via PayPal para asegurar la reserva\n• El saldo restante se paga en efectivo el día del tour\n• Para cancelaciones o consultas de reembolso, contacta a Carlos directamente por WhatsApp — él lo gestionará personalmente.",
-                it: "💳 <b>Pagamento e Cancellazione:</b>\n\n• Un <b>acconto del 10%</b> viene pagato in anticipo via PayPal per garantire la prenotazione\n• Il saldo rimanente viene pagato in contanti il giorno del tour\n• Per cancellazioni o rimborsi, contatta Carlos direttamente su WhatsApp — lo gestirà personalmente."
+                en: "💳 <b>Payment & Cancellation:</b>\n\n• A flat <b>€50 deposit</b> is paid upfront via PayPal to secure your booking — this amount is deducted from the total on the day\n• The remaining balance is paid in cash on the day of the tour\n• For cancellation or refund queries, please contact Carlos directly on WhatsApp — he'll sort it out personally.",
+                pt: "💳 <b>Pagamento e Cancelamento:</b>\n\n• Um <b>sinal fixo de 50€</b> é pago antecipadamente via PayPal para garantir a reserva — este valor é abatido no total no dia do tour\n• O valor restante é pago em dinheiro no dia do tour\n• Para cancelamentos ou questões de reembolso, contacte o Carlos directamente pelo WhatsApp — ele trata pessoalmente.",
+                es: "💳 <b>Pago y Cancelación:</b>\n\n• Se paga una <b>señal fija de 50€</b> por adelantado via PayPal para asegurar la reserva — este importe se descuenta del total el día del tour\n• El saldo restante se paga en efectivo el día del tour\n• Para cancelaciones o consultas de reembolso, contacta a Carlos directamente por WhatsApp — él lo gestionará personalmente.",
+                it: "💳 <b>Pagamento e Cancellazione:</b>\n\n• Un <b>acconto fisso di €50</b> viene pagato in anticipo via PayPal per garantire la prenotazione — questo importo verrà detratto dal totale il giorno del tour\n• Il saldo rimanente viene pagato in contanti il giorno del tour\n• Per cancellazioni o rimborsi, contatta Carlos direttamente su WhatsApp — lo gestirà personalmente."
             }
         },
         {
