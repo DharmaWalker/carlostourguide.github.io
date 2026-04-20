@@ -2748,7 +2748,7 @@
                 const b = _pendingBooking;
                 return actions.order.create({
                     purchase_units: [{
-                        amount: { value: String(b.deposit), currency_code: 'EUR' },
+                        amount: { value: Number(b.deposit).toFixed(2), currency_code: 'EUR' },
                         description: `Deposit - ${b.tour.name} ${paxDisplay(currentPax)} Pax`
                     }]
                 });
@@ -3240,6 +3240,6 @@
     </script>
 
     <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AeUQ7cOx3JpueMIKio_-2KOSeR-C0n9urXmAJE5H27IEsQ_nqngmU4uKzGS-N-pboPkRJ-1drfMUJSBa&currency=EUR" defer></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AeUQ7cOx3JpueMIKio_-2KOSeR-C0n9urXmAJE5H27IEsQ_nqngmU4uKzGS-N-pboPkRJ-1drfMUJSBa&currency=EUR"></script>
 </body>
 </html>
