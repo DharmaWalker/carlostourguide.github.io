@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>emailjs.init('wD-LkKz_AfTeG3D4e');</script>
 
     <style>
         :root {
@@ -833,6 +835,42 @@
             line-height: 1.5;
         }
 
+        /* ── ICS Download Button ── */
+        .btn-ics-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 1rem;
+            background: var(--terracotta);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 0.8rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .btn-ics-download:hover { background: #a8471e; transform: translateY(-2px); }
+
+        /* ── Email warning ── */
+        .email-warning {
+            display: none;
+            background: #fff8e1;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 0.82rem;
+            color: #856404;
+            text-align: center;
+            margin-top: 0.8rem;
+            line-height: 1.5;
+        }
+
         /* ── Custom Tour / Map Section ── */
         .custom-tour-section {
             background: white;
@@ -1523,10 +1561,15 @@
                         <i class="fab fa-google" aria-hidden="true"></i>
                         <span data-i18n="calendarBtn">Add to Google Calendar</span>
                     </a>
+                    <button class="btn-ics-download" onclick="downloadICS()">
+                        <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                        <span data-i18n="icsBtn">Download Calendar Invite (.ics)</span>
+                    </button>
                     <a href="#" id="waConfirmBtn" class="btn-wa-confirm" target="_blank" rel="noopener">
                         <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         <span data-i18n="waConfirmBtn">Send Details to Carlos</span>
                     </a>
+                    <div id="emailWarningMsg" class="email-warning"></div>
                     <p class="note-small" data-i18n="confirmNote">Carlos will receive your booking details and confirm availability via WhatsApp.</p>
                 </div>
             </div>
@@ -2071,6 +2114,8 @@
             confirmSumGroup: "Group",
             confirmSumTotal: "Tour Total",
             confirmSumDep:   "Deposit paid",
+            icsBtn:          "Download Calendar Invite (.ics)",
+            emailFailMsg:    "Email notification could not be sent. Please contact Carlos via WhatsApp.",
             // Map / Custom Tour
             customTourTitle:    "Build Your Own Tour",
             customTourSubtitle: "Click destinations on the map to build a custom itinerary and get an instant price estimate.",
@@ -2181,6 +2226,8 @@
             confirmSumGroup: "Grupo",
             confirmSumTotal: "Total do Tour",
             confirmSumDep:   "Sinal pago",
+            icsBtn:          "Descarregar Convite de Calendário (.ics)",
+            emailFailMsg:    "Não foi possível enviar a notificação por email. Por favor contacte o Carlos via WhatsApp.",
             // Map / Custom Tour
             customTourTitle:    "Crie o Seu Tour",
             customTourSubtitle: "Clique nos destinos no mapa para construir um itinerário personalizado e obter uma estimativa de preço.",
@@ -2291,6 +2338,8 @@
             confirmSumGroup: "Grupo",
             confirmSumTotal: "Total del Tour",
             confirmSumDep:   "Señal pagada",
+            icsBtn:          "Descargar Invitación de Calendario (.ics)",
+            emailFailMsg:    "No se pudo enviar la notificación por email. Por favor contacta a Carlos via WhatsApp.",
             // Map / Custom Tour
             customTourTitle:    "Crea Tu Propio Tour",
             customTourSubtitle: "Haz clic en los destinos del mapa para crear un itinerario personalizado y obtener un precio estimado.",
@@ -2401,6 +2450,8 @@
             confirmSumGroup: "Gruppo",
             confirmSumTotal: "Totale Tour",
             confirmSumDep:   "Acconto pagato",
+            icsBtn:          "Scarica Invito Calendario (.ics)",
+            emailFailMsg:    "Non è stato possibile inviare la notifica email. Per favore contatta Carlos via WhatsApp.",
             // Map / Custom Tour
             customTourTitle:    "Costruisci il Tuo Tour",
             customTourSubtitle: "Clicca le destinazioni sulla mappa per creare un itinerario personalizzato e ottenere un preventivo istantaneo.",
@@ -2783,6 +2834,10 @@
         // Remove error states
         document.querySelectorAll('.form-input').forEach(i => i.classList.remove('error'));
 
+        // Reset email warning
+        const warningEl = document.getElementById('emailWarningMsg');
+        if (warningEl) warningEl.style.display = 'none';
+
         // Open modal
         document.getElementById('bookingModal').classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -2957,6 +3012,94 @@
             `<strong>${t.confirmSumDep   || 'Deposit paid'}:</strong> €${deposit}`;
 
         showBookingStep(3);
+
+        // Send email notification (non-blocking — confirmation shows regardless)
+        const warningEl = document.getElementById('emailWarningMsg');
+        if (warningEl) warningEl.style.display = 'none';
+        sendBookingEmail(_pendingBooking, currentPax)
+            .catch(() => {
+                const lang2 = document.documentElement.lang || 'en';
+                const t2 = translations[lang2] || translations.en;
+                if (warningEl) {
+                    warningEl.textContent = t2.emailFailMsg || 'Email notification could not be sent. Please contact Carlos via WhatsApp.';
+                    warningEl.style.display = 'block';
+                }
+            });
+    }
+
+    // ─── EmailJS: send booking notification to Carlos ────────────────────────
+    function sendBookingEmail(booking, pax) {
+        const { tour, name, email, date, total, deposit, paymentMethod } = booking;
+        const paxStr = pax ? `${PAX_LABELS[pax] || pax} Pax` : '—';
+        const dateFormatted = new Date(date).toLocaleDateString('en-GB', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+        const paymentLabel = paymentMethod === 'paypal' ? 'PayPal' : 'SumUp (Card)';
+        const templateParams = {
+            to_email:       'carlosmofigueiredo@gmail.com',
+            from_name:      name,
+            tour_name:      tour.name,
+            tour_date:      dateFormatted,
+            group_size:     paxStr,
+            total_price:    `€${total}`,
+            deposit_paid:   `€${deposit}`,
+            client_email:   email,
+            payment_method: paymentLabel
+        };
+        return emailjs.send('service_fm9y8ch', 'template_7tvelut', templateParams)
+            .catch(err => { console.error('EmailJS failed:', err); throw err; });
+    }
+
+    // ─── ICS calendar file generation ────────────────────────────────────────
+    function generateICS(booking, pax) {
+        const { tour, name, email, date, total, deposit } = booking;
+        const dateObj = new Date(date + 'T09:00:00');
+        const dateEnd = new Date(date + 'T17:00:00');
+        const fmtD = d => d.toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+        const now  = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+        const paxStr = pax ? `${PAX_LABELS[pax] || pax} Pax` : '—';
+        const desc = [
+            `Tour: ${tour.name}`,
+            `Guest: ${name} (${email})`,
+            `Group: ${paxStr}`,
+            `Total: \u20AC${total}`,
+            `Deposit paid: \u20AC${deposit}`,
+            '',
+            'Guide: Carlos Figueiredo',
+            'Contact: +351 933302031'
+        ].join('\\n');
+        const lines = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'PRODID:-//Carlos Figueiredo Tours//thatourguide.pt//EN',
+            'CALSCALE:GREGORIAN',
+            'METHOD:REQUEST',
+            'BEGIN:VEVENT',
+            `DTSTART:${fmtD(dateObj)}`,
+            `DTEND:${fmtD(dateEnd)}`,
+            `DTSTAMP:${now}`,
+            `ORGANIZER;CN=Carlos Figueiredo:MAILTO:carlosmofigueiredo@gmail.com`,
+            `ATTENDEE;RSVP=TRUE;CN=${name}:MAILTO:${email}`,
+            `SUMMARY:${tour.name} \u2014 ${name}`,
+            `DESCRIPTION:${desc}`,
+            'END:VEVENT',
+            'END:VCALENDAR'
+        ];
+        return lines.join('\r\n');
+    }
+
+    function downloadICS() {
+        if (!_pendingBooking) return;
+        const icsContent = generateICS(_pendingBooking, currentPax);
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        const safeName = _pendingBooking.tour.name.replace(/[^a-z0-9]/gi, '_').replace(/_+/g, '_');
+        a.href     = url;
+        a.download = `${safeName}_${_pendingBooking.date}.ics`;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
     }
 
     function showBookingStep(step) {
