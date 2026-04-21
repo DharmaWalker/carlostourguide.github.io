@@ -2103,8 +2103,10 @@
             sumupBtn:        "Pay with Card",
             sumupReturnNote: "Once payment is complete, click below to continue:",
             sumupConfirmBtn: "I have completed payment",
-            confirmTitle:    "Booking Requested!",
-            confirmSubtitle: "Thank you! Carlos will confirm your tour within 24 hours.",
+            confirmTitle:        "Booking Requested!",
+            confirmSubtitle:     "Thank you! Carlos will confirm your tour within 24 hours.",
+            confirmTitleSumup:   "Booking Request Sent!",
+            confirmSubtitleSumup:"Your booking will be confirmed once Carlos verifies your payment. He will contact you within 24 hours.",
             calendarBtn:     "Add to Google Calendar",
             waConfirmBtn:    "Send Details to Carlos",
             confirmNote:     "Carlos will receive your booking details and confirm availability via WhatsApp.",
@@ -2215,8 +2217,10 @@
             sumupBtn:        "Pagar com Cartão",
             sumupReturnNote: "Depois de concluir o pagamento, clique em baixo para continuar:",
             sumupConfirmBtn: "Já completei o pagamento",
-            confirmTitle:    "Reserva Efectuada!",
-            confirmSubtitle: "Obrigado! O Carlos confirmará o seu tour em 24 horas.",
+            confirmTitle:        "Reserva Efectuada!",
+            confirmSubtitle:     "Obrigado! O Carlos confirmará o seu tour em 24 horas.",
+            confirmTitleSumup:   "Pedido de Reserva Enviado!",
+            confirmSubtitleSumup:"A sua reserva será confirmada assim que o Carlos verificar o pagamento. Será contactado em 24 horas.",
             calendarBtn:     "Adicionar ao Google Calendar",
             waConfirmBtn:    "Enviar Detalhes ao Carlos",
             confirmNote:     "O Carlos receberá os detalhes da sua reserva e confirmará disponibilidade via WhatsApp.",
@@ -2327,8 +2331,10 @@
             sumupBtn:        "Pagar con Tarjeta",
             sumupReturnNote: "Una vez completado el pago, haz clic abajo para continuar:",
             sumupConfirmBtn: "He completado el pago",
-            confirmTitle:    "¡Reserva Realizada!",
-            confirmSubtitle: "¡Gracias! Carlos confirmará tu tour en 24 horas.",
+            confirmTitle:        "¡Reserva Realizada!",
+            confirmSubtitle:     "¡Gracias! Carlos confirmará tu tour en 24 horas.",
+            confirmTitleSumup:   "¡Solicitud de Reserva Enviada!",
+            confirmSubtitleSumup:"Su reserva será confirmada una vez que Carlos verifique su pago. Le contactará en 24 horas.",
             calendarBtn:     "Añadir a Google Calendar",
             waConfirmBtn:    "Enviar Detalles a Carlos",
             confirmNote:     "Carlos recibirá los detalles de tu reserva y confirmará disponibilidad por WhatsApp.",
@@ -2439,8 +2445,10 @@
             sumupBtn:        "Paga con Carta",
             sumupReturnNote: "Una volta completato il pagamento, clicca qui sotto per continuare:",
             sumupConfirmBtn: "Ho completato il pagamento",
-            confirmTitle:    "Prenotazione Effettuata!",
-            confirmSubtitle: "Grazie! Carlos confermerà il tuo tour entro 24 ore.",
+            confirmTitle:        "Prenotazione Effettuata!",
+            confirmSubtitle:     "Grazie! Carlos confermerà il tuo tour entro 24 ore.",
+            confirmTitleSumup:   "Richiesta di Prenotazione Inviata!",
+            confirmSubtitleSumup:"La prenotazione sarà confermata dopo che Carlos avrà verificato il pagamento. Sarai contattato entro 24 ore.",
             calendarBtn:     "Aggiungi a Google Calendar",
             waConfirmBtn:    "Invia Dettagli a Carlos",
             confirmNote:     "Carlos riceverà i dettagli della tua prenotazione e confermerà la disponibilità via WhatsApp.",
@@ -3010,6 +3018,13 @@
             `<strong>${t.confirmSumGroup || 'Group'}:</strong> ${paxDisplay(currentPax)} ${t.paxLabel || 'pax'}<br>` +
             `<strong>${t.confirmSumTotal || 'Total'}:</strong> €${total}<br>` +
             `<strong>${t.confirmSumDep   || 'Deposit paid'}:</strong> €${deposit}`;
+
+        // Update title/subtitle based on payment method
+        const isSumup = _pendingBooking.paymentMethod === 'card';
+        const titleEl    = document.querySelector('#confirmationStep .confirm-title');
+        const subtitleEl = document.querySelector('#confirmationStep .confirm-subtitle');
+        if (titleEl)    titleEl.textContent    = isSumup ? (t.confirmTitleSumup    || 'Booking Request Sent!')    : (t.confirmTitle    || 'Booking Requested!');
+        if (subtitleEl) subtitleEl.textContent = isSumup ? (t.confirmSubtitleSumup || 'Your booking will be confirmed once Carlos verifies your payment. He will contact you within 24 hours.') : (t.confirmSubtitle || 'Thank you! Carlos will confirm your tour within 24 hours.');
 
         showBookingStep(3);
 
