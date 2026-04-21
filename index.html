@@ -109,6 +109,35 @@
         }
         .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(8px); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--azulejo-blue);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            animation: scrollBounce 1.8s ease-in-out infinite, fadeUp 1s ease-out 1s backwards;
+            transition: opacity 0.4s ease;
+            z-index: 10;
+        }
+        .scroll-indicator i { font-size: 1.4rem; }
+        .scroll-indicator:hover { opacity: 1; }
+        .scroll-indicator.hidden { opacity: 0; pointer-events: none; }
+
         /* ── Hero ── */
         .hero {
             position: relative;
@@ -1598,6 +1627,9 @@
                 <i class="fab fa-instagram"></i> @that_tourguide
             </a>
         </div>
+        <a href="#tours" class="scroll-indicator" id="scrollIndicator" aria-label="Scroll down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
     </header>
 
     <!-- About -->
@@ -3554,6 +3586,20 @@
     </script>
 
     <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AUH7O6PCUCQpdviMa207W89CBezgwcKpQvbiQp_8nZ3ibgWCWlRx0FRx2ZBzg9T4fW2yQEOrtBlkJxO7&currency=EUR"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AUH7O6PCUCQpdviMa207W89CBezgwcKpQvbiQp_8nZ3ibgWCWlRx0FRx2ZBzg9T4fW2yQEOrtBlkJxO7&currency=EUR">
+        // Hide scroll indicator on scroll
+        (function() {
+            var ind = document.getElementById('scrollIndicator');
+            if (!ind) return;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 80) {
+                    ind.classList.add('hidden');
+                } else {
+                    ind.classList.remove('hidden');
+                }
+            }, { passive: true });
+        })();
+    </script>
+
 </body>
 </html>
