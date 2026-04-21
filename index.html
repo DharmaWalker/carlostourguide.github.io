@@ -111,8 +111,8 @@
 
 
         @keyframes scrollBounce {
-            0%, 100% { transform: translateY(0); }
-            50%       { transform: translateY(8px); }
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%       { transform: translateX(-50%) translateY(8px); }
         }
 
         .scroll-indicator {
@@ -3586,7 +3586,8 @@
     </script>
 
     <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AUH7O6PCUCQpdviMa207W89CBezgwcKpQvbiQp_8nZ3ibgWCWlRx0FRx2ZBzg9T4fW2yQEOrtBlkJxO7&currency=EUR">
+    <script src="https://www.paypal.com/sdk/js?client-id=AUH7O6PCUCQpdviMa207W89CBezgwcKpQvbiQp_8nZ3ibgWCWlRx0FRx2ZBzg9T4fW2yQEOrtBlkJxO7&currency=EUR"></script>
+    <script>
         // Hide scroll indicator on scroll
         (function() {
             var ind = document.getElementById('scrollIndicator');
