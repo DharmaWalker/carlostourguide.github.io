@@ -2737,7 +2737,7 @@
 
         const totalKm  = calcTotalDistance(ids);
         const { price, rule } = calcQuote(totalKm);
-        const driveMin  = totalKm;                        // totalKm / 60km/h × 60min = totalKm minutes
+        const driveMin  = Math.round(totalKm * (60 / 90)); // totalKm / 90km/h × 60min
         const stopMin   = ids.length * 90;                // 1.5h (90 min) per stop
         const totalMin  = driveMin + stopMin;
 
