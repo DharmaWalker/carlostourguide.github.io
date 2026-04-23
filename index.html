@@ -163,16 +163,23 @@
             animation: fadeUp 1s ease-out;
         }
 
-        .hero-logo {
-            width: 280px;
-            max-width: 85vw;
-            margin-bottom: 1.8rem;
-            border-radius: 12px;
-            animation: fadeUp 1s ease-out backwards;
+        .brand-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--azulejo-blue);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            opacity: 0.85;
+            animation: fadeUp 1s ease-out 0.15s backwards;
         }
 
-        @media (max-width: 600px) {
-            .hero-logo { width: 200px; }
+        .footer-brand-logo {
+            width: 200px;
+            max-width: 70vw;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            opacity: 0.92;
         }
 
         .hero h1 {
@@ -1616,8 +1623,8 @@
 
     <!-- Hero -->
     <header class="hero">
-        <img src="logo.jpg" alt="That Tourguide" class="hero-logo">
         <img src="profile.jpg" alt="Carlos Figueiredo" class="profile-img">
+        <p class="brand-label">That Tourguide</p>
         <h1>Carlos Figueiredo</h1>
         <p class="tagline" data-i18n="tagline">Premium Tour Guide in Portugal &amp; Spain</p>
         <div class="contact-buttons">
@@ -2027,6 +2034,7 @@
 
     <!-- Footer -->
     <footer>
+        <img src="logo.jpg" alt="That Tourguide" class="footer-brand-logo">
         <div class="footer-logo">Carlos Figueiredo</div>
         <p class="footer-text" data-i18n="footerSub">Premium Tour Guide in Portugal &amp; Spain</p>
         <p class="footer-text" style="margin-top:1rem;font-size:0.75rem;">
