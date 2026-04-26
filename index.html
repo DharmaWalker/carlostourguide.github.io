@@ -22,8 +22,10 @@
 
     <style>
         :root {
+            --azulejo: #1A3C61;
             --azulejo-blue: #1A3C61;
             --azulejo-light: #4A709C;
+            --azulejo-dark: #122d52;
             --terracotta: #C85A32;
             --gold: #D4AF37;
             --bg-light: #FDF5E6;
@@ -38,7 +40,6 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(to bottom, #FDF5E6 0%, #FFFAF5 40%, #FFFDF9 100%);
-            background-attachment: fixed;
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
@@ -302,6 +303,9 @@
 
         /* ── Tour Cards ── */
         .tours-grid { display: grid; gap: 2.5rem; }
+        @media (min-width: 768px) {
+            .tours-grid { grid-template-columns: repeat(2, 1fr); }
+        }
 
         .tour-card {
             background: var(--bg-white);
@@ -386,9 +390,11 @@
             bottom: 0; left: 0;
             height: 3px;
             background: rgba(255,255,255,0.7);
-            width: 0%;
+            width: 100%;
+            transform: scaleX(0);
+            transform-origin: left;
             z-index: 4;
-            transition: width linear;
+            transition: transform linear;
         }
 
         .gallery-label {
@@ -571,7 +577,7 @@
             padding: 0;
             overflow: hidden;
             animation: slideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-            max-height: 95vh;
+            max-height: 95dvh;
             overflow-y: auto;
             position: relative;
         }
@@ -1210,7 +1216,6 @@
             .hero h1 { font-size: 2rem; }
             .tour-pricing { grid-template-columns: 1fr; }
             .price-box:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.5rem; }
-            .gallery-item { width: 160px; height: 110px; }
             .lang-switcher { top: 0.6rem; right: 0.6rem; padding: 0.25rem 0.4rem; }
             .lang-btn { font-size: 1.15rem; }
             .modal-body { padding: 1.5rem; }
@@ -1360,6 +1365,7 @@
             gap: 1.25rem;
             width: max-content;
             animation: momentScroll 48s linear infinite;
+            will-change: transform;
         }
         .moments-carousel:hover .moments-track {
             animation-play-state: paused;
@@ -3020,6 +3026,7 @@
         let current  = 0;
         let timer    = null;
         let paused   = false;
+        let isSwiping = false;
 
         // Inject progress bar into the track area
         const progress = document.createElement('div');
@@ -3036,6 +3043,19 @@
             dotsEl.appendChild(d);
         });
 
+        // Prevent lightbox on swipe - add to each item
+        items.forEach(item => {
+            const originalOnClick = item.onclick;
+            item.onclick = (e) => {
+                if (isSwiping) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                if (originalOnClick) originalOnClick.call(item, e);
+            };
+        });
+
         function goTo(n) {
             current = (n + total) % total;
             track.style.transform = `translateX(-${current * 100}%)`;
@@ -3043,10 +3063,10 @@
                 d.classList.toggle('active', i === current));
             // Restart progress bar animation
             progress.style.transition = 'none';
-            progress.style.width = '0%';
+            progress.style.transform = 'scaleX(0)';
             requestAnimationFrame(() => requestAnimationFrame(() => {
-                progress.style.transition = `width ${GALLERY_INTERVAL}ms linear`;
-                progress.style.width = paused ? '0%' : '100%';
+                progress.style.transition = `transform ${GALLERY_INTERVAL}ms linear`;
+                progress.style.transform = paused ? 'scaleX(0)' : 'scaleX(1)';
             }));
         }
 
@@ -3056,8 +3076,8 @@
                 if (!paused) goTo(current + 1);
             }, GALLERY_INTERVAL);
             if (!paused) {
-                progress.style.transition = `width ${GALLERY_INTERVAL}ms linear`;
-                progress.style.width = '100%';
+                progress.style.transition = `transform ${GALLERY_INTERVAL}ms linear`;
+                progress.style.transform = 'scaleX(1)';
             }
         }
 
@@ -3069,7 +3089,7 @@
         function pauseGallery() {
             paused = true;
             progress.style.transition = 'none';
-            progress.style.width = '0%';
+            progress.style.transform = 'scaleX(0)';
         }
 
         function resumeGallery() {
@@ -3085,10 +3105,21 @@
 
         // Touch / swipe
         let touchStartX = 0;
-        gallery.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        gallery.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            isSwiping = false;
+        }, { passive: true });
+        gallery.addEventListener('touchmove', e => {
+            const dx = e.touches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 10) isSwiping = true;
+        }, { passive: true });
         gallery.addEventListener('touchend', e => {
             const dx = e.changedTouches[0].clientX - touchStartX;
-            if (Math.abs(dx) > 40) { goTo(current + (dx < 0 ? 1 : -1)); resetTimer(); }
+            if (Math.abs(dx) > 40) {
+                goTo(current + (dx < 0 ? 1 : -1));
+                resetTimer();
+            }
+            setTimeout(() => isSwiping = false, 50);
         }, { passive: true });
 
         // Expose for arrow buttons
