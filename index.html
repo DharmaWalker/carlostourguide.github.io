@@ -4193,7 +4193,7 @@
     }
 
     function showFaqBotReply(type, btn) {
-        const lang = currentLang || 'en';
+        const lang = document.documentElement.lang || 'en';
         const t = translations[lang] || translations.en;
         const replyEl = document.getElementById('faqBotReply');
         const text = type === 'book' ? t.faqBotBook : type === 'tickets' ? t.faqBotTickets : t.faqBotIncluded;
