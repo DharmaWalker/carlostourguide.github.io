@@ -2678,6 +2678,7 @@
             chatPlaceholder:    "Ask me anything…",
             chatWelcome:        "Hi! 👋 I'm Carlos's assistant. Ask me anything about tours, prices, bookings or what to expect!",
             chatNoAnswer:       "I'm not sure about that one! For a personal answer, contact Carlos directly on WhatsApp 👇",
+            chatTalkToCarlos:   "Talk to Carlos on WhatsApp",
             chatWaBtn:          "Chat with Carlos on WhatsApp",
             chatQR_tours:       "What tours are available?",
             chatQR_prices:      "How much does it cost?",
@@ -2819,6 +2820,7 @@
             chatPlaceholder:    "Pergunte-me qualquer coisa…",
             chatWelcome:        "Olá! 👋 Sou o assistente do Carlos. Pergunte-me sobre tours, preços, reservas ou o que quiser saber!",
             chatNoAnswer:       "Não tenho bem a certeza sobre isso! Para uma resposta personalizada, contacte o Carlos directamente pelo WhatsApp 👇",
+            chatTalkToCarlos:   "Falar com Carlos no WhatsApp",
             chatWaBtn:          "Falar com o Carlos pelo WhatsApp",
             chatQR_tours:       "Que tours estão disponíveis?",
             chatQR_prices:      "Qual é o preço?",
@@ -2960,6 +2962,7 @@
             chatPlaceholder:    "Pregúntame cualquier cosa…",
             chatWelcome:        "¡Hola! 👋 Soy el asistente de Carlos. ¡Pregúntame sobre tours, precios, reservas o lo que necesites saber!",
             chatNoAnswer:       "¡No estoy muy seguro de eso! Para una respuesta personalizada, contacta a Carlos directamente por WhatsApp 👇",
+            chatTalkToCarlos:   "Hablar con Carlos en WhatsApp",
             chatWaBtn:          "Chatear con Carlos por WhatsApp",
             chatQR_tours:       "¿Qué tours están disponibles?",
             chatQR_prices:      "¿Cuánto cuesta?",
@@ -3101,6 +3104,7 @@
             chatPlaceholder:    "Chiedimi qualsiasi cosa…",
             chatWelcome:        "Ciao! 👋 Sono l'assistente di Carlos. Chiedimi dei tour, prezzi, prenotazioni o qualsiasi cosa tu voglia sapere!",
             chatNoAnswer:       "Non sono sicuro su questo! Per una risposta personalizzata, contatta Carlos direttamente su WhatsApp 👇",
+            chatTalkToCarlos:   "Parla con Carlos su WhatsApp",
             chatWaBtn:          "Chatta con Carlos su WhatsApp",
             chatQR_tours:       "Quali tour sono disponibili?",
             chatQR_prices:      "Quanto costa?",
@@ -3934,10 +3938,10 @@
         {
             id: 'tours_available',
             keywords: {
-                en: ['tour','tours','available','offer','what','options','packages','choice'],
-                pt: ['tour','tours','disponível','disponíveis','oferecer','opções','pacotes','escolha'],
-                es: ['tour','tours','disponible','disponibles','ofrecer','opciones','paquetes','elección'],
-                it: ['tour','tours','disponibile','disponibili','offrire','opzioni','pacchetti','scelta']
+                en: ['tour','tours','available','offer','what','options','packages','choice','what do you offer','what tours','visit','see','do'],
+                pt: ['tour','tours','disponível','disponíveis','oferecer','opções','pacotes','escolha','o que oferece','que tours','visitar','ver','fazer'],
+                es: ['tour','tours','disponible','disponibles','ofrecer','opciones','paquetes','elección','qué ofrece','qué tours','visitar','ver','hacer'],
+                it: ['tour','tours','disponibile','disponibili','offrire','opzioni','pacchetti','scelta','cosa offre','che tour','visitare','vedere','fare']
             },
             answer: {
                 en: "I offer 4 signature tours from Lisbon:\n\n🏰 <b>Sintra Tour</b> (6-7h) — Pena Palace, Quinta da Regaleira, Cabo da Roca, Cascais\n🏙️ <b>Lisbon Tour</b> (6-7h) — Belém, Alfama, São Jorge Castle, Praça do Comércio\n⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h) — Spiritual & historic full-day\n🍷 <b>Arrábida & Setúbal</b> (6-7h) — Wine tasting, hidden beach, cave & fried cuttlefish\n\nI also build <b>Custom Tours</b> across Portugal & Spain! Use the map on the page to plan yours.",
@@ -3949,10 +3953,10 @@
         {
             id: 'sintra_price',
             keywords: {
-                en: ['sintra','pena','regaleira','cascais','cabo','roca'],
-                pt: ['sintra','pena','regaleira','cascais','cabo','roca'],
-                es: ['sintra','pena','regaleira','cascais','cabo','roca'],
-                it: ['sintra','pena','regaleira','cascais','cabo','roca']
+                en: ['sintra','pena','regaleira','cascais','cabo','roca','sintra tour','sintra price','palacio','quinta','sintra village','palace sintra'],
+                pt: ['sintra','pena','regaleira','cascais','cabo','roca','tour sintra','preço sintra','palácio','quinta','vila sintra'],
+                es: ['sintra','pena','regaleira','cascais','cabo','roca','tour sintra','precio sintra','palacio','quinta','villa sintra'],
+                it: ['sintra','pena','regaleira','cascais','cabo','roca','tour sintra','prezzo sintra','palazzo','quinta','villaggio sintra']
             },
             answer: {
                 en: "🏰 <b>Sintra Tour</b> (6-7h from Lisbon)\nVisits: Pena Palace · Historic Village · Quinta da Regaleira · Cabo da Roca · Cascais\n\n<b>Prices (private group):</b>\n• 1-2 pax → €270\n• 3-4 pax → €290\n• 5-6 pax → €310\n\nIncludes: private van + professional guide + hotel pick-up.",
@@ -3964,10 +3968,10 @@
         {
             id: 'lisbon_price',
             keywords: {
-                en: ['lisbon','belem','belém','alfama','jeronimos','jerónimos','jorge','commerce','comércio','baixa','cristo'],
-                pt: ['lisboa','belém','alfama','jerónimos','jorge','comércio','baixa','cristo'],
-                es: ['lisboa','belém','alfama','jerónimos','jorge','comercio','baixa','cristo'],
-                it: ['lisbona','belém','alfama','jerónimos','giorgio','commercio','baixa','cristo']
+                en: ['lisbon','belem','belém','alfama','jeronimos','jerónimos','jorge','commerce','comércio','baixa','cristo','lisbon tour','lisbon price','castelo','castle','tower','monument'],
+                pt: ['lisboa','belém','alfama','jerónimos','jorge','comércio','baixa','cristo','tour lisboa','preço lisboa','castelo','torre','mosteiro','monumento'],
+                es: ['lisboa','belém','alfama','jerónimos','jorge','comercio','baixa','cristo','tour lisboa','precio lisboa','castillo','torre','monasterio','monumento'],
+                it: ['lisbona','belém','alfama','jerónimos','giorgio','commercio','baixa','cristo','tour lisbona','prezzo lisbona','castello','torre','monastero','monumento']
             },
             answer: {
                 en: "🏙️ <b>Lisbon Tour</b> (6-7h)\nVisits: Belém Tower · Jerónimos Monastery · Cristo Rei · Alfama · São Jorge Castle · Praça do Comércio\n\n<b>Prices (private group):</b>\n• 1-2 pax → €290\n• 3-4 pax → €330\n• 5-6 pax → €350\n\nIncludes: private van + professional guide + hotel pick-up.",
@@ -3979,10 +3983,10 @@
         {
             id: 'fatima_price',
             keywords: {
-                en: ['fatima','fátima','batalha','obidos','óbidos','nazare','nazaré','sanctuary','monastery','medieval'],
-                pt: ['fatima','fátima','batalha','óbidos','nazaré','santuário','mosteiro','medieval'],
-                es: ['fatima','fátima','batalha','óbidos','nazaré','santuario','monasterio','medieval'],
-                it: ['fatima','fátima','batalha','óbidos','nazaré','santuario','monastero','medievale']
+                en: ['fatima','fátima','batalha','obidos','óbidos','nazare','nazaré','sanctuary','monastery','medieval','religious','spiritual','pilgrimage','fatima tour','fatima price'],
+                pt: ['fatima','fátima','batalha','óbidos','nazaré','santuário','mosteiro','medieval','religioso','espiritual','peregrinação','tour fatima','preço fatima'],
+                es: ['fatima','fátima','batalha','óbidos','nazaré','santuario','monasterio','medieval','religioso','espiritual','peregrinación','tour fatima'],
+                it: ['fatima','fátima','batalha','óbidos','nazaré','santuario','monastero','medievale','religioso','spirituale','pellegrinaggio','tour fatima']
             },
             answer: {
                 en: "⛪ <b>Fátima, Batalha, Óbidos & Nazaré</b> (8-10h from Lisbon)\nVisits: Fátima Sanctuary · Batalha Monastery (UNESCO) · Nazaré Coast · Óbidos Medieval Village\n\n<b>Prices (private group):</b>\n• 1-2 pax → €430\n• 3-4 pax → €470\n• 5-6 pax → €510\n\nIncludes: private van + professional guide + hotel pick-up.",
@@ -3994,10 +3998,10 @@
         {
             id: 'price_general',
             keywords: {
-                en: ['price','prices','cost','costs','how much','expensive','cheap','rate','fee'],
-                pt: ['preço','preços','custo','quanto','caro','barato','tarifa','valor'],
-                es: ['precio','precios','costo','cuánto','caro','barato','tarifa','coste'],
-                it: ['prezzo','prezzi','costo','quanto','caro','economico','tariffa']
+                en: ['price','prices','cost','costs','how much','expensive','cheap','rate','fee','discount','promotion','offer','promo','value','worth'],
+                pt: ['preço','preços','custo','quanto','caro','barato','tarifa','valor','desconto','promoção','oferta','promo'],
+                es: ['precio','precios','costo','cuánto','caro','barato','tarifa','coste','descuento','promoción','oferta','promo'],
+                it: ['prezzo','prezzi','costo','quanto','caro','economico','tariffa','sconto','promozione','offerta','promo']
             },
             answer: {
                 en: "Here's a quick price overview for private group tours:\n\n🏰 <b>Sintra</b> (6-7h): €270 / €290 / €310 (1-2 / 3-4 / 5-6 pax)\n🏙️ <b>Lisbon</b> (6-7h): €290 / €330 / €350 (1-2 / 3-4 / 5-6 pax)\n⛪ <b>Fátima & Beyond</b> (8-10h): €430 / €470 / €510 (1-2 / 3-4 / 5-6 pax)\n🍷 <b>Arrábida & Setúbal</b> (6-7h): €290 / €330 / €350 (1-2 / 3-4 / 5-6 pax)\n🗺️ <b>Custom Tours</b>: €260 flat (up to ~300km) or €1.25/km\n\nAll prices include private van + guide + hotel pick-up.",
@@ -4009,10 +4013,10 @@
         {
             id: 'arrabida_price',
             keywords: {
-                en: ['arrabida','arrábida','setubal','setúbal','wine','cuttlefish','chocos','beach','cave','lapa','portinho','fonseca','natural park'],
-                pt: ['arrabida','arrábida','setúbal','vinho','vinhos','chocos','praia','gruta','lapa','portinho','fonseca','parque natural'],
-                es: ['arrabida','arrábida','setúbal','vino','vinos','chocos','playa','cueva','lapa','portinho','fonseca','parque natural'],
-                it: ['arrabida','arrábida','setúbal','vino','vini','seppie','spiaggia','grotta','lapa','portinho','fonseca','parco naturale']
+                en: ['arrabida','arrábida','setubal','setúbal','wine','cuttlefish','chocos','beach','cave','lapa','portinho','fonseca','natural park','dolphins','golfinhos','nature','atlantic'],
+                pt: ['arrabida','arrábida','setúbal','vinho','vinhos','chocos','praia','gruta','lapa','portinho','fonseca','parque natural','golfinhos','natureza','atlantico'],
+                es: ['arrabida','arrábida','setúbal','vino','vinos','chocos','playa','cueva','lapa','portinho','fonseca','parque natural','delfines','naturaleza'],
+                it: ['arrabida','arrábida','setúbal','vino','vini','seppie','spiaggia','grotta','lapa','portinho','fonseca','parco naturale','delfini','natura']
             },
             answer: {
                 en: "🍷 <b>Arrábida & Setúbal Tour</b> (6-7h from Lisbon)\nVisits: Wine Tasting · Portinho da Arrábida · Lapa de Santa Margarida · Serra da Arrábida · Setúbal\n\n<b>Prices (private group):</b>\n• 1-2 pax → €290\n• 3-4 pax → €330\n• 5-6 pax → €350\n\nIncludes: private van + guide + hotel pick-up. All visits included — no entrance tickets needed!",
@@ -4024,10 +4028,10 @@
         {
             id: 'booking',
             keywords: {
-                en: ['book','booking','reserve','reservation','how','sign up','contact','whatsapp'],
-                pt: ['reservar','reserva','como','contactar','whatsapp','agendar'],
-                es: ['reservar','reserva','cómo','contactar','whatsapp','agendar'],
-                it: ['prenotare','prenotazione','come','contattare','whatsapp','riservare']
+                en: ['book','booking','reserve','reservation','how','sign up','contact','whatsapp','availability','available','when','date','schedule','appoint'],
+                pt: ['reservar','reserva','como','contactar','whatsapp','agendar','disponibilidade','disponível','quando','data','marcar'],
+                es: ['reservar','reserva','cómo','contactar','whatsapp','agendar','disponibilidad','disponible','cuándo','fecha','marcar'],
+                it: ['prenotare','prenotazione','come','contattare','whatsapp','riservare','disponibilità','disponibile','quando','data','fissare']
             },
             answer: {
                 en: "Booking is easy! Two options:\n\n1️⃣ Click <b>'Book This Tour'</b> on any tour card — fill in your details and pay a <b>€50 deposit</b> via PayPal or card (the rest on the day)\n\n2️⃣ Message Carlos directly on <b>WhatsApp: +351 933 302 031</b> — he'll get back to you quickly!\n\nCarlos will confirm availability within 24 hours.",
@@ -4054,10 +4058,10 @@
         {
             id: 'pickup',
             keywords: {
-                en: ['pick up','pickup','pick-up','hotel','where','meet','departure','start','meeting point'],
-                pt: ['recolha','hotel','onde','encontro','partida','início','ponto de encontro'],
-                es: ['recogida','hotel','dónde','encuentro','salida','punto de encuentro'],
-                it: ['prelievo','hotel','dove','incontro','partenza','punto di incontro']
+                en: ['pick up','pickup','pick-up','hotel','where','meet','departure','start','meeting point','airport','train station','station','train','where do you pick','where to meet'],
+                pt: ['recolha','hotel','onde','encontro','partida','início','ponto de encontro','aeroporto','estação','comboio','onde busca','onde encontra','onde recolhe'],
+                es: ['recogida','hotel','dónde','encuentro','salida','punto de encuentro','aeropuerto','estación','tren','dónde recoge','dónde encuentra'],
+                it: ['prelievo','hotel','dove','incontro','partenza','punto di incontro','aeroporto','stazione','treno','dove raccoglie','dove si incontra']
             },
             answer: {
                 en: "📍 <b>Pick-up:</b>\nI'll pick you up directly at your <b>hotel or any central point</b> in Lisbon or Sintra — no need to find your way to a bus stop!\n\nJust share your accommodation address when booking and I'll be there.",
@@ -4099,10 +4103,10 @@
         {
             id: 'languages',
             keywords: {
-                en: ['language','languages','speak','english','portuguese','spanish','italian','guide','speak'],
-                pt: ['idioma','idiomas','fala','inglês','português','espanhol','italiano','guia'],
-                es: ['idioma','idiomas','habla','inglés','portugués','español','italiano','guía'],
-                it: ['lingua','lingue','parla','inglese','portoghese','spagnolo','italiano','guida']
+                en: ['language','languages','speak','english','portuguese','spanish','italian','guide','speak','fluent','multilingual','what language','does carlos speak','fala','carlos speak'],
+                pt: ['idioma','idiomas','fala','inglês','português','espanhol','italiano','guia','fluente','multilingue','que idioma','fala inglês','fala português'],
+                es: ['idioma','idiomas','habla','inglés','portugués','español','italiano','guía','fluido','multilingüe','qué idioma','habla inglés'],
+                it: ['lingua','lingue','parla','inglese','portoghese','spagnolo','italiano','guida','fluente','multilingue','che lingua','parla inglese']
             },
             answer: {
                 en: "🌍 Carlos speaks <b>4 languages</b> fluently:\n\n🇬🇧 English\n🇵🇹 Portuguese\n🇪🇸 Spanish\n🇮🇹 Italian\n\nSo you can enjoy the full tour experience in your native language!",
@@ -4271,11 +4275,15 @@
     function scoreAnswer(query, entry) {
         const lang = getLang();
         const kws = entry.keywords[lang] || entry.keywords.en;
-        const q = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        const q = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w\s]/g, ' ');
         let score = 0;
         kws.forEach(kw => {
             const k = kw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (q.includes(k)) score += k.length > 4 ? 3 : 1;
+            if (q.includes(k)) {
+                // longer keywords score more; exact word boundary bonus
+                const wordBonus = new RegExp('\\b' + k.replace(/\s+/g, '\\s+') + '\\b').test(q) ? 2 : 0;
+                score += (k.length > 6 ? 4 : k.length > 4 ? 3 : 1) + wordBonus;
+            }
         });
         return score;
     }
@@ -4291,6 +4299,12 @@
         return (best.answer[lang] || best.answer.en);
     }
 
+    function buildWaButton(t) {
+        const waUrl = `https://wa.me/${CARLOS_WA_CHAT}`;
+        const label = t.chatTalkToCarlos || 'Talk to Carlos on WhatsApp';
+        return `<br><br><a href="${waUrl}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:7px 14px;border-radius:20px;font-size:0.82rem;font-weight:600;text-decoration:none;margin-top:4px;"><svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='white'><path d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z'/><path d='M12 0C5.373 0 0 5.373 0 12c0 2.117.553 4.103 1.518 5.83L0 24l6.335-1.502C8.05 23.447 9.987 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.64-.487-5.17-1.337l-.371-.22-3.758.891.946-3.668-.242-.378A9.934 9.934 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z'/></svg>${label}</a>`;
+    }
+
     function processUserMessage(text) {
         appendUserMessage(text);
         const answer = findAnswer(text);
@@ -4298,15 +4312,10 @@
 
         botTyping(() => {
             if (answer) {
-                appendBotMessage(answer, false);
+                appendBotMessage(answer + buildWaButton(t), false);
             } else {
-                const noAns = t.chatNoAnswer || "I'm not sure about that! Contact Carlos on WhatsApp 👇";
-                const waBtn = t.chatWaBtn || "Chat with Carlos on WhatsApp";
-                const waUrl = `https://wa.me/${CARLOS_WA_CHAT}`;
-                appendBotMessage(
-                    `${noAns}<br><br><a href="${waUrl}" target="_blank" rel="noopener">💬 ${waBtn}</a>`,
-                    false
-                );
+                const noAns = t.chatNoAnswer || "I'm not sure about that! Feel free to ask Carlos directly 👇";
+                appendBotMessage(noAns + buildWaButton(t), false);
             }
         });
     }
