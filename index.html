@@ -576,8 +576,31 @@
             justify-content: center;
             gap: 0.3rem;
         }
+        .book-whatsapp-note {
+            text-align: center;
+            font-size: 0.78rem;
+            margin-top: 0.45rem;
+        }
+        .book-whatsapp-note a {
+            color: #128C7E;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: color 0.2s;
+        }
+        .book-whatsapp-note a:hover { color: #25D366; }
 
-        /* ── Common Info ── */
+        /* ── Price group label ── */
+        .price-group-label {
+            display: block;
+            font-size: 0.68rem;
+            color: #888;
+            font-weight: 400;
+            letter-spacing: 0;
+            margin-top: 0.15rem;
+        }
         .common-info {
             background: white;
             padding: 3rem 2rem;
@@ -2064,7 +2087,7 @@
         <img src="profile.jpg" alt="Carlos Figueiredo" class="profile-img">
         <p class="brand-label">That Tourguide</p>
         <h1>Carlos Figueiredo</h1>
-        <p class="tagline" data-i18n="tagline">Premium Tour Guide in Portugal &amp; Spain</p>
+        <p class="tagline" data-i18n="tagline">The Most Authentic Private Tours in Sintra &amp; Lisbon — Discover Portugal with a Local Expert</p>
         <div class="contact-buttons">
             <a href="https://wa.me/351933302031" target="_blank" class="btn btn-whatsapp">
                 <i class="fab fa-whatsapp"></i> +351 933302031
@@ -2144,7 +2167,7 @@
                         <p class="tour-locations" data-i18n="sintraHighlights">Pena Palace, Quinta da Regaleira, Monserrate Palace, Cascais, Cabo da Roca.</p>
                     </div>
                     <div class="tour-info-group">
-                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
                             <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">270€</span></div>
                             <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">290€</span></div>
@@ -2164,6 +2187,7 @@
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
                     <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
+                    <p class="book-whatsapp-note"><a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> <span data-i18n="bookWaNote">Questions? Chat with Carlos on WhatsApp</span></a></p>
                 </div>
             </div>
 
@@ -2201,7 +2225,7 @@
                         <p class="tour-locations" data-i18n="sintraHalfHighlights">Pena Palace, Quinta da Regaleira, Cabo da Roca.</p>
                     </div>
                     <div class="tour-info-group">
-                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
                             <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">170€</span></div>
                             <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">200€</span></div>
@@ -2223,6 +2247,7 @@
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
                     <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
+                    <p class="book-whatsapp-note"><a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> <span data-i18n="bookWaNote">Questions? Chat with Carlos on WhatsApp</span></a></p>
                 </div>
             </div>
 
@@ -2264,7 +2289,7 @@
                         <p class="tour-locations" data-i18n="lisbonHighlights">Belém Tower &amp; Jerónimos Monastery, Cristo Rei, Alfama &amp; São Jorge Castle, Praça do Comércio &amp; Baixa.</p>
                     </div>
                     <div class="tour-info-group">
-                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
                             <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">290€</span></div>
                             <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">330€</span></div>
@@ -2282,6 +2307,7 @@
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
                     <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
+                    <p class="book-whatsapp-note"><a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> <span data-i18n="bookWaNote">Questions? Chat with Carlos on WhatsApp</span></a></p>
                 </div>
             </div>
 
@@ -2319,7 +2345,7 @@
                         <p class="tour-locations" data-i18n="lisbonHalfHighlights">Belém Tower & Jerónimos Monastery, Alfama & São Jorge Castle, Praça do Comércio.</p>
                     </div>
                     <div class="tour-info-group">
-                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
                             <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">170€</span></div>
                             <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">200€</span></div>
@@ -2341,6 +2367,7 @@
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
                     <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
+                    <p class="book-whatsapp-note"><a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> <span data-i18n="bookWaNote">Questions? Chat with Carlos on WhatsApp</span></a></p>
                 </div>
             </div>
 
@@ -2382,7 +2409,7 @@
                         <p class="tour-locations" data-i18n="fatimaHighlights">Fátima Sanctuary, Batalha Monastery (UNESCO), Óbidos Medieval Village, Nazaré Coast.</p>
                     </div>
                     <div class="tour-info-group">
-                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
                             <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">430€</span></div>
                             <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">470€</span></div>
@@ -2400,6 +2427,7 @@
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
                     <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
+                    <p class="book-whatsapp-note"><a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> <span data-i18n="bookWaNote">Questions? Chat with Carlos on WhatsApp</span></a></p>
                 </div>
             </div>
 
@@ -2441,7 +2469,7 @@
                         <p class="tour-locations" data-i18n="arrabidaHighlights">Wine Tasting, Portinho da Arrábida, Lapa de Santa Margarida, Serra da Arrábida, Setúbal.</p>
                     </div>
                     <div class="tour-info-group">
-                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Pricing (Per Group)</span></div>
+                        <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
                             <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">290€</span></div>
                             <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">330€</span></div>
@@ -2459,6 +2487,7 @@
                         <i class="fas fa-calendar-check"></i> <span data-i18n="bookBtn">Book This Tour</span>
                     </button>
                     <p class="cancel-note"><i class="fas fa-shield-alt"></i> <span data-i18n="cancelNote">Free cancellation up to 48h before the tour</span></p>
+                    <p class="book-whatsapp-note"><a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> <span data-i18n="bookWaNote">Questions? Chat with Carlos on WhatsApp</span></a></p>
                 </div>
             </div>
         </div>
@@ -2938,7 +2967,7 @@
     // ════════════════════════════════════════════
     const translations = {
         en: {
-            tagline:         "Premium Tour Guide in Portugal & Spain",
+            tagline:         "The Most Authentic Private Tours in Sintra & Lisbon — Discover Portugal with a Local Expert",
             aboutTitle:      "About Me",
             aboutText:       "With over 20 years of experience as a tour guide, I have the privilege of showing the best of Portugal and Spain to visitors from around the world. Over these years, I have learned that every traveller is unique — which is why every tour I organise is fully tailored to each client's interests, pace and expectations. Whether discovering the enchanted corners of Sintra, exploring historic cities or venturing into lesser-known landscapes, my goal is to create authentic, memorable experiences made just for you. More than guided visits, I offer special moments that stay with you forever.",
             langPT:          "Portuguese",
@@ -2986,7 +3015,7 @@
             pickupLabel:        "Pick-up",
             // Common
             highlights:      "Highlights",
-            pricingLabel:    "Pricing (Per Group)",
+            pricingLabel:    "Total Price per Group — not per person",
             pax2:            "1-2 Pax",
             pax4:            "3-4 Pax",
             pax6:            "5-6 Pax",
@@ -2994,6 +3023,8 @@
             pax7quote:       "Ask for quote",
             bookBtn:         "Book This Tour",
             cancelNote:      "Free cancellation up to 48h before the tour",
+            bookWaNote:      "Questions? Chat with Carlos on WhatsApp",
+            priceGroupLabel: "Total price for the group",
             sintraPickupNote:"🛣 Start in Sintra to beat the crowds and save 60€ on transport costs!",
             goodToKnow:      "Good to Know",
             transportTitle:  "Transportation",
@@ -3113,7 +3144,7 @@
             chatQR_languages:   "What languages do you speak?",
         },
         pt: {
-            tagline:         "Guia Turístico Premium em Portugal & Espanha",
+            tagline:         "Os Tours Privados Mais Autênticos em Sintra & Lisboa — Descubra Portugal com um Expert Local",
             aboutTitle:      "Sobre Mim",
             aboutText:       "Com mais de 20 anos de experiência como guia turístico, tenho o privilégio de mostrar o melhor de Portugal e Espanha a visitantes de todo o mundo. Ao longo destes anos, aprendi que cada viajante é único — e é por isso que cada tour que organizo é totalmente adaptado aos interesses, ritmo e expectativas de cada cliente. Seja a descobrir os recantos encantados de Sintra, a explorar cidades históricas ou a aventurar-se por paisagens menos conhecidas, o meu objetivo é criar experiências autênticas, memoráveis e feitas à sua medida. Mais do que visitas guiadas, ofereço momentos especiais que ficam para sempre na memória.",
             langPT:          "Português",
@@ -3156,7 +3187,7 @@
             lisbonHalfHighlights:"Torre de Belém & Mosteiro dos Jerónimos, Alfama & Castelo de São Jorge, Praça do Comércio.",
             lisbonHalfPickup:   "Local de preferência em Lisboa",
             pickupLabel:        "Recolha",
-            pricingLabel:    "Preços (Por Grupo)",
+            pricingLabel:    "Preço Total por Grupo — não por pessoa",
             pax2:            "1-2 Pessoas",
             pax4:            "3-4 Pessoas",
             pax6:            "5-6 Pessoas",
@@ -3164,6 +3195,8 @@
             pax7quote:       "Pedir orçamento",
             bookBtn:         "Reservar Este Tour",
             cancelNote:      "Cancelamento gratuito até 48h antes do tour",
+            bookWaNote:      "Dúvidas? Fala com o Carlos no WhatsApp",
+            priceGroupLabel: "Preço total para o grupo",
             sintraPickupNote:"🛣 Comece em Sintra para evitar as multidões e poupar 60€ em custos de transporte!",
             goodToKnow:      "Informações Úteis",
             transportTitle:  "Transporte",
@@ -3283,7 +3316,7 @@
             chatQR_languages:   "Que idiomas fala?",
         },
         es: {
-            tagline:         "Guía Turístico Premium en Portugal & España",
+            tagline:         "Los Tours Privados Más Auténticos en Sintra & Lisboa — Descubra Portugal con un Experto Local",
             aboutTitle:      "Sobre Mí",
             aboutText:       "Con más de 20 años de experiencia como guía turístico, tengo el privilegio de mostrar lo mejor de Portugal y España a visitantes de todo el mundo. A lo largo de estos años, he aprendido que cada viajero es único — por eso cada tour que organizo está totalmente adaptado a los intereses, el ritmo y las expectativas de cada cliente. Ya sea descubriendo los rincones encantados de Sintra, explorando ciudades históricas o aventurándose por paisajes menos conocidos, mi objetivo es crear experiencias auténticas, memorables y hechas a su medida. Más que visitas guiadas, ofrezco momentos especiales que perduran para siempre en la memoria.",
             langPT:          "Portugués",
@@ -3326,7 +3359,7 @@
             lisbonHalfHighlights:"Torre de Belém & Monasterio de los Jerónimos, Alfama & Castillo de San Jorge, Praça do Comércio.",
             lisbonHalfPickup:   "Ubicación de preferencia en Lisboa",
             pickupLabel:        "Recogida",
-            pricingLabel:    "Precios (Por Grupo)",
+            pricingLabel:    "Precio Total por Grupo — no por persona",
             pax2:            "1-2 Personas",
             pax4:            "3-4 Personas",
             pax6:            "5-6 Personas",
@@ -3334,6 +3367,8 @@
             pax7quote:       "Pedir presupuesto",
             bookBtn:         "Reservar Este Tour",
             cancelNote:      "Cancelación gratuita hasta 48h antes del tour",
+            bookWaNote:      "¿Preguntas? Escríbele a Carlos en WhatsApp",
+            priceGroupLabel: "Precio total para el grupo",
             sintraPickupNote:"🛣 Empiece en Sintra para evitar las multitudes y ahorrar 60€ en costes de transporte!",
             goodToKnow:      "Información Útil",
             transportTitle:  "Transporte",
@@ -3453,7 +3488,7 @@
             chatQR_languages:   "¿Qué idiomas habla?",
         },
         it: {
-            tagline:         "Guida Turistica Premium in Portogallo & Spagna",
+            tagline:         "I Tour Privati Più Autentici a Sintra & Lisbona — Scopri il Portogallo con un Esperto Locale",
             aboutTitle:      "Chi Sono",
             aboutText:       "Con oltre 20 anni di esperienza come guida turistica, ho il privilegio di mostrare il meglio del Portogallo e della Spagna a visitatori da tutto il mondo. Nel corso di questi anni, ho imparato che ogni viaggiatore è unico — ed è per questo che ogni tour che organizzo è completamente adattato agli interessi, al ritmo e alle aspettative di ogni cliente. Che si tratti di scoprire gli angoli incantati di Sintra, esplorare città storiche o avventurarsi in paesaggi meno conosciuti, il mio obiettivo è creare esperienze autentiche, memorabili e su misura. Più che visite guidate, offro momenti speciali che restano per sempre nella memoria.",
             langPT:          "Portoghese",
@@ -3496,7 +3531,7 @@
             lisbonHalfHighlights:"Torre di Belém & Monastero dei Jerónimos, Alfama & Castello di San Giorgio, Praça do Comércio.",
             lisbonHalfPickup:   "La vostra posizione preferita a Lisbona",
             pickupLabel:        "Prelievo",
-            pricingLabel:    "Prezzi (Per Gruppo)",
+            pricingLabel:    "Prezzo Totale per Gruppo — non a persona",
             pax2:            "1-2 Persone",
             pax4:            "3-4 Persone",
             pax6:            "5-6 Persone",
@@ -3504,6 +3539,8 @@
             pax7quote:       "Richiedi preventivo",
             bookBtn:         "Prenota Questo Tour",
             cancelNote:      "Cancellazione gratuita fino a 48h prima del tour",
+            bookWaNote:      "Domande? Chatta con Carlos su WhatsApp",
+            priceGroupLabel: "Prezzo totale per il gruppo",
             sintraPickupNote:"🛣 Inizia a Sintra per evitare la folla e risparmiare 60€ sui costi di trasporto!",
             goodToKnow:      "Informazioni Utili",
             transportTitle:  "Trasporto",
