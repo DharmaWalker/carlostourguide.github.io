@@ -513,10 +513,16 @@
             min-width: 2.6rem; font-weight: 700; color: var(--azulejo-blue);
             font-size: 0.75rem; padding-top: 0.1rem; text-align: right;
         }
+        .itinerary-timeline li:not(:has(.it-time)) {
+            padding-left: 2.6rem;
+        }
         .it-dot {
             width: 9px; height: 9px; border-radius: 50%;
             background: var(--terracotta); flex-shrink: 0; margin-top: 0.3rem;
             position: relative; z-index: 1;
+        }
+        .itinerary-timeline li:not(:has(.it-time)) .it-dot {
+            background: #aab8c8;
         }
         .it-label { color: #333; flex: 1; }
 
@@ -2249,13 +2255,13 @@
                         <div class="itinerary-body">
                             <ul class="itinerary-timeline">
                                 <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span></span></li>
-                                <li><span class="it-time">09:30</span><span class="it-dot"></span><span class="it-label">Palácio da Pena</span></li>
-                                <li><span class="it-time">11:00</span><span class="it-dot"></span><span class="it-label">Centro Histórico de Sintra</span></li>
-                                <li><span class="it-time">12:00</span><span class="it-dot"></span><span class="it-label">Quinta da Regaleira</span></li>
-                                <li><span class="it-time">13:15</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span> (<span data-i18n="itOptional">Optional</span>)</span></li>
-                                <li><span class="it-time">14:30</span><span class="it-dot"></span><span class="it-label">Cabo da Roca</span></li>
-                                <li><span class="it-time">15:15</span><span class="it-dot"></span><span class="it-label">Praia do Guincho <span data-i18n="itDrive">(Scenic Drive)</span></span></li>
-                                <li><span class="it-time">15:45</span><span class="it-dot"></span><span class="it-label">Boca do Inferno</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Palácio da Pena</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Centro Histórico de Sintra</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Quinta da Regaleira</span></li>
+                                <li><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span> (<span data-i18n="itOptional">Optional</span>)</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Cabo da Roca</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Praia do Guincho <span data-i18n="itDrive">(Scenic Drive)</span></span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Boca do Inferno</span></li>
                                 <li><span class="it-time">16:30</span><span class="it-dot"></span><span class="it-label">Cascais / <span data-i18n="itEnd">End of Tour</span></span></li>
                             </ul>
                         </div>
@@ -2328,10 +2334,10 @@
                         <div class="itinerary-body">
                             <ul class="itinerary-timeline">
                                 <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Sintra Train Station</span></li>
-                                <li><span class="it-time">09:30</span><span class="it-dot"></span><span class="it-label">Palácio da Pena <span data-i18n="itExterior">(Exterior visit)</span></span></li>
-                                <li><span class="it-time">10:15</span><span class="it-dot"></span><span class="it-label">Centro Histórico de Sintra</span></li>
-                                <li><span class="it-time">11:15</span><span class="it-dot"></span><span class="it-label">Quinta da Regaleira <span data-i18n="itExterior">(Exterior visit)</span></span></li>
-                                <li><span class="it-time">12:15</span><span class="it-dot"></span><span class="it-label">Cabo da Roca</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Palácio da Pena <span data-i18n="itExterior">(Exterior visit)</span></span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Centro Histórico de Sintra</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Quinta da Regaleira <span data-i18n="itExterior">(Exterior visit)</span></span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Cabo da Roca</span></li>
                                 <li><span class="it-time">13:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itReturn">Return to Sintra</span> (<span data-i18n="itOrCascais">or drop-off in Cascais</span>)</span></li>
                             </ul>
                         </div>
@@ -2409,12 +2415,12 @@
                         <div class="itinerary-body">
                             <ul class="itinerary-timeline">
                                 <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Lisboa</span></li>
-                                <li><span class="it-time">09:30</span><span class="it-dot"></span><span class="it-label">Belém — Torre, Jerónimos, Padrão dos Descobrimentos, Pastéis de Nata</span></li>
-                                <li><span class="it-time">11:15</span><span class="it-dot"></span><span class="it-label">Travessia Ponte 25 de Abril</span></li>
-                                <li><span class="it-time">11:45</span><span class="it-dot"></span><span class="it-label">Cristo Rei</span></li>
-                                <li><span class="it-time">12:45</span><span class="it-dot"></span><span class="it-label">Convento do Carmo / Elevador de Santa Justa</span></li>
-                                <li><span class="it-time">13:30</span><span class="it-dot"></span><span class="it-label">Baixa &amp; Praça do Comércio — <span data-i18n="itShopsLunch">Shops &amp; Lunch</span></span></li>
-                                <li><span class="it-time">14:45</span><span class="it-dot"></span><span class="it-label">Alfama &amp; Miradouros</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Belém — Torre, Jerónimos, Padrão dos Descobrimentos, Pastéis de Nata</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Travessia Ponte 25 de Abril</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Cristo Rei</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Convento do Carmo / Elevador de Santa Justa</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Baixa &amp; Praça do Comércio — <span data-i18n="itShopsLunch">Shops &amp; Lunch</span></span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Alfama &amp; Miradouros</span></li>
                                 <li><span class="it-time">16:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itEnd">End of Tour</span></span></li>
                             </ul>
                         </div>
@@ -2484,10 +2490,10 @@
                         <div class="itinerary-body">
                             <ul class="itinerary-timeline">
                                 <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Lisboa</span></li>
-                                <li><span class="it-time">09:30</span><span class="it-dot"></span><span class="it-label">Belém — <span data-i18n="itEssentials">Essentials</span> + Pastéis de Nata</span></li>
-                                <li><span class="it-time">10:45</span><span class="it-dot"></span><span class="it-label">Cristo Rei</span></li>
-                                <li><span class="it-time">11:45</span><span class="it-dot"></span><span class="it-label">Alfama / Miradouros</span></li>
-                                <li><span class="it-time">12:30</span><span class="it-dot"></span><span class="it-label">Baixa / Praça do Comércio</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Belém — <span data-i18n="itEssentials">Essentials</span> + Pastéis de Nata</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Cristo Rei</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Alfama / Miradouros</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Baixa / Praça do Comércio</span></li>
                                 <li><span class="it-time">13:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itEnd">End of Tour</span></span></li>
                             </ul>
                         </div>
@@ -2565,11 +2571,11 @@
                         <div class="itinerary-body">
                             <ul class="itinerary-timeline">
                                 <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Lisboa</span></li>
-                                <li><span class="it-time">10:30</span><span class="it-dot"></span><span class="it-label">Fátima — Santuário</span></li>
-                                <li><span class="it-time">12:00</span><span class="it-dot"></span><span class="it-label">Mosteiro da Batalha</span></li>
-                                <li><span class="it-time">13:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span></span></li>
-                                <li><span class="it-time">14:30</span><span class="it-dot"></span><span class="it-label">Nazaré — Sítio / Miradouro</span></li>
-                                <li><span class="it-time">16:00</span><span class="it-dot"></span><span class="it-label">Óbidos — Vila Muralhada</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Fátima — Santuário</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Mosteiro da Batalha</span></li>
+                                <li><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span></span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Nazaré — Sítio / Miradouro</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Óbidos — Vila Muralhada</span></li>
                                 <li><span class="it-time">17:30</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itReturn">Return</span> / <span data-i18n="itEnd">End of Tour</span></span></li>
                             </ul>
                         </div>
@@ -2643,11 +2649,11 @@
                         <div class="itinerary-body">
                             <ul class="itinerary-timeline">
                                 <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Lisboa</span></li>
-                                <li><span class="it-time">10:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itWineTasting">Wine Tasting</span> — Azeitão</span></li>
-                                <li><span class="it-time">11:15</span><span class="it-dot"></span><span class="it-label">Serra da Arrábida <span data-i18n="itScenic">(Panoramic Drive)</span></span></li>
-                                <li><span class="it-time">12:00</span><span class="it-dot"></span><span class="it-label">Portinho da Arrábida</span></li>
-                                <li><span class="it-time">13:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span></span></li>
-                                <li><span class="it-time">14:30</span><span class="it-dot"></span><span class="it-label">Lapa de Santa Margarida / Setúbal</span></li>
+                                <li><span class="it-dot"></span><span class="it-label"><span data-i18n="itWineTasting">Wine Tasting</span> — Azeitão</span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Serra da Arrábida <span data-i18n="itScenic">(Panoramic Drive)</span></span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Portinho da Arrábida</span></li>
+                                <li><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span></span></li>
+                                <li><span class="it-dot"></span><span class="it-label">Lapa de Santa Margarida / Setúbal</span></li>
                                 <li><span class="it-time">16:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itEnd">End of Tour</span> / <span data-i18n="itReturn">Return</span></span></li>
                             </ul>
                         </div>
