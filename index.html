@@ -478,6 +478,48 @@
         .tour-body { padding: 1.8rem 2rem 2rem; }
         .tour-info-group { margin-bottom: 1.5rem; }
 
+        /* ── Itinerary accordion ── */
+        .itinerary-toggle {
+            display: flex; align-items: center; gap: 0.5rem;
+            background: none; border: 1.5px solid var(--azulejo-blue);
+            border-radius: 8px; padding: 0.55rem 1rem;
+            color: var(--azulejo-blue); font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; width: 100%; justify-content: space-between;
+            transition: background 0.18s, color 0.18s;
+        }
+        .itinerary-toggle:hover, .itinerary-toggle.open {
+            background: var(--azulejo-blue); color: white;
+        }
+        .itinerary-toggle .toggle-arrow {
+            transition: transform 0.25s; font-style: normal; font-size: 0.75rem;
+        }
+        .itinerary-toggle.open .toggle-arrow { transform: rotate(180deg); }
+        .itinerary-body {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.2s;
+            padding: 0 0.25rem;
+        }
+        .itinerary-body.open { max-height: 600px; padding: 0.75rem 0.25rem 0.25rem; }
+        .itinerary-timeline { list-style: none; padding: 0; margin: 0; position: relative; }
+        .itinerary-timeline::before {
+            content: ''; position: absolute; left: 2.8rem; top: 0; bottom: 0;
+            width: 2px; background: var(--azulejo-blue); opacity: 0.15;
+        }
+        .itinerary-timeline li {
+            display: flex; gap: 0.75rem; align-items: flex-start;
+            padding: 0.4rem 0; font-size: 0.82rem; line-height: 1.4;
+        }
+        .it-time {
+            min-width: 2.6rem; font-weight: 700; color: var(--azulejo-blue);
+            font-size: 0.75rem; padding-top: 0.1rem; text-align: right;
+        }
+        .it-dot {
+            width: 9px; height: 9px; border-radius: 50%;
+            background: var(--terracotta); flex-shrink: 0; margin-top: 0.3rem;
+            position: relative; z-index: 1;
+        }
+        .it-label { color: #333; flex: 1; }
+
         .tour-info-title {
             font-weight: 600;
             color: var(--azulejo-blue);
@@ -2199,6 +2241,25 @@
                         <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
                         <p class="tour-locations" data-i18n="sintraHighlights">Pena Palace, Quinta da Regaleira, Monserrate Palace, Cascais, Cabo da Roca.</p>
                     </div>
+                    <div class="tour-info-group" style="margin-bottom:1rem;">
+                        <button class="itinerary-toggle" onclick="toggleItinerary(this)">
+                            <span><i class="fas fa-clock"></i> <span data-i18n="viewItinerary">View Itinerary</span></span>
+                            <span class="toggle-arrow">▼</span>
+                        </button>
+                        <div class="itinerary-body">
+                            <ul class="itinerary-timeline">
+                                <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span></span></li>
+                                <li><span class="it-time">09:30</span><span class="it-dot"></span><span class="it-label">Palácio da Pena</span></li>
+                                <li><span class="it-time">11:00</span><span class="it-dot"></span><span class="it-label">Centro Histórico de Sintra</span></li>
+                                <li><span class="it-time">12:00</span><span class="it-dot"></span><span class="it-label">Quinta da Regaleira</span></li>
+                                <li><span class="it-time">13:15</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span> (<span data-i18n="itOptional">Optional</span>)</span></li>
+                                <li><span class="it-time">14:30</span><span class="it-dot"></span><span class="it-label">Cabo da Roca</span></li>
+                                <li><span class="it-time">15:15</span><span class="it-dot"></span><span class="it-label">Praia do Guincho <span data-i18n="itDrive">(Scenic Drive)</span></span></li>
+                                <li><span class="it-time">15:45</span><span class="it-dot"></span><span class="it-label">Boca do Inferno</span></li>
+                                <li><span class="it-time">16:30</span><span class="it-dot"></span><span class="it-label">Cascais / <span data-i18n="itEnd">End of Tour</span></span></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
@@ -2258,6 +2319,22 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
                         <p class="tour-locations" data-i18n="sintraHalfHighlights">Pena Palace, Quinta da Regaleira, Cabo da Roca.</p>
+                    </div>
+                    <div class="tour-info-group" style="margin-bottom:1rem;">
+                        <button class="itinerary-toggle" onclick="toggleItinerary(this)">
+                            <span><i class="fas fa-clock"></i> <span data-i18n="viewItinerary">View Itinerary</span></span>
+                            <span class="toggle-arrow">▼</span>
+                        </button>
+                        <div class="itinerary-body">
+                            <ul class="itinerary-timeline">
+                                <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Sintra Train Station</span></li>
+                                <li><span class="it-time">09:30</span><span class="it-dot"></span><span class="it-label">Palácio da Pena <span data-i18n="itExterior">(Exterior visit)</span></span></li>
+                                <li><span class="it-time">10:15</span><span class="it-dot"></span><span class="it-label">Centro Histórico de Sintra</span></li>
+                                <li><span class="it-time">11:15</span><span class="it-dot"></span><span class="it-label">Quinta da Regaleira <span data-i18n="itExterior">(Exterior visit)</span></span></li>
+                                <li><span class="it-time">12:15</span><span class="it-dot"></span><span class="it-label">Cabo da Roca</span></li>
+                                <li><span class="it-time">13:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itReturn">Return to Sintra</span> (<span data-i18n="itOrCascais">or drop-off in Cascais</span>)</span></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
@@ -2324,6 +2401,24 @@
                         <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
                         <p class="tour-locations" data-i18n="lisbonHighlights">Belém Tower &amp; Jerónimos Monastery, Cristo Rei, Alfama &amp; São Jorge Castle, Praça do Comércio &amp; Baixa.</p>
                     </div>
+                    <div class="tour-info-group" style="margin-bottom:1rem;">
+                        <button class="itinerary-toggle" onclick="toggleItinerary(this)">
+                            <span><i class="fas fa-clock"></i> <span data-i18n="viewItinerary">View Itinerary</span></span>
+                            <span class="toggle-arrow">▼</span>
+                        </button>
+                        <div class="itinerary-body">
+                            <ul class="itinerary-timeline">
+                                <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Lisboa</span></li>
+                                <li><span class="it-time">09:30</span><span class="it-dot"></span><span class="it-label">Belém — Torre, Jerónimos, Padrão dos Descobrimentos, Pastéis de Nata</span></li>
+                                <li><span class="it-time">11:15</span><span class="it-dot"></span><span class="it-label">Travessia Ponte 25 de Abril</span></li>
+                                <li><span class="it-time">11:45</span><span class="it-dot"></span><span class="it-label">Cristo Rei</span></li>
+                                <li><span class="it-time">12:45</span><span class="it-dot"></span><span class="it-label">Convento do Carmo / Elevador de Santa Justa</span></li>
+                                <li><span class="it-time">13:30</span><span class="it-dot"></span><span class="it-label">Baixa &amp; Praça do Comércio — <span data-i18n="itShopsLunch">Shops &amp; Lunch</span></span></li>
+                                <li><span class="it-time">14:45</span><span class="it-dot"></span><span class="it-label">Alfama &amp; Miradouros</span></li>
+                                <li><span class="it-time">16:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itEnd">End of Tour</span></span></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
@@ -2380,6 +2475,22 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
                         <p class="tour-locations" data-i18n="lisbonHalfHighlights">Belém Tower & Jerónimos Monastery, Alfama & São Jorge Castle, Praça do Comércio.</p>
+                    </div>
+                    <div class="tour-info-group" style="margin-bottom:1rem;">
+                        <button class="itinerary-toggle" onclick="toggleItinerary(this)">
+                            <span><i class="fas fa-clock"></i> <span data-i18n="viewItinerary">View Itinerary</span></span>
+                            <span class="toggle-arrow">▼</span>
+                        </button>
+                        <div class="itinerary-body">
+                            <ul class="itinerary-timeline">
+                                <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Lisboa</span></li>
+                                <li><span class="it-time">09:30</span><span class="it-dot"></span><span class="it-label">Belém — <span data-i18n="itEssentials">Essentials</span> + Pastéis de Nata</span></li>
+                                <li><span class="it-time">10:45</span><span class="it-dot"></span><span class="it-label">Cristo Rei</span></li>
+                                <li><span class="it-time">11:45</span><span class="it-dot"></span><span class="it-label">Alfama / Miradouros</span></li>
+                                <li><span class="it-time">12:30</span><span class="it-dot"></span><span class="it-label">Baixa / Praça do Comércio</span></li>
+                                <li><span class="it-time">13:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itEnd">End of Tour</span></span></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
@@ -2446,6 +2557,23 @@
                         <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
                         <p class="tour-locations" data-i18n="fatimaHighlights">Fátima Sanctuary, Batalha Monastery (UNESCO), Óbidos Medieval Village, Nazaré Coast.</p>
                     </div>
+                    <div class="tour-info-group" style="margin-bottom:1rem;">
+                        <button class="itinerary-toggle" onclick="toggleItinerary(this)">
+                            <span><i class="fas fa-clock"></i> <span data-i18n="viewItinerary">View Itinerary</span></span>
+                            <span class="toggle-arrow">▼</span>
+                        </button>
+                        <div class="itinerary-body">
+                            <ul class="itinerary-timeline">
+                                <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Lisboa</span></li>
+                                <li><span class="it-time">10:30</span><span class="it-dot"></span><span class="it-label">Fátima — Santuário</span></li>
+                                <li><span class="it-time">12:00</span><span class="it-dot"></span><span class="it-label">Mosteiro da Batalha</span></li>
+                                <li><span class="it-time">13:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span></span></li>
+                                <li><span class="it-time">14:30</span><span class="it-dot"></span><span class="it-label">Nazaré — Sítio / Miradouro</span></li>
+                                <li><span class="it-time">16:00</span><span class="it-dot"></span><span class="it-label">Óbidos — Vila Muralhada</span></li>
+                                <li><span class="it-time">17:30</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itReturn">Return</span> / <span data-i18n="itEnd">End of Tour</span></span></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
@@ -2506,6 +2634,23 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-map-marked-alt"></i> <span data-i18n="highlights">Highlights</span></div>
                         <p class="tour-locations" data-i18n="arrabidaHighlights">Wine Tasting, Portinho da Arrábida, Lapa de Santa Margarida, Serra da Arrábida, Setúbal.</p>
+                    </div>
+                    <div class="tour-info-group" style="margin-bottom:1rem;">
+                        <button class="itinerary-toggle" onclick="toggleItinerary(this)">
+                            <span><i class="fas fa-clock"></i> <span data-i18n="viewItinerary">View Itinerary</span></span>
+                            <span class="toggle-arrow">▼</span>
+                        </button>
+                        <div class="itinerary-body">
+                            <ul class="itinerary-timeline">
+                                <li><span class="it-time">09:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itPickup">Pick-up</span> — Lisboa</span></li>
+                                <li><span class="it-time">10:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itWineTasting">Wine Tasting</span> — Azeitão</span></li>
+                                <li><span class="it-time">11:15</span><span class="it-dot"></span><span class="it-label">Serra da Arrábida <span data-i18n="itScenic">(Panoramic Drive)</span></span></li>
+                                <li><span class="it-time">12:00</span><span class="it-dot"></span><span class="it-label">Portinho da Arrábida</span></li>
+                                <li><span class="it-time">13:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itLunch">Lunch at a local restaurant</span></span></li>
+                                <li><span class="it-time">14:30</span><span class="it-dot"></span><span class="it-label">Lapa de Santa Margarida / Setúbal</span></li>
+                                <li><span class="it-time">16:00</span><span class="it-dot"></span><span class="it-label"><span data-i18n="itEnd">End of Tour</span> / <span data-i18n="itReturn">Return</span></span></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
@@ -3076,6 +3221,20 @@
             bookBtn:         "Check Availability & Book",
             cancelNote:      "Free cancellation up to 48h — full deposit refund, no questions asked",
             perPersonHint:   "That's about {x}€ per person for a fully private tour.",
+            viewItinerary:   "View Itinerary",
+            hideItinerary:   "Hide Itinerary",
+            itPickup:        "Pick-up",
+            itLunch:         "Lunch at a local restaurant",
+            itOptional:      "Optional",
+            itEnd:           "End of Tour",
+            itReturn:        "Return",
+            itOrCascais:     "or drop-off in Cascais",
+            itExterior:      "(Exterior visit)",
+            itDrive:         "(Scenic Drive)",
+            itEssentials:    "Essentials",
+            itShopsLunch:    "Shops & Lunch",
+            itScenic:        "(Panoramic Drive)",
+            itWineTasting:   "Wine Tasting",
             bookWaNote:      "Not ready to book? Ask Carlos anything on WhatsApp",
             priceGroupLabel: "Total price for the group",
             sintraPickupNote:"🛣 Start in Sintra to beat the crowds and save 60€ on transport costs!",
@@ -3252,6 +3411,20 @@
             bookBtn:         "Reservar Este Tour",
             cancelNote:      "Cancelamento gratuito até 48h antes do tour",
             perPersonHint:   "São cerca de {x}€ por pessoa num tour totalmente privado.",
+            viewItinerary:   "Ver Itinerário",
+            hideItinerary:   "Ocultar Itinerário",
+            itPickup:        "Recolha",
+            itLunch:         "Almoço num restaurante local",
+            itOptional:      "Opcional",
+            itEnd:           "Final do Tour",
+            itReturn:        "Regresso",
+            itOrCascais:     "ou drop-off em Cascais",
+            itExterior:      "(Visita exterior)",
+            itDrive:         "(Passeio panorâmico)",
+            itEssentials:    "Essenciais",
+            itShopsLunch:    "Compras & Almoço",
+            itScenic:        "(Drive Panorâmico)",
+            itWineTasting:   "Prova de Vinhos",
             bookWaNote:      "Dúvidas? Fala com o Carlos no WhatsApp",
             priceGroupLabel: "Preço total para o grupo",
             sintraPickupNote:"🛣 Comece em Sintra para evitar as multidões e poupar 60€ em custos de transporte!",
@@ -3428,6 +3601,20 @@
             bookBtn:         "Reservar Este Tour",
             cancelNote:      "Cancelación gratuita hasta 48h antes del tour",
             perPersonHint:   "Son aproximadamente {x}€ por persona en un tour totalmente privado.",
+            viewItinerary:   "Ver Itinerario",
+            hideItinerary:   "Ocultar Itinerario",
+            itPickup:        "Recogida",
+            itLunch:         "Almuerzo en restaurante local",
+            itOptional:      "Opcional",
+            itEnd:           "Final del Tour",
+            itReturn:        "Regreso",
+            itOrCascais:     "o regreso en Cascais",
+            itExterior:      "(Visita exterior)",
+            itDrive:         "(Paseo panorámico)",
+            itEssentials:    "Esenciales",
+            itShopsLunch:    "Tiendas & Almuerzo",
+            itScenic:        "(Drive Panorámico)",
+            itWineTasting:   "Cata de Vinos",
             bookWaNote:      "¿Preguntas? Escríbele a Carlos en WhatsApp",
             priceGroupLabel: "Precio total para el grupo",
             sintraPickupNote:"🛣 Empiece en Sintra para evitar las multitudes y ahorrar 60€ en costes de transporte!",
@@ -3604,6 +3791,20 @@
             bookBtn:         "Prenota Questo Tour",
             cancelNote:      "Cancellazione gratuita fino a 48h prima del tour",
             perPersonHint:   "Sono circa {x}€ a persona per un tour completamente privato.",
+            viewItinerary:   "Vedi Itinerario",
+            hideItinerary:   "Nascondi Itinerario",
+            itPickup:        "Pick-up",
+            itLunch:         "Pranzo al ristorante locale",
+            itOptional:      "Opzionale",
+            itEnd:           "Fine del Tour",
+            itReturn:        "Ritorno",
+            itOrCascais:     "o drop-off a Cascais",
+            itExterior:      "(Visita esterna)",
+            itDrive:         "(Drive panoramico)",
+            itEssentials:    "Essenziali",
+            itShopsLunch:    "Negozi & Pranzo",
+            itScenic:        "(Drive Panoramico)",
+            itWineTasting:   "Degustazione di Vini",
             bookWaNote:      "Domande? Chatta con Carlos su WhatsApp",
             priceGroupLabel: "Prezzo totale per il gruppo",
             sintraPickupNote:"🛣 Inizia a Sintra per evitare la folla e risparmiare 60€ sui costi di trasporto!",
@@ -4145,6 +4346,17 @@
             it: `Ciao Carlos! Vorrei un preventivo per un tour personalizzato con 7+ persone.${destPart}\n\nPotresti inviarmi il prezzo per un gruppo più grande? Grazie!`
         };
         window.open(`https://wa.me/351933302031?text=${encodeURIComponent(msg[lang] || msg.en)}`, '_blank', 'noopener');
+    }
+
+    function toggleItinerary(btn) {
+        const body = btn.nextElementSibling;
+        const isOpen = body.classList.contains('open');
+        body.classList.toggle('open', !isOpen);
+        btn.classList.toggle('open', !isOpen);
+        const lang = document.documentElement.lang || 'en';
+        const t = translations[lang] || translations.en;
+        btn.querySelector('[data-i18n="viewItinerary"]').textContent =
+            isOpen ? (t.viewItinerary || 'View Itinerary') : (t.hideItinerary || 'Hide Itinerary');
     }
 
     function showPerPerson(clickedBox, price, avgPax) {
