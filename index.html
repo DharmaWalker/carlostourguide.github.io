@@ -503,7 +503,20 @@
             max-width: 360px;
             margin: 0 auto;
         }
-        .price-box { display: flex; flex-direction: column; }
+        .price-box { display: flex; flex-direction: column; cursor: pointer; transition: transform 0.15s; }
+        .price-box:hover { transform: translateY(-2px); }
+        .price-box.selected .price-val { color: var(--azulejo-blue); }
+        .price-box.selected .price-pax { color: var(--azulejo-blue); font-weight: 700; }
+        .per-person-hint {
+            display: none;
+            font-size: 0.82rem;
+            font-style: italic;
+            color: var(--terracotta);
+            margin: 0.45rem 0 0.2rem;
+            text-align: center;
+            animation: fadeUp 0.25s ease;
+        }
+        .per-person-hint.visible { display: block; }
         .price-pax { font-size: 0.78rem; color: #777; margin-bottom: 0.2rem; }
         .price-box-group-wrap {
             background: var(--bg-light);
@@ -2189,10 +2202,11 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
-                            <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">270€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">290€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">310€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,270,1.5)" data-price="270" data-avg="1.5"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">270€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,290,3.5)" data-price="290" data-avg="3.5"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">290€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,310,5.5)" data-price="310" data-avg="5.5"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">310€</span></div>
                         </div>
+                        <div class="per-person-hint" id="hint-sintra"></div>
                     </div>
                     <div class="price-box-group-wrap">
                         <a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer" class="price-box-group">
@@ -2248,10 +2262,11 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
-                            <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">170€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">200€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">220€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,170,1.5)" data-price="170" data-avg="1.5"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">170€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,200,3.5)" data-price="200" data-avg="3.5"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">200€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,220,5.5)" data-price="220" data-avg="5.5"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">220€</span></div>
                         </div>
+                        <div class="per-person-hint" id="hint-sintraHalf"></div>
                     </div>
                     <div class="price-box-group-wrap">
                         <a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer" class="price-box-group">
@@ -2312,10 +2327,11 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
-                            <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">290€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">330€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">350€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,290,1.5)" data-price="290" data-avg="1.5"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">290€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,330,3.5)" data-price="330" data-avg="3.5"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">330€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,350,5.5)" data-price="350" data-avg="5.5"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">350€</span></div>
                         </div>
+                        <div class="per-person-hint" id="hint-lisbon"></div>
                     </div>
                     <div class="price-box-group-wrap">
                         <a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer" class="price-box-group">
@@ -2368,10 +2384,11 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
-                            <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">170€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">200€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">220€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,170,1.5)" data-price="170" data-avg="1.5"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">170€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,200,3.5)" data-price="200" data-avg="3.5"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">200€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,220,5.5)" data-price="220" data-avg="5.5"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">220€</span></div>
                         </div>
+                        <div class="per-person-hint" id="hint-lisbonHalf"></div>
                     </div>
                     <div class="price-box-group-wrap">
                         <a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer" class="price-box-group">
@@ -2432,10 +2449,11 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
-                            <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">430€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">470€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">510€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,430,1.5)" data-price="430" data-avg="1.5"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">430€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,470,3.5)" data-price="470" data-avg="3.5"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">470€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,510,5.5)" data-price="510" data-avg="5.5"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">510€</span></div>
                         </div>
+                        <div class="per-person-hint" id="hint-fatima"></div>
                     </div>
                     <div class="price-box-group-wrap">
                         <a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer" class="price-box-group">
@@ -2492,10 +2510,11 @@
                     <div class="tour-info-group">
                         <div class="tour-info-title"><i class="fas fa-tag"></i> <span data-i18n="pricingLabel">Total Price per Group — not per person</span></div>
                         <div class="tour-pricing">
-                            <div class="price-box"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">290€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">330€</span></div>
-                            <div class="price-box"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">350€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,290,1.5)" data-price="290" data-avg="1.5"><span class="price-pax" data-i18n="pax2">1-2 Pax</span><span class="price-val">290€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,330,3.5)" data-price="330" data-avg="3.5"><span class="price-pax" data-i18n="pax4">3-4 Pax</span><span class="price-val">330€</span></div>
+                            <div class="price-box" onclick="showPerPerson(this,350,5.5)" data-price="350" data-avg="5.5"><span class="price-pax" data-i18n="pax6">5-6 Pax</span><span class="price-val">350€</span></div>
                         </div>
+                        <div class="per-person-hint" id="hint-arrabida"></div>
                     </div>
                     <div class="price-box-group-wrap">
                         <a href="https://wa.me/351933302031" target="_blank" rel="noopener noreferrer" class="price-box-group">
@@ -3056,6 +3075,7 @@
             pax7quote:       "Request a Quote",
             bookBtn:         "Check Availability & Book",
             cancelNote:      "Free cancellation up to 48h — full deposit refund, no questions asked",
+            perPersonHint:   "That's about {x}€ per person for a fully private tour.",
             bookWaNote:      "Not ready to book? Ask Carlos anything on WhatsApp",
             priceGroupLabel: "Total price for the group",
             sintraPickupNote:"🛣 Start in Sintra to beat the crowds and save 60€ on transport costs!",
@@ -3231,6 +3251,7 @@
             pax7quote:       "Pedir orçamento",
             bookBtn:         "Reservar Este Tour",
             cancelNote:      "Cancelamento gratuito até 48h antes do tour",
+            perPersonHint:   "São cerca de {x}€ por pessoa num tour totalmente privado.",
             bookWaNote:      "Dúvidas? Fala com o Carlos no WhatsApp",
             priceGroupLabel: "Preço total para o grupo",
             sintraPickupNote:"🛣 Comece em Sintra para evitar as multidões e poupar 60€ em custos de transporte!",
@@ -3406,6 +3427,7 @@
             pax7quote:       "Pedir presupuesto",
             bookBtn:         "Reservar Este Tour",
             cancelNote:      "Cancelación gratuita hasta 48h antes del tour",
+            perPersonHint:   "Son aproximadamente {x}€ por persona en un tour totalmente privado.",
             bookWaNote:      "¿Preguntas? Escríbele a Carlos en WhatsApp",
             priceGroupLabel: "Precio total para el grupo",
             sintraPickupNote:"🛣 Empiece en Sintra para evitar las multitudes y ahorrar 60€ en costes de transporte!",
@@ -3581,6 +3603,7 @@
             pax7quote:       "Richiedi preventivo",
             bookBtn:         "Prenota Questo Tour",
             cancelNote:      "Cancellazione gratuita fino a 48h prima del tour",
+            perPersonHint:   "Sono circa {x}€ a persona per un tour completamente privato.",
             bookWaNote:      "Domande? Chatta con Carlos su WhatsApp",
             priceGroupLabel: "Prezzo totale per il gruppo",
             sintraPickupNote:"🛣 Inizia a Sintra per evitare la folla e risparmiare 60€ sui costi di trasporto!",
@@ -4122,6 +4145,30 @@
             it: `Ciao Carlos! Vorrei un preventivo per un tour personalizzato con 7+ persone.${destPart}\n\nPotresti inviarmi il prezzo per un gruppo più grande? Grazie!`
         };
         window.open(`https://wa.me/351933302031?text=${encodeURIComponent(msg[lang] || msg.en)}`, '_blank', 'noopener');
+    }
+
+    function showPerPerson(clickedBox, price, avgPax) {
+        // Find the hint div that follows the parent .tour-pricing
+        const pricing = clickedBox.closest('.tour-pricing');
+        const hint = pricing ? pricing.parentElement.querySelector('.per-person-hint') : null;
+        if (!hint) return;
+
+        // Toggle: click same box again → hide
+        const alreadySelected = clickedBox.classList.contains('selected');
+        pricing.querySelectorAll('.price-box').forEach(b => b.classList.remove('selected'));
+        if (alreadySelected) { hint.classList.remove('visible'); return; }
+
+        clickedBox.classList.add('selected');
+
+        const perPerson = (price / avgPax).toFixed(2);
+        // Trim trailing .00 for clean display
+        const display = perPerson.endsWith('.00') ? Math.round(price / avgPax) : perPerson;
+
+        const lang = document.documentElement.lang || 'en';
+        const t = translations[lang] || translations.en;
+        const tpl = t.perPersonHint || "That's about {x}€ per person for a fully private tour.";
+        hint.textContent = tpl.replace('{x}', display);
+        hint.classList.add('visible');
     }
 
     function sendQuoteWhatsApp() {
