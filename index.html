@@ -4602,6 +4602,8 @@
             name: "'That Sintra Feeling!'",
             prices: { 2: 270, 4: 290, 6: 310 },
             deposits: { 2: 50, 4: 50, 6: 50 },
+            pickup: "Your hotel in Lisbon or Sintra Train Station",
+            duration: "8 hours (Full Day)",
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Sintra Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
@@ -4609,6 +4611,8 @@
             name: "Sintra Half Day - Essential Visits",
             prices: { 2: 170, 4: 200, 6: 220 },
             deposits: { 2: 50, 4: 50, 6: 50 },
+            pickup: "Sintra Train Station",
+            duration: "4 hours (Half Day)",
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Sintra Half Day Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
@@ -4616,6 +4620,8 @@
             name: "Lisbon Tour",
             prices: { 2: 290, 4: 330, 6: 350 },
             deposits: { 2: 50, 4: 50, 6: 50 },
+            pickup: "Your hotel in Lisbon",
+            duration: "8 hours (Full Day)",
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Lisbon Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
@@ -4623,6 +4629,8 @@
             name: "Lisbon Half Day - Essential Visits",
             prices: { 2: 170, 4: 200, 6: 220 },
             deposits: { 2: 50, 4: 50, 6: 50 },
+            pickup: "Your hotel in Lisbon",
+            duration: "4 hours (Half Day)",
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Lisbon Half Day Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
@@ -4630,6 +4638,8 @@
             name: "Fátima, Batalha, Óbidos & Nazaré",
             prices: { 2: 430, 4: 470, 6: 510 },
             deposits: { 2: 50, 4: 50, 6: 50 },
+            pickup: "Your hotel in Lisbon",
+            duration: "9 hours (Full Day)",
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Fátima, Batalha, Óbidos & Nazaré Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         },
@@ -4637,6 +4647,8 @@
             name: "Arrábida & Setúbal",
             prices: { 2: 290, 4: 330, 6: 350 },
             deposits: { 2: 50, 4: 50, 6: 50 },
+            pickup: "Your hotel in Lisbon",
+            duration: "8 hours (Full Day)",
             waText: (name, date, pax, total, dep) =>
                 `Hello Carlos! I'd like to book the *Arrábida & Setúbal Tour*.\n\n👤 Name: ${name}\n📅 Date: ${date}\n👥 Group: ${pax} people\n💶 Tour Total: €${total}\n✅ Deposit paid: €${dep} via PayPal\n\nPlease confirm my reservation. Thank you!`
         }
@@ -5147,7 +5159,9 @@
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
         const paymentLabel = paymentMethod === 'paypal' ? 'PayPal' : 'SumUp (Card)';
+        const remainingBalance = total - deposit;
         const templateParams = {
+            // Core booking info
             to_email:       'carlosmofigueiredo@gmail.com',
             from_name:      name,
             tour_name:      tour.name,
@@ -5155,8 +5169,23 @@
             group_size:     paxStr,
             total_price:    `€${total}`,
             deposit_paid:   `€${deposit}`,
+            remaining_balance: `€${remainingBalance}`,
             client_email:   email,
-            payment_method: paymentLabel
+            payment_method: paymentLabel,
+            // Tour details
+            pickup_location: tour.pickup || '—',
+            tour_duration:   tour.duration || '—',
+            pax_count:       paxStr,
+            // Guide contact
+            guide_name:      'Carlos Figueiredo',
+            guide_phone:     '+351 933302031',
+            guide_email:     'carlosmofigueiredo@gmail.com',
+            whatsapp_link:   'https://wa.me/351933302031',
+            // Policy
+            cancellation_policy: 'Free cancellation up to 48 hours before the tour',
+            // Promo
+            promo_code:     'ADD10',
+            promo_link:     'https://thatourguide.pt'
         };
         return emailjs.send('service_fm9y8ch', 'template_7tvelut', templateParams)
             .catch(err => { console.error('EmailJS failed:', err); throw err; });
