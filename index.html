@@ -5205,11 +5205,15 @@
         // Uses dedicated promo template (service_fm9y8ch, template_add10_promo)
         const templateParams = {
             client_name:    name,
+            to_name:        name,
             client_email:   email,
+            to_email:       email,
             tour_name:      tour.name,
             tour_date:      booking.date || '—',
             tour_price:     `€${booking.total || 0}`,
+            total_price:    `€${booking.total || 0}`,
             deposit:        `€${booking.deposit || 0}`,
+            deposit_paid:   `€${booking.deposit || 0}`,
             payment_method: booking.paymentMethod || '—',
             promo_code:     'ADD10',
             promo_link:     'https://thatourguide.pt'
