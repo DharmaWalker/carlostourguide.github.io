@@ -4937,8 +4937,10 @@
         document.getElementById('depositDisplay').textContent = `€${deposit}`;
 
         // Show/hide promo field (only for eligible tours, only when deposit box is visible)
+        // Show promo field only if client already has a previous confirmed tour in cart
+        const hasConfirmedTour = getCart().length > 0;
         const promoSection = document.getElementById('promoCodeSection');
-        if (promoSection) promoSection.style.display = isEligible ? 'block' : 'none';
+        if (promoSection) promoSection.style.display = (isEligible && hasConfirmedTour) ? 'block' : 'none';
 
         renderMultiTourHint();
     }
