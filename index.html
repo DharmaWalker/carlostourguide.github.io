@@ -5202,9 +5202,7 @@
             return Promise.resolve();
         }
 
-        // Use existing EmailJS template (service_fm9y8ch, template_7tvelut)
-        // NOTE: To show promo_code in the email body, update the EmailJS template
-        // in the dashboard to include {{promo_code}} and {{promo_link}} variables.
+        // Uses dedicated promo template (service_fm9y8ch, template_add10_promo)
         const templateParams = {
             client_name:    name,
             client_email:   email,
@@ -5217,7 +5215,7 @@
             promo_link:     'https://thatourguide.pt'
         };
 
-        return emailjs.send('service_fm9y8ch', 'template_7tvelut', templateParams)
+        return emailjs.send('service_fm9y8ch', 'template_add10_promo', templateParams)
             .then(() => console.info('EmailJS promo email sent successfully'))
             .catch(err => { console.warn('EmailJS promo email failed (non-critical):', err); });
     }
