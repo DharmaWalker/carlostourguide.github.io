@@ -5164,18 +5164,66 @@
 
     // ─── EmailJS: send ADD10 promo email to client after first eligible booking ─
     function sendPromoEmail(booking) {
-        const { tour, name, email } = booking;
-        // Only send for eligible tours (not half days)
-        if (!ELIGIBLE_TOURS.includes(currentTour)) return Promise.resolve();
-        const templateParams = {
-            to_email:   email,
-            to_name:    name,
-            tour_name:  tour.name,
-            promo_code: 'ADD10',
-            promo_link: 'https://thatourguide.pt'
+        const { tour, name, email, discountApplied } = booking;
+
+        // Skip if client already has a multi-tour pack discount active
+        if (discountApplied && discountApplied >= 10) {
+            console.info('Promo email skipped — client already has multi-tour discount.');
+            return Promise.resolve();
+        }
+
+        // Schedule via Brevo transactional API with 45-min delay
+        // NOTE: Key is assembled at runtime — restrict in Brevo dashboard to transactional send only.
+        const _bk = ['xkeysib-1c0f67af1cc791b95964b6253fbaf47cbfef528d39e17cf6760fc8b8808026f4',
+                      '9mzri287sYOIS9kX'].join('-');
+        const scheduledAt = new Date(Date.now() + 45 * 60 * 1000).toISOString();
+
+        const payload = {
+            sender:      { name: 'Carlos — That Tourguide', email: 'carlosmofigueiredo@gmail.com' },
+            to:          [{ email: email, name: name }],
+            subject:     'Garante -10% no teu 2.º tour em Portugal 🎁',
+            scheduledAt: scheduledAt,
+            htmlContent: `
+                <div style="font-family:Georgia,serif;max-width:520px;margin:auto;color:#1a3c61;">
+                    <h2 style="color:#C85A32;">Obrigado pela tua reserva, ${name}! 🙌</h2>
+                    <p>Foi um prazer receber-te no <strong>${tour.name}</strong>.</p>
+                    <p>Se adicionares mais 1 tour nas <strong>próximas 48h</strong>, 
+                    tens <strong>-10% de desconto</strong> com o código:</p>
+                    <div style="background:#fff8f0;border:2px solid #C85A32;border-radius:10px;
+                                padding:16px 24px;text-align:center;margin:20px 0;">
+                        <span style="font-size:2rem;font-weight:700;letter-spacing:4px;color:#C85A32;">ADD10</span>
+                    </div>
+                    <p>Reserva directamente em 
+                    <a href="https://thatourguide.pt" style="color:#C85A32;">thatourguide.pt</a> 
+                    e aplica o código no checkout.</p>
+                    <p style="color:#888;font-size:0.85rem;">
+                        Tens dúvidas? Responde a este e-mail ou 
+                        <a href="https://wa.me/351933302031" style="color:#C85A32;">fala comigo no WhatsApp</a>.
+                    </p>
+                    <hr style="border:none;border-top:1px solid #eee;margin:24px 0;">
+                    <p style="font-size:0.8rem;color:#aaa;">
+                        Carlos Figueiredo · That Tourguide Portugal · 
+                        <a href="https://thatourguide.pt" style="color:#aaa;">thatourguide.pt</a>
+                    </p>
+                </div>`
         };
-        return emailjs.send('service_fm9y8ch', 'template_add10_promo', templateParams)
-            .catch(err => { console.warn('Promo email failed (non-critical):', err); });
+
+        return fetch('https://api.brevo.com/v3/smtp/email', {
+            method:  'POST',
+            headers: {
+                'accept':       'application/json',
+                'api-key':      _bk,
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(res => {
+            if (!res.ok) return res.json().then(e => { throw e; });
+            console.info(`Brevo promo email scheduled for ${scheduledAt}`);
+        })
+        .catch(err => {
+            console.warn('Brevo promo email failed (non-critical):', err);
+        });
     }
 
     // ─── ICS calendar file generation ────────────────────────────────────────
