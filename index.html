@@ -5164,11 +5164,13 @@
 
     // ─── EmailJS: send ADD10 promo email to client after first eligible booking ─
     function sendPromoEmail(booking) {
-        const { tour, name, email, discountApplied } = booking;
+        const { tour, name, email, discountApplied, promoUsed } = booking;
 
-        // Skip if client already has a multi-tour pack discount active
-        if (discountApplied && discountApplied >= 10) {
-            console.info('Promo email skipped — client already has multi-tour discount.');
+        // Skip ONLY if client already has a multi-tour pack discount (not if they used a promo code)
+        // Multi-tour means discountApplied > 0 AND the discount did NOT come from a promo code
+        const hasMultiTourDiscount = discountApplied > 0 && !promoUsed;
+        if (hasMultiTourDiscount) {
+            console.info('Brevo promo email skipped — client already has multi-tour pack discount.');
             return Promise.resolve();
         }
 
