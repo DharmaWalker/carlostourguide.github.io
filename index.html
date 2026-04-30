@@ -896,6 +896,36 @@
             font-weight: 700;
         }
 
+        /* Promo code input */
+        .promo-code-wrap {
+            display: flex; gap: 0.5rem; align-items: stretch;
+            margin-top: 0.85rem;
+        }
+        .promo-code-wrap input {
+            flex: 1; padding: 0.5rem 0.75rem;
+            border: 1.5px solid #ddd; border-radius: 8px;
+            font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase;
+            font-family: inherit; transition: border-color 0.2s;
+        }
+        .promo-code-wrap input:focus { outline: none; border-color: var(--azulejo-blue); }
+        .promo-code-wrap input.is-valid   { border-color: #2e9e5b; background: #f0faf4; }
+        .promo-code-wrap input.is-invalid { border-color: #e05a5a; background: #fff5f5; }
+        .btn-apply-promo {
+            padding: 0.5rem 0.9rem;
+            background: var(--azulejo-blue); color: white;
+            border: none; border-radius: 8px;
+            font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .btn-apply-promo:hover { background: #122d52; }
+        .promo-feedback {
+            font-size: 0.77rem; margin-top: 0.3rem;
+            display: none; padding: 0.3rem 0.6rem; border-radius: 6px;
+        }
+        .promo-feedback.success { display: block; color: #1a5c33; background: #e6f7ed; }
+        .promo-feedback.error   { display: block; color: #8b1a1a; background: #fdeaea; }
+
         /* PACK_MULTI_TOUR discount UI */
         .multi-tour-hint {
             display: flex; align-items: flex-start; gap: 0.6rem;
@@ -2153,6 +2183,19 @@
                     <!-- PACK_MULTI_TOUR hint / discount banner -->
                     <div id="multiTourHint" class="multi-tour-hint" style="display:none;"></div>
 
+                    <!-- Promo code field -->
+                    <div id="promoCodeSection" style="display:none; margin-top:0.75rem;">
+                        <label class="form-label" style="font-size:0.78rem;color:#888;" data-i18n="promoCodeLabel">Have a promo code?</label>
+                        <div class="promo-code-wrap">
+                            <input type="text" id="promoCodeInput" maxlength="16"
+                                placeholder="ADD10"
+                                oninput="this.value=this.value.toUpperCase()"
+                                onkeydown="if(event.key==='Enter'){applyPromoCode();}">
+                            <button class="btn-apply-promo" onclick="applyPromoCode()" data-i18n="promoApplyBtn">Apply</button>
+                        </div>
+                        <div class="promo-feedback" id="promoFeedback"></div>
+                    </div>
+
                     <button class="btn-book" style="width:100%;margin-top:0.5rem;" onclick="proceedToPayment()">
                         <i class="fas fa-lock"></i> <span data-i18n="proceedBtn">Continue to Secure Payment</span>
                     </button>
@@ -3299,6 +3342,12 @@
             multiTour10:     "Multi-Tour Discount — 10% off applied!",
             multiTour15:     "Multi-Tour Discount — 15% off applied!",
             multiTourSaved:  "You save",
+            promoCodeLabel:  "Have a promo code?",
+            promoApplyBtn:   "Apply",
+            promoSuccess:    "Promo code applied! −10% discount",
+            promoInvalid:    "Invalid promo code. Please check and try again.",
+            promoSelectFirst:"Please select your group size first.",
+            promoNotEligible:"This tour is not eligible for promo codes.",
             priceGroupLabel: "Total price for the group",
             sintraPickupNote:"🛣 Start in Sintra to beat the crowds and save 60€ on transport costs!",
             goodToKnow:      "Everything Included — Nothing Hidden",
@@ -3494,6 +3543,12 @@
             multiTour10:     "Desconto Multi-Tour — 10% aplicado!",
             multiTour15:     "Desconto Multi-Tour — 15% aplicado!",
             multiTourSaved:  "Poupa",
+            promoCodeLabel:  "Tens um código promocional?",
+            promoApplyBtn:   "Aplicar",
+            promoSuccess:    "Código aplicado! −10% de desconto",
+            promoInvalid:    "Código inválido. Por favor verifica e tenta novamente.",
+            promoSelectFirst:"Por favor selecciona o tamanho do grupo primeiro.",
+            promoNotEligible:"Este tour não é elegível para códigos promocionais.",
             priceGroupLabel: "Preço total para o grupo",
             sintraPickupNote:"🛣 Comece em Sintra para evitar as multidões e poupar 60€ em custos de transporte!",
             goodToKnow:      "Informações Úteis",
@@ -3689,6 +3744,12 @@
             multiTour10:     "Descuento Multi-Tour — 10% aplicado!",
             multiTour15:     "Descuento Multi-Tour — 15% aplicado!",
             multiTourSaved:  "Ahorras",
+            promoCodeLabel:  "¿Tienes un código promocional?",
+            promoApplyBtn:   "Aplicar",
+            promoSuccess:    "¡Código aplicado! −10% de descuento",
+            promoInvalid:    "Código no válido. Por favor comprueba e inténtalo de nuevo.",
+            promoSelectFirst:"Por favor selecciona el tamaño del grupo primero.",
+            promoNotEligible:"Este tour no es elegible para códigos promocionales.",
             priceGroupLabel: "Precio total para el grupo",
             sintraPickupNote:"🛣 Empiece en Sintra para evitar las multitudes y ahorrar 60€ en costes de transporte!",
             goodToKnow:      "Información Útil",
@@ -3884,6 +3945,12 @@
             multiTour10:     "Sconto Multi-Tour — 10% applicato!",
             multiTour15:     "Sconto Multi-Tour — 15% applicato!",
             multiTourSaved:  "Risparmi",
+            promoCodeLabel:  "Hai un codice promozionale?",
+            promoApplyBtn:   "Applica",
+            promoSuccess:    "Codice applicato! −10% di sconto",
+            promoInvalid:    "Codice non valido. Per favore controlla e riprova.",
+            promoSelectFirst:"Per favore seleziona prima la dimensione del gruppo.",
+            promoNotEligible:"Questo tour non è idoneo per codici promozionali.",
             priceGroupLabel: "Prezzo totale per il gruppo",
             sintraPickupNote:"🛣 Inizia a Sintra per evitare la folla e risparmiare 60€ sui costi di trasporto!",
             goodToKnow:      "Informazioni Utili",
@@ -4645,6 +4712,61 @@
     }
     // ─────────────────────────────────────────────────────────────────────────
 
+    // ── Promo Code (ADD10) ────────────────────────────────────────────────────
+    const VALID_PROMO_CODES = { 'ADD10': 0.10 };
+    let activePromoCode   = null;   // null or 'ADD10'
+    let activePromoRate   = 0;      // 0 or 0.10
+
+    function applyPromoCode() {
+        const input    = document.getElementById('promoCodeInput');
+        const feedback = document.getElementById('promoFeedback');
+        if (!input || !feedback) return;
+        const code = (input.value || '').trim().toUpperCase();
+        const lang = document.documentElement.lang || 'en';
+        const t    = translations[lang] || translations.en;
+
+        // Must have a pax and eligible tour selected
+        if (!currentTour || !currentPax) {
+            feedback.textContent = t.promoSelectFirst || 'Please select group size first.';
+            feedback.className   = 'promo-feedback error';
+            return;
+        }
+        if (!ELIGIBLE_TOURS.includes(currentTour)) {
+            feedback.textContent = t.promoNotEligible || 'This tour is not eligible for promo codes.';
+            feedback.className   = 'promo-feedback error';
+            return;
+        }
+        const rate = VALID_PROMO_CODES[code];
+        if (!rate) {
+            feedback.textContent = t.promoInvalid || 'Invalid promo code. Please check and try again.';
+            feedback.className   = 'promo-feedback error';
+            input.classList.add('is-invalid');
+            input.classList.remove('is-valid');
+            activePromoCode = null;
+            activePromoRate = 0;
+            updateDepositBox();
+            return;
+        }
+        // Valid — apply
+        activePromoCode = code;
+        activePromoRate = rate;
+        input.classList.add('is-valid');
+        input.classList.remove('is-invalid');
+        feedback.textContent = t.promoSuccess || `Promo code applied! −${Math.round(rate*100)}% discount`;
+        feedback.className   = 'promo-feedback success';
+        updateDepositBox();
+    }
+
+    function clearPromoCode() {
+        activePromoCode = null;
+        activePromoRate = 0;
+        const input    = document.getElementById('promoCodeInput');
+        const feedback = document.getElementById('promoFeedback');
+        if (input)    { input.value = ''; input.className = ''; }
+        if (feedback) { feedback.className = 'promo-feedback'; }
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+
     let currentTour = null;
     let currentPax  = null;
 
@@ -4701,6 +4823,13 @@
         // Clear pax selection
         document.querySelectorAll('.pax-btn').forEach(b => b.classList.remove('selected'));
 
+        // Clear promo code state
+        clearPromoCode();
+        const promoSection = document.getElementById('promoCodeSection');
+        if (promoSection) promoSection.style.display = 'none';
+        const multiHint = document.getElementById('multiTourHint');
+        if (multiHint) multiHint.style.display = 'none';
+
         // Reset steps and pending booking
         _pendingBooking = null;
         showBookingStep(1);
@@ -4740,23 +4869,41 @@
 
     function updateDepositBox() {
         if (!currentTour || !currentPax) return;
-        const tour    = TOUR_DATA[currentTour];
+        const tour     = TOUR_DATA[currentTour];
         const rawTotal = tour.prices[currentPax];
         const deposit  = tour.deposits[currentPax];
+        const isEligible = ELIGIBLE_TOURS.includes(currentTour);
 
-        // Calculate multi-tour discount
-        const previewCart = ELIGIBLE_TOURS.includes(currentTour)
+        // ── Determine best discount (non-cumulative: highest wins) ──
+        // 1. PACK_MULTI_TOUR rate
+        const previewCart  = isEligible
             ? [...new Set([...getCart(), currentTour])] : getCart();
-        const discount = getDiscount(previewCart);
-        const finalTotal = discount > 0 ? applyDiscount(rawTotal, discount) : rawTotal;
+        const multiRate    = getDiscount(previewCart);
+
+        // 2. Promo code rate (only valid for eligible tours)
+        const promoRate    = (isEligible && activePromoRate > 0) ? activePromoRate : 0;
+
+        // Use highest — not cumulative
+        const discountRate = Math.max(multiRate, promoRate);
+        const finalTotal   = discountRate > 0 ? applyDiscount(rawTotal, discountRate) : rawTotal;
 
         const totalEl = document.getElementById('tourTotalDisplay');
-        if (discount > 0) {
-            totalEl.innerHTML = `<span class="price-original">€${rawTotal}</span> <span class="price-discounted">€${finalTotal}</span>`;
+        if (discountRate > 0) {
+            const src = promoRate >= multiRate && promoRate > 0 ? 'promo' : 'multi';
+            const badge = src === 'promo'
+                ? `<span style="font-size:0.7rem;color:#2e9e5b;"> (${activePromoCode})</span>`
+                : '';
+            totalEl.innerHTML =
+                `<span class="price-original">€${rawTotal}</span> ` +
+                `<span class="price-discounted">€${finalTotal}</span>${badge}`;
         } else {
             totalEl.textContent = `€${rawTotal}`;
         }
         document.getElementById('depositDisplay').textContent = `€${deposit}`;
+
+        // Show/hide promo field (only for eligible tours, only when deposit box is visible)
+        const promoSection = document.getElementById('promoCodeSection');
+        if (promoSection) promoSection.style.display = isEligible ? 'block' : 'none';
 
         renderMultiTourHint();
     }
@@ -4780,22 +4927,26 @@
         if (!currentPax) { valid = false; }
         if (!valid) return;
 
-        const tour    = TOUR_DATA[currentTour];
+        const tour     = TOUR_DATA[currentTour];
         const rawTotal = tour.prices[currentPax];
         const deposit  = tour.deposits[currentPax];
+        const isEligible = ELIGIBLE_TOURS.includes(currentTour);
 
-        // Apply multi-tour discount if eligible
-        const previewCart = ELIGIBLE_TOURS.includes(currentTour)
+        // Apply best discount (non-cumulative: highest wins)
+        const previewCart  = isEligible
             ? [...new Set([...getCart(), currentTour])] : getCart();
-        const discountRate = getDiscount(previewCart);
-        const total = discountRate > 0 ? applyDiscount(rawTotal, discountRate) : rawTotal;
+        const multiRate    = getDiscount(previewCart);
+        const promoRate    = (isEligible && activePromoRate > 0) ? activePromoRate : 0;
+        const discountRate = Math.max(multiRate, promoRate);
+        const total        = discountRate > 0 ? applyDiscount(rawTotal, discountRate) : rawTotal;
         const discountApplied = discountRate > 0 ? Math.round(discountRate * 100) : 0;
+        const promoUsed    = (promoRate >= multiRate && promoRate > 0) ? activePromoCode : null;
 
         // Permanently add tour to cart upon proceeding to payment
         addToCart(currentTour);
 
-        // Store booking
-        _pendingBooking = { tour, name, email, date, total, deposit, discountApplied, rawTotal };
+        // Store booking (include promoUsed for email)
+        _pendingBooking = { tour, name, email, date, total, deposit, discountApplied, rawTotal, promoUsed };
 
         // Build pending summary
         const lang = document.documentElement.lang || 'en';
@@ -4960,6 +5111,9 @@
                     warningEl.style.display = 'block';
                 }
             });
+
+        // Send ADD10 promo email to client (non-blocking, non-critical)
+        sendPromoEmail(_pendingBooking);
     }
 
     // ─── EmailJS: send booking notification to Carlos ────────────────────────
@@ -4983,6 +5137,22 @@
         };
         return emailjs.send('service_fm9y8ch', 'template_7tvelut', templateParams)
             .catch(err => { console.error('EmailJS failed:', err); throw err; });
+    }
+
+    // ─── EmailJS: send ADD10 promo email to client after first eligible booking ─
+    function sendPromoEmail(booking) {
+        const { tour, name, email } = booking;
+        // Only send for eligible tours (not half days)
+        if (!ELIGIBLE_TOURS.includes(currentTour)) return Promise.resolve();
+        const templateParams = {
+            to_email:   email,
+            to_name:    name,
+            tour_name:  tour.name,
+            promo_code: 'ADD10',
+            promo_link: 'https://thatourguide.pt'
+        };
+        return emailjs.send('service_fm9y8ch', 'template_add10_promo', templateParams)
+            .catch(err => { console.warn('Promo email failed (non-critical):', err); });
     }
 
     // ─── ICS calendar file generation ────────────────────────────────────────
