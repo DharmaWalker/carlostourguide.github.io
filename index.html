@@ -896,6 +896,56 @@
             font-weight: 700;
         }
 
+        /* PACK_MULTI_TOUR discount UI */
+        .multi-tour-hint {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            background: linear-gradient(135deg, #fff8f0 0%, #fdf3ea 100%);
+            border: 1.5px solid #e8a87c;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #7a3a12;
+            line-height: 1.45;
+        }
+        .multi-tour-hint .hint-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+        .multi-tour-badge {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            background: var(--terracotta);
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.55rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            margin-bottom: 0.45rem;
+        }
+        .multi-tour-applied {
+            background: linear-gradient(135deg, #f0faf4 0%, #e6f7ed 100%);
+            border-color: #2e9e5b;
+            color: #1a5c33;
+        }
+        .multi-tour-applied .multi-tour-badge { background: #2e9e5b; }
+        .price-original {
+            text-decoration: line-through;
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-right: 0.4rem;
+        }
+        .price-discounted { color: #2e9e5b; font-weight: 700; }
+        .cart-tours-list {
+            font-size: 0.75rem; color: #888;
+            margin-top: 0.3rem;
+        }
+        .cart-tours-list span {
+            display: inline-block;
+            background: rgba(26,60,97,0.07);
+            border-radius: 4px;
+            padding: 0.1rem 0.4rem;
+            margin: 0.1rem 0.15rem 0 0;
+        }
+
         /* Buttons */
         .btn-paypal {
             display: flex;
@@ -2100,6 +2150,9 @@
                         <p style="font-size:0.72rem;color:#888;text-align:center;margin-top:0.5rem;" data-i18n="depositNote">This deposit will be deducted from the total tour price</p>
                     </div>
 
+                    <!-- PACK_MULTI_TOUR hint / discount banner -->
+                    <div id="multiTourHint" class="multi-tour-hint" style="display:none;"></div>
+
                     <button class="btn-book" style="width:100%;margin-top:0.5rem;" onclick="proceedToPayment()">
                         <i class="fas fa-lock"></i> <span data-i18n="proceedBtn">Continue to Secure Payment</span>
                     </button>
@@ -3242,6 +3295,10 @@
             itScenic:        "(Panoramic Drive)",
             itWineTasting:   "Wine Tasting",
             bookWaNote:      "Not ready to book? Ask Carlos anything on WhatsApp",
+            multiTourTeaser: "Add another tour and unlock -10% (2 tours) or -15% (3+ tours). Discount applies automatically.",
+            multiTour10:     "Multi-Tour Discount — 10% off applied!",
+            multiTour15:     "Multi-Tour Discount — 15% off applied!",
+            multiTourSaved:  "You save",
             priceGroupLabel: "Total price for the group",
             sintraPickupNote:"🛣 Start in Sintra to beat the crowds and save 60€ on transport costs!",
             goodToKnow:      "Everything Included — Nothing Hidden",
@@ -3433,6 +3490,10 @@
             itScenic:        "(Drive Panorâmico)",
             itWineTasting:   "Prova de Vinhos",
             bookWaNote:      "Dúvidas? Fala com o Carlos no WhatsApp",
+            multiTourTeaser: "Adiciona mais um tour e desbloqueia -10% (2 tours) ou -15% (3+ tours). O desconto aplica automaticamente.",
+            multiTour10:     "Desconto Multi-Tour — 10% aplicado!",
+            multiTour15:     "Desconto Multi-Tour — 15% aplicado!",
+            multiTourSaved:  "Poupa",
             priceGroupLabel: "Preço total para o grupo",
             sintraPickupNote:"🛣 Comece em Sintra para evitar as multidões e poupar 60€ em custos de transporte!",
             goodToKnow:      "Informações Úteis",
@@ -3624,6 +3685,10 @@
             itScenic:        "(Drive Panorámico)",
             itWineTasting:   "Cata de Vinos",
             bookWaNote:      "¿Preguntas? Escríbele a Carlos en WhatsApp",
+            multiTourTeaser: "Agrega otro tour y desbloquea -10% (2 tours) o -15% (3+ tours). El descuento se aplica automáticamente.",
+            multiTour10:     "Descuento Multi-Tour — 10% aplicado!",
+            multiTour15:     "Descuento Multi-Tour — 15% aplicado!",
+            multiTourSaved:  "Ahorras",
             priceGroupLabel: "Precio total para el grupo",
             sintraPickupNote:"🛣 Empiece en Sintra para evitar las multitudes y ahorrar 60€ en costes de transporte!",
             goodToKnow:      "Información Útil",
@@ -3815,6 +3880,10 @@
             itScenic:        "(Drive Panoramico)",
             itWineTasting:   "Degustazione di Vini",
             bookWaNote:      "Domande? Chatta con Carlos su WhatsApp",
+            multiTourTeaser: "Aggiungi un altro tour e sblocca -10% (2 tours) o -15% (3+ tours). Lo sconto si applica automaticamente.",
+            multiTour10:     "Sconto Multi-Tour — 10% applicato!",
+            multiTour15:     "Sconto Multi-Tour — 15% applicato!",
+            multiTourSaved:  "Risparmi",
             priceGroupLabel: "Prezzo totale per il gruppo",
             sintraPickupNote:"🛣 Inizia a Sintra per evitare la folla e risparmiare 60€ sui costi di trasporto!",
             goodToKnow:      "Informazioni Utili",
@@ -4502,6 +4571,80 @@
     const CARLOS_WA     = '351933302031';
     const CARLOS_EMAIL  = 'carlosmofigueiredo@gmail.com';
 
+    // ── PACK_MULTI_TOUR cart ──────────────────────────────────────────────────
+    const ELIGIBLE_TOURS = ['sintra', 'lisbon', 'fatima', 'arrabida']; // half-days excluded
+
+    // Cart persists in localStorage so it survives page reloads
+    function getCart() {
+        try { return JSON.parse(localStorage.getItem('multiTourCart') || '[]'); } catch(e) { return []; }
+    }
+    function saveCart(cart) {
+        try { localStorage.setItem('multiTourCart', JSON.stringify(cart)); } catch(e) {}
+    }
+    function addToCart(tourId) {
+        if (!ELIGIBLE_TOURS.includes(tourId)) return;
+        const cart = getCart();
+        if (!cart.includes(tourId)) { cart.push(tourId); saveCart(cart); }
+    }
+    function getDiscount(cart) {
+        const eligible = cart.filter(id => ELIGIBLE_TOURS.includes(id));
+        if (eligible.length >= 3) return 0.15;
+        if (eligible.length >= 2) return 0.10;
+        return 0;
+    }
+    function applyDiscount(price, discountRate) {
+        return Math.round(price * (1 - discountRate));
+    }
+    function renderMultiTourHint() {
+        const hintEl = document.getElementById('multiTourHint');
+        if (!hintEl || !currentTour || !currentPax) { if (hintEl) hintEl.style.display = 'none'; return; }
+
+        const lang = document.documentElement.lang || 'en';
+        const t = translations[lang] || translations.en;
+        const cart = getCart();
+        // Add current tour to cart preview (without permanently saving yet)
+        const previewCart = ELIGIBLE_TOURS.includes(currentTour) && !cart.includes(currentTour)
+            ? [...cart, currentTour] : [...cart];
+        const eligibleCount = previewCart.filter(id => ELIGIBLE_TOURS.includes(id)).length;
+        const discount = getDiscount(previewCart);
+
+        if (!ELIGIBLE_TOURS.includes(currentTour)) {
+            hintEl.style.display = 'none';
+            return;
+        }
+
+        hintEl.style.display = 'flex';
+
+        if (discount === 0) {
+            // Teaser: encourage adding more tours
+            hintEl.className = 'multi-tour-hint';
+            hintEl.innerHTML =
+                `<span class="hint-icon">🎁</span>` +
+                `<div><div class="multi-tour-badge">PACK MULTI-TOUR</div>` +
+                `${t.multiTourTeaser || 'Add another tour and unlock -10% (2 tours) or -15% (3+ tours).'}</div>`;
+        } else {
+            // Discount active — show original vs discounted price
+            const rawPrice = TOUR_DATA[currentTour].prices[currentPax];
+            const discountedPrice = applyDiscount(rawPrice, discount);
+            const saved = rawPrice - discountedPrice;
+            const pct = discount === 0.15 ? '15' : '10';
+            const label = discount === 0.15 ? (t.multiTour15 || 'Multi-Tour Discount — 15% off!') : (t.multiTour10 || 'Multi-Tour Discount — 10% off!');
+            const tourNames = previewCart.filter(id => ELIGIBLE_TOURS.includes(id))
+                .map(id => TOUR_DATA[id]?.name || id);
+
+            hintEl.className = 'multi-tour-hint multi-tour-applied';
+            hintEl.innerHTML =
+                `<span class="hint-icon">✅</span>` +
+                `<div><div class="multi-tour-badge">−${pct}% PACK MULTI-TOUR</div>` +
+                `<strong>${label}</strong><br>` +
+                `<span class="price-original">€${rawPrice}</span>` +
+                `<span class="price-discounted">€${discountedPrice}</span> ` +
+                `(${t.multiTourSaved || 'You save'} €${saved})` +
+                `<div class="cart-tours-list">${tourNames.map(n => `<span>${n}</span>`).join('')}</div></div>`;
+        }
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+
     let currentTour = null;
     let currentPax  = null;
 
@@ -4598,10 +4741,24 @@
     function updateDepositBox() {
         if (!currentTour || !currentPax) return;
         const tour    = TOUR_DATA[currentTour];
-        const total   = tour.prices[currentPax];
-        const deposit = tour.deposits[currentPax];
-        document.getElementById('tourTotalDisplay').textContent = `€${total}`;
-        document.getElementById('depositDisplay').textContent   = `€${deposit}`;
+        const rawTotal = tour.prices[currentPax];
+        const deposit  = tour.deposits[currentPax];
+
+        // Calculate multi-tour discount
+        const previewCart = ELIGIBLE_TOURS.includes(currentTour)
+            ? [...new Set([...getCart(), currentTour])] : getCart();
+        const discount = getDiscount(previewCart);
+        const finalTotal = discount > 0 ? applyDiscount(rawTotal, discount) : rawTotal;
+
+        const totalEl = document.getElementById('tourTotalDisplay');
+        if (discount > 0) {
+            totalEl.innerHTML = `<span class="price-original">€${rawTotal}</span> <span class="price-discounted">€${finalTotal}</span>`;
+        } else {
+            totalEl.textContent = `€${rawTotal}`;
+        }
+        document.getElementById('depositDisplay').textContent = `€${deposit}`;
+
+        renderMultiTourHint();
     }
 
     // Stores booking data between steps
@@ -4624,11 +4781,21 @@
         if (!valid) return;
 
         const tour    = TOUR_DATA[currentTour];
-        const total   = tour.prices[currentPax];
-        const deposit = tour.deposits[currentPax];
+        const rawTotal = tour.prices[currentPax];
+        const deposit  = tour.deposits[currentPax];
+
+        // Apply multi-tour discount if eligible
+        const previewCart = ELIGIBLE_TOURS.includes(currentTour)
+            ? [...new Set([...getCart(), currentTour])] : getCart();
+        const discountRate = getDiscount(previewCart);
+        const total = discountRate > 0 ? applyDiscount(rawTotal, discountRate) : rawTotal;
+        const discountApplied = discountRate > 0 ? Math.round(discountRate * 100) : 0;
+
+        // Permanently add tour to cart upon proceeding to payment
+        addToCart(currentTour);
 
         // Store booking
-        _pendingBooking = { tour, name, email, date, total, deposit };
+        _pendingBooking = { tour, name, email, date, total, deposit, discountApplied, rawTotal };
 
         // Build pending summary
         const lang = document.documentElement.lang || 'en';
@@ -4639,6 +4806,9 @@
             `<strong>${t.confirmSumName  || 'Name'}:</strong> ${name}<br>` +
             `<strong>${t.confirmSumDate  || 'Date'}:</strong> ${dateFormatted}<br>` +
             `<strong>${t.confirmSumGroup || 'Group'}:</strong> ${paxDisplay(currentPax)} ${t.paxLabel || 'pax'}<br>` +
+            (discountApplied > 0
+                ? `<strong>${t.confirmSumTotal || 'Tour Total'}:</strong> <span class="price-original">€${rawTotal}</span> <span class="price-discounted">€${total}</span> <span style="font-size:0.75rem;color:#2e9e5b;">(−${discountApplied}% PACK MULTI-TOUR)</span><br>`
+                : `<strong>${t.confirmSumTotal || 'Tour Total'}:</strong> €${total}<br>`) +
             `<strong>${t.confirmSumDep   || 'Deposit due'}:</strong> €${deposit}`;
 
         showBookingStep(2);
