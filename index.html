@@ -3338,10 +3338,12 @@
             itScenic:        "(Panoramic Drive)",
             itWineTasting:   "Wine Tasting",
             bookWaNote:      "Not ready to book? Ask Carlos anything on WhatsApp",
-            multiTourTeaser: "Add another tour and unlock -10% (2 tours) or -15% (3+ tours). Discount applies automatically.",
-            multiTour10:     "Multi-Tour Discount — 10% off applied!",
-            multiTour15:     "Multi-Tour Discount — 15% off applied!",
-            multiTourSaved:  "You save",
+            multiTourSaved:       "You save",
+            multiTourTitle:       "Book more, save more!",
+            multiTourBody:        "Book 2 tours and get -10% — Book 3 or more and get -15%. Discount applies automatically at checkout. No codes needed.",
+            multiTourAdd1:        "Add 1 more tour and save 10% automatically!",
+            multiTourDuoMsg:      "Pack Duo unlocked — 10% discount applied! Add 1 more tour to save 15%.",
+            multiTourExplorerMsg: "Pack Explorer unlocked — 15% discount applied! Best value.",
             promoCodeLabel:  "Have a promo code?",
             promoApplyBtn:   "Apply",
             promoSuccess:    "Promo code applied! −10% discount",
@@ -3539,10 +3541,12 @@
             itScenic:        "(Drive Panorâmico)",
             itWineTasting:   "Prova de Vinhos",
             bookWaNote:      "Dúvidas? Fala com o Carlos no WhatsApp",
-            multiTourTeaser: "Adiciona mais um tour e desbloqueia -10% (2 tours) ou -15% (3+ tours). O desconto aplica automaticamente.",
-            multiTour10:     "Desconto Multi-Tour — 10% aplicado!",
-            multiTour15:     "Desconto Multi-Tour — 15% aplicado!",
-            multiTourSaved:  "Poupa",
+            multiTourSaved:       "Poupa",
+            multiTourTitle:       "Combina tours e poupa!",
+            multiTourBody:        "Reserva 2 tours e recebe -10% — Reserva 3 ou mais e recebe -15%. O desconto aplica automaticamente no carrinho. Sem códigos, sem complicações.",
+            multiTourAdd1:        "Adiciona mais 1 tour e poupa 10% automaticamente!",
+            multiTourDuoMsg:      "Pack Duo desbloqueado — 10% de desconto aplicado! Adiciona mais 1 tour para poupar 15%.",
+            multiTourExplorerMsg: "Pack Explorer desbloqueado — 15% de desconto aplicado! Melhor valor.",
             promoCodeLabel:  "Tens um código promocional?",
             promoApplyBtn:   "Aplicar",
             promoSuccess:    "Código aplicado! −10% de desconto",
@@ -3740,10 +3744,12 @@
             itScenic:        "(Drive Panorámico)",
             itWineTasting:   "Cata de Vinos",
             bookWaNote:      "¿Preguntas? Escríbele a Carlos en WhatsApp",
-            multiTourTeaser: "Agrega otro tour y desbloquea -10% (2 tours) o -15% (3+ tours). El descuento se aplica automáticamente.",
-            multiTour10:     "Descuento Multi-Tour — 10% aplicado!",
-            multiTour15:     "Descuento Multi-Tour — 15% aplicado!",
-            multiTourSaved:  "Ahorras",
+            multiTourSaved:       "Ahorras",
+            multiTourTitle:       "¡Combina tours y ahorra!",
+            multiTourBody:        "Reserva 2 tours y obtén -10% — Reserva 3 o más y obtén -15%. El descuento se aplica automáticamente en el carrito. Sin códigos.",
+            multiTourAdd1:        "¡Agrega 1 tour más y ahorra 10% automáticamente!",
+            multiTourDuoMsg:      "Pack Duo desbloqueado — 10% de descuento aplicado! Agrega 1 tour más para ahorrar 15%.",
+            multiTourExplorerMsg: "Pack Explorer desbloqueado — 15% de descuento aplicado! Mejor valor.",
             promoCodeLabel:  "¿Tienes un código promocional?",
             promoApplyBtn:   "Aplicar",
             promoSuccess:    "¡Código aplicado! −10% de descuento",
@@ -3941,10 +3947,12 @@
             itScenic:        "(Drive Panoramico)",
             itWineTasting:   "Degustazione di Vini",
             bookWaNote:      "Domande? Chatta con Carlos su WhatsApp",
-            multiTourTeaser: "Aggiungi un altro tour e sblocca -10% (2 tours) o -15% (3+ tours). Lo sconto si applica automaticamente.",
-            multiTour10:     "Sconto Multi-Tour — 10% applicato!",
-            multiTour15:     "Sconto Multi-Tour — 15% applicato!",
-            multiTourSaved:  "Risparmi",
+            multiTourSaved:       "Risparmi",
+            multiTourTitle:       "Prenota di più, risparmia di più!",
+            multiTourBody:        "Prenota 2 tour e ottieni -10% — Prenota 3 o più e ottieni -15%. Lo sconto si applica automaticamente nel carrello. Nessun codice necessario.",
+            multiTourAdd1:        "Aggiungi 1 altro tour e risparmia 10% automaticamente!",
+            multiTourDuoMsg:      "Pack Duo sbloccato — 10% di sconto applicato! Aggiungi 1 altro tour per risparmiare 15%.",
+            multiTourExplorerMsg: "Pack Explorer sbloccato — 15% di sconto applicato! Miglior valore.",
             promoCodeLabel:  "Hai un codice promozionale?",
             promoApplyBtn:   "Applica",
             promoSuccess:    "Codice applicato! −10% di sconto",
@@ -4639,7 +4647,7 @@
     const CARLOS_EMAIL  = 'carlosmofigueiredo@gmail.com';
 
     // ── PACK_MULTI_TOUR cart ──────────────────────────────────────────────────
-    const ELIGIBLE_TOURS = ['sintra', 'lisbon', 'fatima', 'arrabida']; // half-days excluded
+    const ELIGIBLE_TOURS = ['sintra', 'sintraHalf', 'lisbon', 'lisbonHalf', 'fatima', 'arrabida']; // all tours eligible
 
     // Cart persists in localStorage so it survives page reloads
     function getCart() {
@@ -4664,50 +4672,65 @@
     }
     function renderMultiTourHint() {
         const hintEl = document.getElementById('multiTourHint');
-        if (!hintEl || !currentTour || !currentPax) { if (hintEl) hintEl.style.display = 'none'; return; }
+        if (!hintEl) return;
+        // Always show banner, but only when pax is selected
+        if (!currentTour || !currentPax) { hintEl.style.display = 'none'; return; }
 
         const lang = document.documentElement.lang || 'en';
-        const t = translations[lang] || translations.en;
+        const t    = translations[lang] || translations.en;
         const cart = getCart();
-        // Add current tour to cart preview (without permanently saving yet)
-        const previewCart = ELIGIBLE_TOURS.includes(currentTour) && !cart.includes(currentTour)
+
+        // Preview cart: include current tour without permanently saving
+        const previewCart  = !cart.includes(currentTour)
             ? [...cart, currentTour] : [...cart];
         const eligibleCount = previewCart.filter(id => ELIGIBLE_TOURS.includes(id)).length;
-        const discount = getDiscount(previewCart);
-
-        if (!ELIGIBLE_TOURS.includes(currentTour)) {
-            hintEl.style.display = 'none';
-            return;
-        }
+        const discount      = getDiscount(previewCart);
 
         hintEl.style.display = 'flex';
 
         if (discount === 0) {
-            // Teaser: encourage adding more tours
-            hintEl.className = 'multi-tour-hint';
-            hintEl.innerHTML =
+            // State A — 1 tour: teaser
+            hintEl.className  = 'multi-tour-hint';
+            hintEl.innerHTML  =
                 `<span class="hint-icon">🎁</span>` +
-                `<div><div class="multi-tour-badge">PACK MULTI-TOUR</div>` +
-                `${t.multiTourTeaser || 'Add another tour and unlock -10% (2 tours) or -15% (3+ tours).'}</div>`;
-        } else {
-            // Discount active — show original vs discounted price
-            const rawPrice = TOUR_DATA[currentTour].prices[currentPax];
-            const discountedPrice = applyDiscount(rawPrice, discount);
-            const saved = rawPrice - discountedPrice;
-            const pct = discount === 0.15 ? '15' : '10';
-            const label = discount === 0.15 ? (t.multiTour15 || 'Multi-Tour Discount — 15% off!') : (t.multiTour10 || 'Multi-Tour Discount — 10% off!');
-            const tourNames = previewCart.filter(id => ELIGIBLE_TOURS.includes(id))
-                .map(id => TOUR_DATA[id]?.name || id);
+                `<div>` +
+                  `<div class="multi-tour-badge">PACK MULTI-TOUR</div>` +
+                  `<strong>${t.multiTourTitle || 'Book more, save more!'}</strong><br>` +
+                  `<span style="font-size:0.78rem;">${t.multiTourBody || 'Book 2 tours and get -10% — Book 3 or more and get -15%. Discount applies automatically at checkout. No codes needed.'}</span><br>` +
+                  `<span style="font-size:0.77rem;font-weight:600;color:#b8550e;margin-top:0.25rem;display:inline-block;">${t.multiTourAdd1 || 'Add 1 more tour and save 10% automatically!'}</span>` +
+                `</div>`;
 
-            hintEl.className = 'multi-tour-hint multi-tour-applied';
-            hintEl.innerHTML =
+        } else if (discount === 0.10) {
+            // State B — Pack Duo: 10% applied, nudge to add 1 more
+            const rawPrice       = TOUR_DATA[currentTour].prices[currentPax];
+            const discountedPrice = applyDiscount(rawPrice, discount);
+            const saved          = rawPrice - discountedPrice;
+            hintEl.className  = 'multi-tour-hint multi-tour-applied';
+            hintEl.innerHTML  =
                 `<span class="hint-icon">✅</span>` +
-                `<div><div class="multi-tour-badge">−${pct}% PACK MULTI-TOUR</div>` +
-                `<strong>${label}</strong><br>` +
-                `<span class="price-original">€${rawPrice}</span>` +
-                `<span class="price-discounted">€${discountedPrice}</span> ` +
-                `(${t.multiTourSaved || 'You save'} €${saved})` +
-                `<div class="cart-tours-list">${tourNames.map(n => `<span>${n}</span>`).join('')}</div></div>`;
+                `<div>` +
+                  `<div class="multi-tour-badge">PACK DUO — −10%</div>` +
+                  `<strong>${t.multiTourDuoMsg || 'Pack Duo unlocked — 10% discount applied! Add 1 more tour to save 15%.'}</strong><br>` +
+                  `<span class="price-original">€${rawPrice}</span> ` +
+                  `<span class="price-discounted">€${discountedPrice}</span> ` +
+                  `<span style="font-size:0.75rem;color:#1a5c33;">(${t.multiTourSaved || 'You save'} €${saved})</span>` +
+                `</div>`;
+
+        } else {
+            // State C — Pack Explorer: 15% applied, best value
+            const rawPrice        = TOUR_DATA[currentTour].prices[currentPax];
+            const discountedPrice = applyDiscount(rawPrice, discount);
+            const saved           = rawPrice - discountedPrice;
+            hintEl.className  = 'multi-tour-hint multi-tour-applied';
+            hintEl.innerHTML  =
+                `<span class="hint-icon">🏆</span>` +
+                `<div>` +
+                  `<div class="multi-tour-badge">PACK EXPLORER — −15%</div>` +
+                  `<strong>${t.multiTourExplorerMsg || 'Pack Explorer unlocked — 15% discount applied! Best value.'}</strong><br>` +
+                  `<span class="price-original">€${rawPrice}</span> ` +
+                  `<span class="price-discounted">€${discountedPrice}</span> ` +
+                  `<span style="font-size:0.75rem;color:#1a5c33;">(${t.multiTourSaved || 'You save'} €${saved})</span>` +
+                `</div>`;
         }
     }
     // ─────────────────────────────────────────────────────────────────────────
