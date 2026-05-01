@@ -17,8 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>emailjs.init('wD-LkKz_AfTeG3D4e');</script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" onload="emailjs.init('wD-LkKz_AfTeG3D4e')"></script>
 
     <style>
         :root {
@@ -323,6 +322,8 @@
 
         /* ── Tour Cards ── */
         .tours-grid { display: grid; gap: 2.5rem; max-width: 900px; margin: 0 auto; }
+        @media (min-width: 601px) { .tours-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1000px) { .tours-grid { grid-template-columns: repeat(3, 1fr); } }
 
         .tour-card {
             background: var(--bg-white);
@@ -734,7 +735,7 @@
 
         @media (min-width: 601px) {
             .modal-overlay { align-items: center; padding: 1.5rem; }
-            .modal { border-radius: 24px; animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1); max-height: 90vh; }
+            .modal { border-radius: 24px; animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1); max-height: 90dvh; }
         }
 
         .modal-header {
@@ -2261,7 +2262,7 @@
 
     <!-- Hero -->
     <header class="hero">
-        <img src="profile.jpg" alt="Carlos Figueiredo" class="profile-img">
+        <img src="profile.webp" alt="Carlos Figueiredo" class="profile-img">
         <p class="brand-label">That Tourguide</p>
         <h1>Carlos Figueiredo</h1>
         <p class="tagline" data-i18n="tagline">The Most Authentic Private Tours in Sintra &amp; Lisbon — Discover Portugal with a Local Expert</p>
@@ -2642,8 +2643,8 @@
                                 <img src="fatima-batalha.jpg" alt="Batalha Monastery" loading="lazy">
                                 <div class="gallery-label" data-i18n="batalhaLabel">Batalha Monastery</div>
                             </div>
-                            <div class="gallery-item" onclick="openLightbox('fatima-obidos.jpg','Óbidos')">
-                                <img src="fatima-obidos.jpg" alt="Óbidos" loading="lazy">
+                            <div class="gallery-item" onclick="openLightbox('fatima-obidos.webp','Óbidos')">
+                                <img src="fatima-obidos.webp" alt="Óbidos" loading="lazy">
                                 <div class="gallery-label" data-i18n="obidosLabel">Óbidos Village</div>
                             </div>
                             <div class="gallery-item" onclick="openLightbox('fatima-nazare.webp','Nazaré')">
@@ -2871,123 +2872,123 @@
             <div class="moments-track">
                 <!-- 12 originals -->
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-1.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-1.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery1Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-2.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-2.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery2Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-3.jpg" alt="Nazaré" loading="lazy">
+                    <img src="gallery-3.webp" alt="Nazaré" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery3Caption">Nazaré</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-4.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-4.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery4Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-5.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-5.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery5Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-6.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-6.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery6Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-7.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-7.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery7Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-8.jpg" alt="Azenhas do Mar, Sintra" loading="lazy">
+                    <img src="gallery-8.webp" alt="Azenhas do Mar, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery8Caption">Azenhas do Mar, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-9.jpg" alt="Padrão dos Descobrimentos, Lisboa" loading="lazy">
+                    <img src="gallery-9.webp" alt="Padrão dos Descobrimentos, Lisboa" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery9Caption">Padrão dos Descobrimentos, Lisboa</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-10.jpg" alt="Cabo da Roca" loading="lazy">
+                    <img src="gallery-10.webp" alt="Cabo da Roca" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery10Caption">Cabo da Roca</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-11.jpg" alt="Praça do Comércio, Lisboa" loading="lazy">
+                    <img src="gallery-11.webp" alt="Praça do Comércio, Lisboa" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery11Caption">Praça do Comércio, Lisboa</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)">
-                    <img src="gallery-12.jpg" alt="Palácio da Pena, Sintra" loading="lazy">
+                    <img src="gallery-12.webp" alt="Palácio da Pena, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery12Caption">Palácio da Pena, Sintra</div>
                 </div>
                 <!-- 12 duplicates for seamless loop -->
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-1.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-1.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery1Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-2.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-2.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery2Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-3.jpg" alt="Nazaré" loading="lazy">
+                    <img src="gallery-3.webp" alt="Nazaré" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery3Caption">Nazaré</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-4.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-4.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery4Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-5.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-5.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery5Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-6.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-6.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery6Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-7.jpg" alt="Quinta da Regaleira, Sintra" loading="lazy">
+                    <img src="gallery-7.webp" alt="Quinta da Regaleira, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery7Caption">Quinta da Regaleira, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-8.jpg" alt="Azenhas do Mar, Sintra" loading="lazy">
+                    <img src="gallery-8.webp" alt="Azenhas do Mar, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery8Caption">Azenhas do Mar, Sintra</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-9.jpg" alt="Padrão dos Descobrimentos, Lisboa" loading="lazy">
+                    <img src="gallery-9.webp" alt="Padrão dos Descobrimentos, Lisboa" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery9Caption">Padrão dos Descobrimentos, Lisboa</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-10.jpg" alt="Cabo da Roca" loading="lazy">
+                    <img src="gallery-10.webp" alt="Cabo da Roca" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery10Caption">Cabo da Roca</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-11.jpg" alt="Praça do Comércio, Lisboa" loading="lazy">
+                    <img src="gallery-11.webp" alt="Praça do Comércio, Lisboa" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery11Caption">Praça do Comércio, Lisboa</div>
                 </div>
                 <div class="moment-item" onclick="openLightboxFromEl(this)" aria-hidden="true">
-                    <img src="gallery-12.jpg" alt="Palácio da Pena, Sintra" loading="lazy">
+                    <img src="gallery-12.webp" alt="Palácio da Pena, Sintra" loading="lazy">
                     <div class="moment-overlay"></div>
                     <div class="moment-label" data-i18n="gallery12Caption">Palácio da Pena, Sintra</div>
                 </div>
@@ -3223,7 +3224,7 @@
 
     <!-- Footer -->
     <footer>
-        <img src="logo.png" alt="That Tourguide" class="footer-brand-logo">
+        <img src="logo.webp" alt="That Tourguide" class="footer-brand-logo">
         <div class="footer-logo">Carlos Figueiredo</div>
         <p class="footer-text" data-i18n="footerSub">Premium Tour Guide in Portugal &amp; Spain</p>
         <p class="footer-text" style="margin-top:0.1rem;font-size:0.75rem;">
@@ -3243,7 +3244,7 @@
     <!-- Chat window -->
     <div class="chat-window" id="chat-window" role="dialog" aria-label="FAQ Chat">
         <div class="chat-header">
-            <img src="profile.jpg" alt="Carlos" class="chat-header-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Carlos+Figueiredo&background=1e5676&color=fff&size=80'">
+            <img src="profile.webp" alt="Carlos" class="chat-header-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Carlos+Figueiredo&background=1e5676&color=fff&size=80'">
             <div class="chat-header-info">
                 <div class="chat-header-name">Carlos Figueiredo</div>
                 <div class="chat-header-status" data-i18n="chatStatus">Online · Typically replies instantly</div>
@@ -3259,7 +3260,7 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
     // ════════════════════════════════════════════
     //  i18n Translations
@@ -5066,31 +5067,7 @@
         showConfirmation();
     }
 
-    function launchCelebration() {
-        if (typeof confetti !== 'function') return;
-        const colors = ['#C85A32', '#1a3c61', '#d4a574', '#ffffff', '#e8b89a'];
-        const end = Date.now() + 20 * 1000; // 20 seconds
-
-        (function frame() {
-            confetti({
-                particleCount: 4,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0, y: 0.6 },
-                colors: colors,
-                scalar: 1.1
-            });
-            confetti({
-                particleCount: 4,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1, y: 0.6 },
-                colors: colors,
-                scalar: 1.1
-            });
-            if (Date.now() < end) requestAnimationFrame(frame);
-        })();
-    }
+    function launchCelebration() { /* confetti removed */ }
 
     function showConfirmation() {
         if (!_pendingBooking) return;
@@ -5787,8 +5764,7 @@
     </script>
 
     <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AUH7O6PCUCQpdviMa207W89CBezgwcKpQvbiQp_8nZ3ibgWCWlRx0FRx2ZBzg9T4fW2yQEOrtBlkJxO7&currency=EUR"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script defer src="https://www.paypal.com/sdk/js?client-id=AUH7O6PCUCQpdviMa207W89CBezgwcKpQvbiQp_8nZ3ibgWCWlRx0FRx2ZBzg9T4fW2yQEOrtBlkJxO7&currency=EUR"></script>
     <script>
         // Hide scroll indicator on scroll
         (function() {
