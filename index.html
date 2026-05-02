@@ -508,31 +508,54 @@
             padding: 0 0.25rem;
         }
         .itinerary-body.open { max-height: 600px; padding: 0.75rem 0.25rem 0.25rem; }
-        .itinerary-timeline { list-style: none; padding: 0; margin: 0; position: relative; }
-        .itinerary-timeline::before {
-            content: ''; position: absolute; left: 2.8rem; top: 0; bottom: 0;
-            width: 2px; background: var(--azulejo-blue); opacity: 0.15;
+        /* ── Itinerary timeline ── */
+        .itinerary-timeline {
+            list-style: none; padding: 0; margin: 0; position: relative;
         }
+        /* Vertical connector line aligned with dot column */
+        .itinerary-timeline::before {
+            content: ''; position: absolute;
+            left: calc(2.8rem + 0.55rem / 2 - 1px); top: 0; bottom: 0;
+            width: 2px; background: var(--azulejo-blue); opacity: 0.13;
+        }
+        /* 3-column grid: [time 2.8rem] [dot 0.55rem] [label 1fr] */
         .itinerary-timeline li {
-            display: flex; gap: 0.75rem; align-items: flex-start;
-            padding: 0.4rem 0; font-size: 0.82rem; line-height: 1.4;
+            display: grid;
+            grid-template-columns: 2.8rem 1.1rem 1fr;
+            align-items: center;
+            padding: 0.35rem 0;
+            font-size: 0.82rem; line-height: 1.4;
         }
         .it-time {
-            min-width: 2.6rem; font-weight: 700; color: var(--azulejo-blue);
-            font-size: 0.75rem; padding-top: 0.1rem; text-align: right;
-        }
-        .itinerary-timeline li:not(:has(.it-time)) {
-            padding-left: 2.6rem;
+            font-weight: 700; color: var(--azulejo-blue);
+            font-size: 0.75rem; text-align: right;
+            grid-column: 1;
         }
         .it-dot {
             width: 9px; height: 9px; border-radius: 50%;
-            background: var(--terracotta); flex-shrink: 0; margin-top: 0.3rem;
+            background: #aab8c8; flex-shrink: 0;
             position: relative; z-index: 1;
+            justify-self: center;
+            grid-column: 2;
         }
-        .itinerary-timeline li:not(:has(.it-time)) .it-dot {
-            background: #aab8c8;
+        .it-label {
+            color: #444; grid-column: 3; padding-left: 0.5rem;
         }
-        .it-label { color: #333; flex: 1; }
+        /* First and last: terracotta dot + bold blue label */
+        .itinerary-timeline li:first-child .it-dot,
+        .itinerary-timeline li:last-child .it-dot {
+            background: var(--terracotta);
+            width: 11px; height: 11px;
+            box-shadow: 0 0 0 3px rgba(200,90,50,0.18);
+        }
+        .itinerary-timeline li:first-child .it-label,
+        .itinerary-timeline li:last-child .it-label {
+            color: var(--azulejo-blue); font-weight: 600;
+        }
+        .itinerary-timeline li:first-child .it-time,
+        .itinerary-timeline li:last-child .it-time {
+            color: var(--terracotta);
+        }
 
         .tour-info-title {
             font-weight: 600;
