@@ -4965,7 +4965,18 @@
         document.getElementById('paypal-msg').style.display = 'none';
 
         if (typeof paypal === 'undefined') {
-            showPayPalMsg('PayPal SDK not loaded. Please refresh the page.', 'error');
+            // SDK may still be loading — retry up to 3s
+            let attempts = 0;
+            const waitForPayPal = setInterval(function() {
+                attempts++;
+                if (typeof paypal !== 'undefined') {
+                    clearInterval(waitForPayPal);
+                    renderPayPalButton();
+                } else if (attempts >= 30) {
+                    clearInterval(waitForPayPal);
+                    showPayPalMsg('PayPal SDK not loaded. Please refresh the page.', 'error');
+                }
+            }, 100);
             return;
         }
 
@@ -5719,7 +5730,7 @@
     }, 3000);
     </script>
 <!-- PayPal SDK -->
-<script defer="" src="https://www.paypal.com/sdk/js?client-id=AUH7O6PCUCQpdviMa207W89CBezgwcKpQvbiQp_8nZ3ibgWCWlRx0FRx2ZBzg9T4fW2yQEOrtBlkJxO7¤cy=EUR"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AUH7O6PCUCQpdviMa207W89CBezgwcKpQvbiQp_8nZ3ibgWCWlRx0FRx2ZBzg9T4fW2yQEOrtBlkJxO7&currency=EUR"></script>
 <script>
         // Hide scroll indicator on scroll
         (function() {
