@@ -17,7 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" onload="emailjs.init('wD-LkKz_AfTeG3D4e')"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" id="emailjs-sdk"></script>
+    <script>window.addEventListener('load',function(){if(window.emailjs)emailjs.init('wD-LkKz_AfTeG3D4e');});</script>
 
     <style>
         :root {
@@ -2704,7 +2705,7 @@
             <!-- Tour 4: Arrábida & Setúbal -->
             <div class="tour-card animate-on-scroll">
                 <div class="tour-header">
-                    <h3>Arrábida &amp; Setúbal</h3>
+                    <h3 data-i18n="arrabidaTitle">Arrábida &amp; Setúbal</h3>
                     <div class="tour-subtitle"><i class="far fa-clock"></i> <span data-i18n="arrabidaSubtitle">6-7h &bull; Premium Day Experience from Lisbon</span></div>
                 </div>
                 <div class="tour-body">
@@ -5067,7 +5068,6 @@
         showConfirmation();
     }
 
-    function launchCelebration() { /* confetti removed */ }
 
     function showConfirmation() {
         if (!_pendingBooking) return;
@@ -5111,7 +5111,6 @@
         if (subtitleEl) subtitleEl.textContent = isSumup ? (t.confirmSubtitleSumup || 'Your booking will be confirmed once Carlos verifies your payment. He will contact you within 24 hours.') : (t.confirmSubtitle || 'Thank you! Carlos will confirm your tour within 24 hours.');
 
         showBookingStep(3);
-        launchCelebration();
 
         // Send email notification (non-blocking — confirmation shows regardless)
         const warningEl = document.getElementById('emailWarningMsg');
